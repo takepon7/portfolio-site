@@ -28,16 +28,16 @@ export default async function HeartArticlePage({
       <header className="border-b border-[#2D2D2D]/10 bg-[#F9F8F6]/95 backdrop-blur-sm">
         <nav className="mx-auto flex max-w-3xl items-center justify-between px-6 py-5 sm:px-8">
           <Link
-            href="/#heart"
+            href="/#blog"
             className="text-sm tracking-[0.2em] text-[#2D2D2D]/80 transition-colors hover:text-[#B5A48B]"
           >
-            ← Insights (HEART)
+            ← Blog
           </Link>
           <Link
             href="/"
             className="text-sm tracking-[0.2em] text-[#2D2D2D]/80 transition-colors hover:text-[#B5A48B]"
           >
-            LOGIC & HEART
+            BUILD & CULTURE
           </Link>
         </nav>
       </header>

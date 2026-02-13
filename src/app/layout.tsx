@@ -13,11 +13,11 @@ const shipporiMincho = Shippori_Mincho({
 
 export const metadata: Metadata = {
   title: {
-    default: "Logic & Heart | Ryosuke",
-    template: "%s | Logic & Heart",
+    default: "Build & Culture | Ryosuke",
+    template: "%s | Build & Culture",
   },
   description:
-    "東京都板橋区の人事プロフェッショナル。AIを活用したアプリ開発と、組織開発の独自理論（Logic & Heart）を探求・発信するポートフォリオサイト。",
+    "東京都板橋区の人事プロフェッショナル。AIを活用したアプリ開発と、組織文化づくり（Build & Culture）を探求・発信するポートフォリオサイト。",
   keywords: [
     "人事",
     "HR",
@@ -28,9 +28,9 @@ export const metadata: Metadata = {
     "板橋",
   ],
   openGraph: {
-    title: "Logic & Heart | Ryosuke",
-    description: "ロジックで組み、心で動かす。人事とエンジニアリングの融合。",
-    siteName: "Logic & Heart",
+    title: "Build & Culture | Ryosuke",
+    description: "つくって、育てる。開発と組織文化のあわいで。",
+    siteName: "Build & Culture",
     locale: "ja_JP",
     type: "website",
   },
@@ -51,7 +51,7 @@ export default function RootLayout({
         <footer className="mt-auto border-t border-[#2D2D2D]/10 px-6 py-12 sm:px-8 md:px-12">
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 sm:flex-row sm:items-center">
             <p className="text-xs tracking-[0.05em] text-gray-400 sm:text-sm">
-              © 2026 Logic & Heart / Ryosuke
+              © 2026 Build & Culture / Ryosuke
             </p>
             <Link
               href="https://note.com/"
