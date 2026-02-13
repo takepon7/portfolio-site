@@ -1,9 +1,55 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FadeInSection } from "@/components/FadeInSection";
+import { LogicProductCard } from "@/components/LogicProductCard";
 
 const GITHUB_PERSONAL_GROWTH_APPS =
   "https://github.com/takepon7/personal-growth-apps";
+
+const LOGIC_PRODUCTS = [
+  {
+    title: "Web占いアプリ",
+    subtitle: "Web App",
+    description:
+      "生年月日や星座に基づいた、日々の指針を提案するWebサービス。Next.jsで構築。",
+    images: ["/images/web-fortune/web-fortune-01.png", "/images/web-fortune/web-fortune-02.png"],
+    href: undefined,
+  },
+  {
+    title: "筋トレ記録アプリ",
+    subtitle: "iOS App",
+    description:
+      "トレーニングと栄養管理をロジックで最適化するためのiOSアプリケーション。",
+    images: [
+      "/images/ios-training/ios-training-01.png",
+      "/images/ios-training/ios-training-02.png",
+      "/images/ios-training/ios-training-03.png",
+    ],
+    href: GITHUB_PERSONAL_GROWTH_APPS,
+  },
+  {
+    title: "サプリメント管理アプリ",
+    subtitle: "iOS App",
+    description:
+      "AIコーディングによる個人開発。自身の体調管理ロジックを反映した、ミニマルなサプリメント服用管理システム。",
+    images: [
+      "/images/ios-supplement/ios-supplement-01.png",
+      "/images/ios-supplement/ios-supplement-02.png",
+    ],
+    href: GITHUB_PERSONAL_GROWTH_APPS,
+  },
+  {
+    title: "英会話学習アプリ",
+    subtitle: "iOS App",
+    description:
+      "AIを活用したフレーズ学習と発音練習を支援するiOSアプリケーション。",
+    images: [
+      "/images/ios-english/ios-english-01.png",
+      "/images/ios-english/ios-english-02.png",
+    ],
+    href: GITHUB_PERSONAL_GROWTH_APPS,
+  },
+];
 
 export default function Home() {
   return (
@@ -82,65 +128,18 @@ export default function Home() {
               Featured Works (LOGIC)
             </p>
           </FadeInSection>
-          <div className="grid gap-6 sm:gap-8 md:grid-cols-3 md:gap-12">
-            <FadeInSection delay={80}>
-              <div className="group block rounded-2xl bg-[#F9F8F6] p-6 transition-all duration-300 hover:bg-[#F0EDE8] sm:p-8 md:rounded-3xl">
-                <span className="mb-3 inline-block text-[0.7rem] tracking-[0.15em] text-[#2D2D2D]/50">
-                  In Development
-                </span>
-                <h3 className="mb-2 text-base font-medium tracking-[0.02em] text-[#2D2D2D] sm:text-lg sm:leading-[1.45]">
-                  Web占いアプリ
-                </h3>
-                <p className="mb-2 text-[0.8rem] tracking-[0.02em] text-[#2D2D2D]/60">
-                  Web App
-                </p>
-                <p className="text-[0.9rem] tracking-[0.01em] leading-[2.05] text-[#2D2D2D]/80 sm:text-[0.95rem] sm:leading-[2.1]">
-                  生年月日や星座に基づいた、日々の指針を提案するWebサービス。Next.jsで構築。
-                </p>
-              </div>
-            </FadeInSection>
-            <FadeInSection delay={120}>
-              <Link
-                href={GITHUB_PERSONAL_GROWTH_APPS}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block rounded-2xl bg-[#F9F8F6] p-6 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F0EDE8] sm:p-8 md:rounded-3xl"
-              >
-                <span className="mb-3 inline-block text-[0.7rem] tracking-[0.15em] text-[#2D2D2D]/50">
-                  In Development
-                </span>
-                <h3 className="mb-2 text-base font-medium tracking-[0.02em] text-[#2D2D2D] transition-colors group-hover:text-[#2D2D2D] sm:text-lg sm:leading-[1.45]">
-                  筋トレ・サプリ記録アプリ
-                </h3>
-                <p className="mb-2 text-[0.8rem] tracking-[0.02em] text-[#2D2D2D]/60">
-                  iOS App
-                </p>
-                <p className="text-[0.9rem] tracking-[0.01em] leading-[2.05] text-[#2D2D2D]/80 sm:text-[0.95rem] sm:leading-[2.1]">
-                  トレーニングと栄養管理をロジックで最適化するためのiOSアプリケーション。
-                </p>
-              </Link>
-            </FadeInSection>
-            <FadeInSection delay={160}>
-              <Link
-                href={GITHUB_PERSONAL_GROWTH_APPS}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block rounded-2xl bg-[#F9F8F6] p-6 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F0EDE8] sm:p-8 md:rounded-3xl"
-              >
-                <span className="mb-3 inline-block text-[0.7rem] tracking-[0.15em] text-[#2D2D2D]/50">
-                  In Development
-                </span>
-                <h3 className="mb-2 text-base font-medium tracking-[0.02em] text-[#2D2D2D] transition-colors group-hover:text-[#2D2D2D] sm:text-lg sm:leading-[1.45]">
-                  英会話学習アプリ
-                </h3>
-                <p className="mb-2 text-[0.8rem] tracking-[0.02em] text-[#2D2D2D]/60">
-                  iOS App
-                </p>
-                <p className="text-[0.9rem] tracking-[0.01em] leading-[2.05] text-[#2D2D2D]/80 sm:text-[0.95rem] sm:leading-[2.1]">
-                  AIを活用したフレーズ学習と発音練習を支援するiOSアプリケーション。
-                </p>
-              </Link>
-            </FadeInSection>
+          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 md:gap-12">
+            {LOGIC_PRODUCTS.map((product, i) => (
+              <FadeInSection key={product.title} delay={80 + i * 40}>
+                <LogicProductCard
+                  title={product.title}
+                  subtitle={product.subtitle}
+                  description={product.description}
+                  images={product.images}
+                  href={product.href}
+                />
+              </FadeInSection>
+            ))}
           </div>
         </div>
       </section>
