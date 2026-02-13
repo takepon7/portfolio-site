@@ -132,22 +132,40 @@ export default function Home() {
               Insights (HEART)
             </p>
           </FadeInSection>
-          <FadeInSection delay={80}>
-            <Link
-              href="/heart/business-growth-equation"
-              className="group block rounded-2xl bg-[#F9F8F6] p-6 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-[#F0EDE8] hover:opacity-[0.98] sm:p-8 md:p-10 md:rounded-3xl"
-            >
-              <h3 className="mb-2 text-base font-medium tracking-[0.02em] text-[#2D2D2D] transition-colors group-hover:text-[#2D2D2D] sm:text-lg sm:leading-[1.45] md:text-[1.15rem] md:leading-[1.5]">
-                「事業成長の方程式」への挑戦：人事の私が、あえてコードを書く理由
-              </h3>
-              <p className="mb-3 text-[0.9rem] tracking-[0.02em] leading-[2.05] text-[#2D2D2D]/75 sm:text-[0.95rem] sm:leading-[2.1]">
-                組織の成長を「再現可能な関数」として捉え、人事の役割を論理的に語る。
-              </p>
-              <p className="text-[0.9rem] tracking-[0.01em] leading-[2.05] text-[#2D2D2D]/80 transition-colors duration-300 group-hover:text-[#2D2D2D]/90 sm:text-[0.95rem] sm:leading-[2.1]">
-                人と組織が加速する仕組みの作り方。システムエンジニアリングの思考を、組織開発の現場に適用した知見の集約。記事で詳しく紐解きます。
-              </p>
-            </Link>
-          </FadeInSection>
+          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 md:gap-12">
+            <FadeInSection delay={80}>
+              <Link
+                href="/heart/business-growth-equation"
+                className="group block rounded-2xl bg-[#F9F8F6] p-6 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-[#F0EDE8] hover:opacity-[0.98] sm:p-8 md:p-10 md:rounded-3xl"
+              >
+                <h3 className="mb-2 text-base font-medium tracking-[0.02em] text-[#2D2D2D] transition-colors group-hover:text-[#2D2D2D] sm:text-lg sm:leading-[1.45] md:text-[1.15rem] md:leading-[1.5]">
+                  「事業成長の方程式」への挑戦：人事の私が、あえてコードを書く理由
+                </h3>
+                <p className="mb-3 text-[0.9rem] tracking-[0.02em] leading-[2.05] text-[#2D2D2D]/75 sm:text-[0.95rem] sm:leading-[2.1]">
+                  完璧な戦略やシステムがあるのに、なぜかうまくいかない。そんな時は、「熱量」という変数が少し不足しているのかもしれません。
+                </p>
+                <p className="text-[0.9rem] tracking-[0.01em] leading-[2.05] text-[#2D2D2D]/80 transition-colors duration-300 group-hover:text-[#2D2D2D]/90 sm:text-[0.95rem] sm:leading-[2.1]">
+                  人と組織が加速する仕組みの作り方。論理を組織に適用した知見を、記事でやわらかく紐解いています。
+                </p>
+              </Link>
+            </FadeInSection>
+            <FadeInSection delay={160}>
+              <Link
+                href="/heart/organizational-debt"
+                className="group block rounded-2xl bg-[#F9F8F6] p-6 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-[#F0EDE8] hover:opacity-[0.98] sm:p-8 md:p-10 md:rounded-3xl"
+              >
+                <h3 className="mb-2 text-base font-medium tracking-[0.02em] text-[#2D2D2D] transition-colors group-hover:text-[#2D2D2D] sm:text-lg sm:leading-[1.45] md:text-[1.15rem] md:leading-[1.5]">
+                  組織における「技術的負債」の正体：見えない借金をどう返すか
+                </h3>
+                <p className="mb-3 text-[0.9rem] tracking-[0.02em] leading-[2.05] text-[#2D2D2D]/75 sm:text-[0.95rem] sm:leading-[2.1]">
+                  急成長の中で「とりあえず」と判断したこと。それは「技術的負債」のように、組織の成長痛として蓄積されていることがあります。
+                </p>
+                <p className="text-[0.9rem] tracking-[0.01em] leading-[2.05] text-[#2D2D2D]/80 transition-colors duration-300 group-hover:text-[#2D2D2D]/90 sm:text-[0.95rem] sm:leading-[2.1]">
+                  エンジニアリングの概念を借りると、今の苦しさが説明できるかもしれません。見えない借金を、どう返すかのヒントを記事で提案しています。
+                </p>
+              </Link>
+            </FadeInSection>
+          </div>
         </div>
       </section>
 
