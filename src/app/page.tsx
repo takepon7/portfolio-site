@@ -72,6 +72,26 @@ const blogPosts = [
     description:
       "エンジニアリングの概念を借りると、今の苦しさが説明できるかもしれません。見えない借金を、どう返すかのヒントを記事で提案しています。",
   },
+  {
+    title:
+      "組織を「正解」で上書きしない——事業成長のバグを見つける問い方",
+    href: "/heart/redefining-organization",
+    image: "/images/blog/redefining-org.jpg",
+    lead:
+      "世の中の「組織論の正解」を疑い、自社独自の熱中の源泉を定義し直す。事業を有機的に育てるための人事の視点。",
+    description:
+      "外の正解で上書きせず、自社の文脈で問い続ける。事業を長期的に育てる視点を、記事でまとめています。",
+  },
+  {
+    title:
+      "MVC（Minimum Viable Culture）——組織というプロダクトの「初期実装」",
+    href: "/heart/minimum-viable-culture",
+    image: "/images/blog/mvc-culture.jpg",
+    lead:
+      "プロダクト開発の「MVP」という概念を組織に。オーバーエンジニアリングを防ぎ、事業成長に合わせて文化を「実装」する人事の視点。",
+    description:
+      "人事もまた、アジャイルな開発者である。文化を小さく試し、育てる。Build & Culture の視点でまとめています。",
+  },
 ];
 
 export default function Home() {
@@ -104,6 +124,12 @@ export default function Home() {
               className="text-[0.65rem] font-medium tracking-[0.12em] text-[#2D2D2D]/80 transition-colors hover:text-[#B5A48B] sm:text-xs sm:tracking-[0.15em] md:text-sm"
             >
               PROFILE
+            </Link>
+            <Link
+              href="#contact"
+              className="text-[0.65rem] font-medium tracking-[0.12em] text-[#2D2D2D]/80 transition-colors hover:text-[#B5A48B] sm:text-xs sm:tracking-[0.15em] md:text-sm"
+            >
+              Contact
             </Link>
           </div>
         </nav>
@@ -175,7 +201,7 @@ export default function Home() {
               Blog
             </p>
           </FadeInSection>
-          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 md:gap-12">
+          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 md:gap-10 lg:gap-12">
             {blogPosts.map((post, i) => (
               <FadeInSection key={post.href} delay={80 + i * 80}>
                 <Link
@@ -185,10 +211,10 @@ export default function Home() {
                   <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl md:rounded-t-3xl">
                     <Image
                       src={post.image}
-                      alt=""
+                      alt={post.title}
                       fill
                       className="object-cover transition-transform duration-300 ease-out group-hover:scale-105 group-hover:brightness-105"
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   </div>
                   <div className="p-6 sm:p-8 md:p-10">
