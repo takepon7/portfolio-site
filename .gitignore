@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# personal-growth-apps 分割用（別リポジトリで管理）
+/personal-growth-apps
+/personal-growth-apps-split

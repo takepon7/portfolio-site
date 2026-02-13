@@ -1,26 +1,41 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f9f8f6;
+  --foreground: #2d2d2d;
+  --accent-gold: #b5a48b;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-accent-gold: var(--accent-gold);
+  --font-sans: var(--font-shippori-mincho), "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* HEART 記事：数式を読みやすく上品に */
+.heart-article .katex-display {
+  margin: 1.75rem 0;
+  padding: 0.75rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  text-align: center;
+  font-size: 1.05em;
+}
+
+.heart-article .katex {
+  font-size: 1.05em;
+  color: var(--foreground);
+}
+
+.heart-article .katex-display > .katex {
+  font-size: 1.05em;
+  white-space: normal;
 }
