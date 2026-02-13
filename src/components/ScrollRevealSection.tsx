@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 
 const defaultTransition = {
   duration: 1,
-  ease: [0.25, 0.46, 0.45, 0.94],
+  ease: [0.25, 0.46, 0.45, 0.94] as const,
 };
 
 interface ScrollRevealSectionProps {
@@ -40,7 +40,7 @@ export function ScrollRevealSection({
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] as const }}
         />
       )}
       {children}
