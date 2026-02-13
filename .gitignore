@@ -43,3 +43,7 @@ next-env.d.ts
 # personal-growth-apps 分割用（別リポジトリで管理）
 /personal-growth-apps
 /personal-growth-apps-split
+
+# 一時クローン（他リポジトリの修正用・本リポジトリには含めない）
+/test-repo-fix
+/roothr-repo-fix
