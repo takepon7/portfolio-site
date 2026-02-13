@@ -20,8 +20,13 @@ export function getSlugs(): string[] {
     .map((f) => f.replace(/\.md$/, ""));
 }
 
+const SAFE_SLUG_REGEX = /^[a-z0-9-]+$/;
+
 export function getArticle(slug: string): HeartArticle | null {
+  if (!SAFE_SLUG_REGEX.test(slug)) return null;
   const filePath = path.join(CONTENT_DIR, `${slug}.md`);
+  const resolved = path.resolve(filePath);
+  if (!resolved.startsWith(path.resolve(CONTENT_DIR))) return null;
   if (!fs.existsSync(filePath)) return null;
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
