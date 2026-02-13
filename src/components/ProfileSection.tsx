@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { FadeInSection } from "@/components/FadeInSection";
+import { ScrollRevealSection } from "@/components/ScrollRevealSection";
 
 const PROFILE_IMAGE = "/images/profile/profile-concept.jpg";
 
@@ -15,11 +16,15 @@ export function ProfileSection() {
   if (pathname !== "/") return null;
 
   return (
-    <section id="profile" className="py-16 sm:py-24 md:py-28 lg:py-32">
+    <ScrollRevealSection
+      id="profile"
+      className="bg-[#F9F8F6] py-16 sm:py-24 md:py-28 lg:py-32"
+      borderTop={true}
+    >
       <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
         <FadeInSection>
-          <p className="mb-10 text-sm tracking-[0.22em] leading-[1.6] text-[#2D2D2D]/60 sm:mb-12 md:mb-16">
-            Profile
+            <p className="mb-10 text-sm tracking-[0.22em] leading-[1.6] text-[#2D2D2D]/60 sm:mb-12 md:mb-16">
+            PROFILE
           </p>
         </FadeInSection>
 
@@ -57,6 +62,6 @@ export function ProfileSection() {
           </FadeInSection>
         </div>
       </div>
-    </section>
+    </ScrollRevealSection>
   );
 }

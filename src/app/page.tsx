@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FadeInSection } from "@/components/FadeInSection";
 import { LogicProductCard } from "@/components/LogicProductCard";
+import { ScrollRevealSection } from "@/components/ScrollRevealSection";
 
 const GITHUB_PERSONAL_GROWTH_APPS =
   "https://github.com/takepon7/personal-growth-apps";
@@ -108,22 +109,22 @@ export default function Home() {
           </Link>
           <div className="flex gap-4 sm:gap-8 md:gap-10">
             <Link
-              href="#logic"
-              className="text-[0.65rem] font-medium tracking-[0.12em] text-[#2D2D2D]/80 transition-colors hover:text-[#B5A48B] sm:text-xs sm:tracking-[0.15em] md:text-sm"
-            >
-              Works
-            </Link>
-            <Link
               href="#blog"
               className="text-[0.65rem] font-medium tracking-[0.12em] text-[#2D2D2D]/80 transition-colors hover:text-[#B5A48B] sm:text-xs sm:tracking-[0.15em] md:text-sm"
             >
               Blog
             </Link>
             <Link
+              href="#works"
+              className="text-[0.65rem] font-medium tracking-[0.12em] text-[#2D2D2D]/80 transition-colors hover:text-[#B5A48B] sm:text-xs sm:tracking-[0.15em] md:text-sm"
+            >
+              Works
+            </Link>
+            <Link
               href="#profile"
               className="text-[0.65rem] font-medium tracking-[0.12em] text-[#2D2D2D]/80 transition-colors hover:text-[#B5A48B] sm:text-xs sm:tracking-[0.15em] md:text-sm"
             >
-              PROFILE
+              Profile
             </Link>
             <Link
               href="#contact"
@@ -135,70 +136,37 @@ export default function Home() {
         </nav>
       </header>
 
-      {/* ヒーローセクション */}
-      <main className="relative pt-[4.5rem] pb-20 sm:pt-28 sm:pb-24 md:pt-32 md:pb-28 lg:pt-40 lg:pb-32">
+      {/* ヒーローセクション（理念文） */}
+      <ScrollRevealSection
+        className="relative bg-[#FCFCFB] pt-[4.5rem] pb-16 sm:pt-28 sm:pb-20 md:pt-32 md:pb-24 lg:pt-40 lg:pb-28"
+        scale={true}
+        borderTop={false}
+      >
         <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16 xl:gap-24">
-            {/* コピーエリア */}
-            <div className="flex flex-col justify-center space-y-8 sm:space-y-10 md:space-y-12">
-              <h1 className="text-[1.75rem] font-medium leading-[1.45] tracking-wide text-[#2D2D2D] sm:text-[2.25rem] sm:leading-[1.5] md:text-[3rem] lg:text-[3.5rem] xl:text-[4rem]">
-                つくって、
-                <br />
-                育てる。
-              </h1>
-              <p className="max-w-lg text-[0.95rem] tracking-[0.01em] leading-[2.1] text-[#2D2D2D]/85 sm:text-base sm:leading-[2.15] md:leading-[2.2]">
-                仕組みをつくり、文化を育てる。その両方を、このサイトに残しています。
-              </p>
-            </div>
-
-            {/* ヒーロー画像 */}
-            <div className="relative flex justify-center lg:justify-end">
-              <div className="relative w-full max-w-md overflow-hidden rounded-2xl border border-[#2D2D2D]/06 shadow-[0_25px_50px_-12px_rgba(45,45,45,0.08),0_12px_24px_-8px_rgba(45,45,45,0.06)] sm:max-w-lg md:rounded-3xl">
-                <Image
-                  src="/images/hero/hero-main.jpg"
-                  alt=""
-                  width={800}
-                  height={533}
-                  priority
-                  className="aspect-[3/2] w-full object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-
-      {/* Featured Works (LOGIC) */}
-      <section id="logic" className="py-16 sm:py-24 md:py-28 lg:py-32">
-        <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
-          <FadeInSection>
-            <p className="mb-10 text-sm tracking-[0.22em] leading-[1.6] text-[#2D2D2D]/60 sm:mb-12 md:mb-16">
-              Featured Works (LOGIC)
+          <div className="mx-auto max-w-3xl">
+            <h1 className="mb-10 text-left text-[1.5rem] font-medium tracking-[0.08em] text-[#2D2D2D] sm:mb-12 sm:text-[1.75rem] md:mb-14 md:text-[2rem] md:tracking-[0.1em] lg:text-[2.25rem]">
+              Build & Culture
+              <span className="block mt-3 font-normal tracking-[0.04em] sm:mt-4 md:mt-5 md:text-[1.75rem] md:tracking-[0.06em] lg:text-[2rem]">
+                / つくって、育てる。
+              </span>
+            </h1>
+            <p className="text-left text-[0.9375rem] leading-[2.4] tracking-[0.02em] text-[#2D2D2D] sm:text-[1rem] sm:leading-[2.5] md:text-[1.0625rem] md:leading-[2.6]">
+              効率やロジックで仕組みを書き換え、対話と情熱で文化を編み直す。プロダクトをビルドすることと、組織を育てること。私の中では、その二つは分かちがたく繋がっています。どちらも、誰かの不便を心地よさに変えるための、終わりのないクラフトマンシップ。現場の体温を感じながら、確かな手触りのある未来を、つくって、育てる。
             </p>
-          </FadeInSection>
-          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 md:gap-12">
-            {LOGIC_PRODUCTS.map((product, i) => (
-              <FadeInSection key={product.title} delay={80 + i * 40}>
-                <LogicProductCard
-                  title={product.title}
-                  subtitle={product.subtitle}
-                  description={product.description}
-                  images={product.images}
-                  href={product.href}
-                />
-              </FadeInSection>
-            ))}
           </div>
         </div>
-      </section>
+      </ScrollRevealSection>
 
       {/* Blog */}
-      <section id="blog" className="py-16 sm:py-24 md:py-28 lg:py-32">
+      <ScrollRevealSection
+        id="blog"
+        className="bg-[#F9F8F6] pt-14 pb-16 sm:pt-20 sm:pb-24 md:pt-24 md:pb-28 lg:pt-28 lg:pb-32"
+        borderTop={true}
+      >
         <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
           <FadeInSection>
             <p className="mb-10 text-sm tracking-[0.22em] leading-[1.6] text-[#2D2D2D]/60 sm:mb-12 md:mb-16">
-              Blog
+              BLOG
             </p>
           </FadeInSection>
           <div className="grid gap-6 sm:gap-8 md:grid-cols-2 md:gap-10 lg:gap-12">
@@ -233,7 +201,35 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </ScrollRevealSection>
+
+      {/* Works */}
+      <ScrollRevealSection
+        id="works"
+        className="bg-[#F7F6F4] py-16 sm:py-24 md:py-28 lg:py-32"
+        borderTop={true}
+      >
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
+          <FadeInSection>
+            <p className="mb-10 text-sm tracking-[0.22em] leading-[1.6] text-[#2D2D2D]/60 sm:mb-12 md:mb-16">
+              WORKS
+            </p>
+          </FadeInSection>
+          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 md:gap-12">
+            {LOGIC_PRODUCTS.map((product, i) => (
+              <FadeInSection key={product.title} delay={80 + i * 40}>
+                <LogicProductCard
+                  title={product.title}
+                  subtitle={product.subtitle}
+                  description={product.description}
+                  images={product.images}
+                  href={product.href}
+                />
+              </FadeInSection>
+            ))}
+          </div>
+        </div>
+      </ScrollRevealSection>
     </div>
   );
 }
