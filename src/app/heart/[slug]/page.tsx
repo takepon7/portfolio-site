@@ -24,7 +24,7 @@ export default async function HeartArticlePage({
   if (!article) notFound();
 
   return (
-    <div className="min-h-screen bg-[#F9F8F6]">
+    <div className="min-h-screen bg-[#F9F8F6] pb-24 sm:pb-32">
       <header className="border-b border-[#2D2D2D]/10 bg-[#F9F8F6]/95 backdrop-blur-sm">
         <nav className="mx-auto flex max-w-3xl items-center justify-between px-6 py-5 sm:px-8">
           <Link

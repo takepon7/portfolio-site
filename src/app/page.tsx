@@ -2,9 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { FadeInSection } from "@/components/FadeInSection";
 
-const GITHUB_SUPPLEMENT_APP =
-  "https://github.com/takepon7/personal-growth-apps/tree/main/SupplementApp";
-const GITHUB_PORTFOLIO = "https://github.com/takepon7"; // このサイトのソースリポジトリがあればURLを差し替えてください
+const GITHUB_PERSONAL_GROWTH_APPS =
+  "https://github.com/takepon7/personal-growth-apps";
 
 export default function Home() {
   return (
@@ -83,40 +82,62 @@ export default function Home() {
               Featured Works (LOGIC)
             </p>
           </FadeInSection>
-          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 md:gap-12">
+          <div className="grid gap-6 sm:gap-8 md:grid-cols-3 md:gap-12">
             <FadeInSection delay={80}>
+              <div className="group block rounded-2xl bg-[#F9F8F6] p-6 transition-all duration-300 hover:bg-[#F0EDE8] sm:p-8 md:rounded-3xl">
+                <span className="mb-3 inline-block text-[0.7rem] tracking-[0.15em] text-[#2D2D2D]/50">
+                  In Development
+                </span>
+                <h3 className="mb-2 text-base font-medium tracking-[0.02em] text-[#2D2D2D] sm:text-lg sm:leading-[1.45]">
+                  Web占いアプリ
+                </h3>
+                <p className="mb-2 text-[0.8rem] tracking-[0.02em] text-[#2D2D2D]/60">
+                  Web App
+                </p>
+                <p className="text-[0.9rem] tracking-[0.01em] leading-[2.05] text-[#2D2D2D]/80 sm:text-[0.95rem] sm:leading-[2.1]">
+                  生年月日や星座に基づいた、日々の指針を提案するWebサービス。Next.jsで構築。
+                </p>
+              </div>
+            </FadeInSection>
+            <FadeInSection delay={120}>
               <Link
-                href={GITHUB_SUPPLEMENT_APP}
+                href={GITHUB_PERSONAL_GROWTH_APPS}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block rounded-2xl bg-[#F9F8F6] p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-[#F0EDE8] sm:p-8 md:p-10 md:rounded-3xl"
+                className="group block rounded-2xl bg-[#F9F8F6] p-6 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F0EDE8] sm:p-8 md:rounded-3xl"
               >
-                <h3 className="mb-2 text-base font-medium tracking-[0.02em] text-[#2D2D2D] transition-colors group-hover:text-[#2D2D2D] sm:text-lg md:text-xl sm:leading-[1.45]">
-                  Supplement Management System
+                <span className="mb-3 inline-block text-[0.7rem] tracking-[0.15em] text-[#2D2D2D]/50">
+                  In Development
+                </span>
+                <h3 className="mb-2 text-base font-medium tracking-[0.02em] text-[#2D2D2D] transition-colors group-hover:text-[#2D2D2D] sm:text-lg sm:leading-[1.45]">
+                  筋トレ・サプリ記録アプリ
                 </h3>
-                <p className="mb-3 text-[0.9rem] tracking-[0.02em] leading-[2.05] text-[#2D2D2D]/75 sm:text-[0.95rem] sm:leading-[2.1]">
-                  人事による、AIコーディングへの挑戦。
+                <p className="mb-2 text-[0.8rem] tracking-[0.02em] text-[#2D2D2D]/60">
+                  iOS App
                 </p>
-                <p className="text-[0.9rem] tracking-[0.01em] leading-[2.1] text-[#2D2D2D]/80 sm:text-[0.95rem] sm:leading-[2.15]">
-                  「エンジニアリングは専門外」という境界線が、AIによって消えようとしています。趣味の筋トレとサプリメント摂取をより快適にするために、人事である私がAI（Cursor）を相棒に初めて本格的なコーディングに挑戦して作り上げたのがこのアプリです。興味のある分野から、まず手を動かし、実装まで辿り着く。そのプロセス自体を形にしました。
+                <p className="text-[0.9rem] tracking-[0.01em] leading-[2.05] text-[#2D2D2D]/80 sm:text-[0.95rem] sm:leading-[2.1]">
+                  トレーニングと栄養管理をロジックで最適化するためのiOSアプリケーション。
                 </p>
               </Link>
             </FadeInSection>
             <FadeInSection delay={160}>
               <Link
-                href={GITHUB_PORTFOLIO}
+                href={GITHUB_PERSONAL_GROWTH_APPS}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block rounded-2xl bg-[#F9F8F6] p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-[#F0EDE8] sm:p-8 md:p-10 md:rounded-3xl"
+                className="group block rounded-2xl bg-[#F9F8F6] p-6 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F0EDE8] sm:p-8 md:rounded-3xl"
               >
-                <h3 className="mb-2 text-base font-medium tracking-[0.02em] text-[#2D2D2D] transition-colors group-hover:text-[#2D2D2D] sm:text-lg md:text-xl sm:leading-[1.45]">
-                  Logic & Heart Portfolio (This Site)
+                <span className="mb-3 inline-block text-[0.7rem] tracking-[0.15em] text-[#2D2D2D]/50">
+                  In Development
+                </span>
+                <h3 className="mb-2 text-base font-medium tracking-[0.02em] text-[#2D2D2D] transition-colors group-hover:text-[#2D2D2D] sm:text-lg sm:leading-[1.45]">
+                  英会話学習アプリ
                 </h3>
-                <p className="mb-3 text-[0.9rem] tracking-[0.02em] leading-[2.05] text-[#2D2D2D]/75 sm:text-[0.95rem] sm:leading-[2.1]">
-                  「まず、やってみる」を公開する場所。
+                <p className="mb-2 text-[0.8rem] tracking-[0.02em] text-[#2D2D2D]/60">
+                  iOS App
                 </p>
                 <p className="text-[0.9rem] tracking-[0.01em] leading-[2.05] text-[#2D2D2D]/80 sm:text-[0.95rem] sm:leading-[2.1]">
-                  人事の哲学と、AIを駆使した自作アプリ。この二つを一つのサイトにまとめたのは、職種に縛られず「やりたいことを形にする」今の時代の足跡を残すためです。技術スタックはNext.js。AIとの対話を通じて、一歩ずつビルドしています。
+                  AIを活用したフレーズ学習と発音練習を支援するiOSアプリケーション。
                 </p>
               </Link>
             </FadeInSection>
@@ -166,25 +187,6 @@ export default function Home() {
               </Link>
             </FadeInSection>
           </div>
-        </div>
-      </section>
-
-      {/* Profile */}
-      <section id="profile" className="py-16 sm:py-24 md:py-28 lg:py-32">
-        <div className="mx-auto max-w-3xl px-6 sm:px-8 md:px-12">
-          <FadeInSection>
-            <p className="mb-10 text-sm tracking-[0.22em] leading-[1.6] text-[#2D2D2D]/60 sm:mb-12 md:mb-16">
-              Profile
-            </p>
-          </FadeInSection>
-          <FadeInSection delay={80}>
-            <p className="text-[0.95rem] tracking-[0.02em] leading-[2.2] text-[#2D2D2D]/85 sm:text-[1rem] sm:leading-[2.25]">
-              人事として働くかたわら、身体を動かすことやサプリメントの試行錯誤が日課です。アニメや本をゆっくり楽しむ静かな暮らしが好きで、ここ数年はAI（Cursor）と一緒にコードを書くのが新しい趣味になりました。専門外だった開発に、少しずつ手を伸ばしているところです。等身大の足跡を、このサイトに残しています。
-            </p>
-            <p className="mt-8 text-right text-xs tracking-[0.18em] text-[#2D2D2D]/40 sm:mt-10 sm:text-[#2D2D2D]/45">
-              Itabashi, Tokyo
-            </p>
-          </FadeInSection>
         </div>
       </section>
     </div>
