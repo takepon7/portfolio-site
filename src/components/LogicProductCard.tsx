@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 export interface LogicProductCardProps {
   title: string;
@@ -102,54 +103,64 @@ export function LogicProductCard({
         </div>
       )}
 
-      {/* ライトボックス */}
-      {lightboxOpen && currentSrc && (
-        <div
-          ref={lightboxRef}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[#2D2D2D]/80 p-4"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            setLightboxOpen(false);
-          }}
-          onKeyDown={(e) => {
-            e.key === "Escape" && setLightboxOpen(false);
-          }}
-          role="dialog"
-          aria-modal="true"
-          aria-label="画像を拡大表示"
-          tabIndex={-1}
-        >
-          <button
-            type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setLightboxOpen(false);
-            }}
-            className="absolute right-4 top-4 rounded-full bg-white/90 p-2 text-[#2D2D2D] transition-opacity hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-white"
-            aria-label="閉じる"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
+      {/* ライトボックス（ポータルで body 直下に描画し、Link の外でクリックがリンクに飛ばないようにする） */}
+      {typeof document !== "undefined" &&
+        lightboxOpen &&
+        currentSrc &&
+        createPortal(
           <div
-            className="relative h-[85vh] w-[90vw] max-w-4xl shrink-0"
-            onClick={(e) => e.stopPropagation()}
+            ref={lightboxRef}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-[#2D2D2D]/85 p-4"
+            onClick={() => setLightboxOpen(false)}
+            onKeyDown={(e) => {
+              if (e.key === "Escape") {
+                e.preventDefault();
+                setLightboxOpen(false);
+              }
+            }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="画像を拡大表示"
+            tabIndex={-1}
           >
-            <Image
-              src={currentSrc}
-              alt=""
-              fill
-              className="rounded-lg object-contain shadow-2xl"
-              sizes="90vw"
-              onClick={(e) => e.stopPropagation()}
-            />
-          </div>
-        </div>
-      )}
+            {/* 閉じるボタン（右上・明確な ✕ 閉じる） */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightboxOpen(false);
+              }}
+              className="absolute right-4 top-4 flex items-center gap-2 rounded-lg bg-white/95 px-3 py-2 text-[#2D2D2D] shadow-lg transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#2D2D2D]/85"
+              aria-label="閉じる"
+            >
+              <span className="text-lg font-medium" aria-hidden>✕</span>
+              <span className="text-sm font-medium">閉じる</span>
+            </button>
+            {/* 画像エリア：クリックでリンクに飛ばない（オーバーレイのみ閉じる） */}
+            <div
+              className="relative h-[85vh] w-[90vw] max-w-4xl shrink-0 cursor-default"
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+              }}
+              onKeyDown={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={currentSrc}
+                alt=""
+                fill
+                className="rounded-lg object-contain shadow-2xl"
+                sizes="90vw"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                }}
+                draggable={false}
+              />
+            </div>
+          </div>,
+          document.body
+        )}
 
       <p className="text-[0.9rem] tracking-[0.01em] leading-[2.05] text-[#2D2D2D]/80 sm:text-[0.95rem] sm:leading-[2.1]">
         {description}
@@ -157,11 +168,13 @@ export function LogicProductCard({
     </>
   );
 
+  // 拡大表示中は背後のメイン画面をスクロールさせない
   useEffect(() => {
     if (!lightboxOpen) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    lightboxRef.current?.focus();
+    // キーボードで Esc が効くようダイアログにフォーカス
+    requestAnimationFrame(() => lightboxRef.current?.focus());
     return () => {
       document.body.style.overflow = prev;
     };
