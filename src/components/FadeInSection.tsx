@@ -37,10 +37,10 @@ export function FadeInSection({ children, className = "", delay = 0 }: FadeInSec
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${
+      className={`transition-all duration-600 ease-out ${
         isVisible
           ? "translate-y-0 opacity-100"
-          : "translate-y-8 opacity-0"
+          : "translate-y-4 opacity-0 sm:translate-y-5"
       } ${className}`}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
     >

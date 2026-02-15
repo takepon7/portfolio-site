@@ -77,7 +77,7 @@ export function ContactSection({ formspreeEndpoint = null }: ContactSectionProps
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] as const }}
             className="max-w-xl"
           >
             {status === "success" ? (
@@ -134,7 +134,7 @@ export function ContactSection({ formspreeEndpoint = null }: ContactSectionProps
                 <button
                   type="submit"
                   disabled={status === "submitting"}
-                  className="rounded-lg border border-gray-200 bg-white/80 px-6 py-3 text-[0.9375rem] tracking-[0.02em] text-[#2D2D2D] transition-all duration-200 hover:border-gray-300 hover:bg-white hover:shadow-[0_0_0_1px_rgba(0,0,0,0.06)] disabled:opacity-60"
+                  className="rounded-lg border border-gray-200 bg-white/80 px-6 py-3 text-[0.9375rem] tracking-[0.02em] text-[#2D2D2D] transition-all duration-200 active:opacity-90 hover:border-gray-300 hover:bg-white hover:shadow-[0_0_0_1px_rgba(0,0,0,0.06)] disabled:opacity-60"
                 >
                   {status === "submitting" ? "送信中…" : "送信"}
                 </button>

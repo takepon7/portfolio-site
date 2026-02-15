@@ -20,6 +20,15 @@ body {
   font-family: var(--font-sans);
 }
 
+/* 横スクロール時のスクロールバー非表示（スワイプUI用） */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* HEART 記事：数式を読みやすく上品に */
 .heart-article .katex-display {
   margin: 1.75rem 0;

@@ -144,14 +144,18 @@ export default function Home() {
       >
         <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
           <div className="mx-auto max-w-3xl">
-            <h1 className="mb-10 text-left text-[1.5rem] font-medium tracking-[0.08em] text-[#2D2D2D] sm:mb-12 sm:text-[1.75rem] md:mb-14 md:text-[2rem] md:tracking-[0.1em] lg:text-[2.25rem]">
+            <h1 className="mb-10 text-left text-[1.4rem] font-medium tracking-[0.08em] text-[#2D2D2D] leading-tight sm:mb-12 sm:text-[1.75rem] md:mb-14 md:text-[2rem] md:tracking-[0.1em] lg:text-[2.25rem]">
               Build & Culture
-              <span className="block mt-3 font-normal tracking-[0.04em] sm:mt-4 md:mt-5 md:text-[1.75rem] md:tracking-[0.06em] lg:text-[2rem]">
+              <span className="block mt-2 font-normal tracking-[0.04em] sm:mt-4 md:mt-5 md:text-[1.75rem] md:tracking-[0.06em] lg:text-[2rem]">
                 / つくって、育てる。
               </span>
             </h1>
-            <p className="text-left text-[0.9375rem] leading-[2.4] tracking-[0.02em] text-[#2D2D2D] sm:text-[1rem] sm:leading-[2.5] md:text-[1.0625rem] md:leading-[2.6]">
-              効率やロジックで仕組みを書き換え、対話と情熱で文化を編み直す。プロダクトをビルドすることと、組織を育てること。私の中では、その二つは分かちがたく繋がっています。どちらも、誰かの不便を心地よさに変えるための、終わりのないクラフトマンシップ。現場の体温を感じながら、確かな手触りのある未来を、つくって、育てる。
+            <p className="max-w-[90vw] text-left text-[0.9375rem] leading-[2.4] tracking-[0.02em] text-[#2D2D2D] sm:max-w-none sm:text-[1rem] sm:leading-[2.5] md:text-[1.0625rem] md:leading-[2.6]">
+              効率やロジックで仕組みを書き換え、対話と情熱で文化を編み直す。
+              <br className="sm:hidden" />
+              プロダクトをビルドすることと、組織を育てること。私の中では、その二つは分かちがたく繋がっています。
+              <br className="sm:hidden" />
+              どちらも、誰かの不便を心地よさに変えるための、終わりのないクラフトマンシップ。現場の体温を感じながら、確かな手触りのある未来を、つくって、育てる。
             </p>
           </div>
         </div>
@@ -165,23 +169,23 @@ export default function Home() {
       >
         <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
           <FadeInSection>
-            <p className="mb-10 text-sm tracking-[0.22em] leading-[1.6] text-[#2D2D2D]/60 sm:mb-12 md:mb-16">
+            <p className="mb-8 text-xs tracking-[0.2em] leading-[1.6] text-[#2D2D2D]/60 sm:mb-10 sm:text-sm sm:tracking-[0.22em] md:mb-16">
               BLOG
             </p>
           </FadeInSection>
-          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 md:gap-10 lg:gap-12">
+          <div className="grid gap-10 sm:gap-8 md:grid-cols-2 md:gap-10 lg:gap-12">
             {blogPosts.map((post, i) => (
               <FadeInSection key={post.href} delay={80 + i * 80}>
                 <Link
                   href={post.href}
-                  className="group block overflow-hidden rounded-2xl bg-[#F9F8F6] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-[#F0EDE8] hover:opacity-[0.98] md:rounded-3xl"
+                  className="group block overflow-hidden rounded-2xl bg-[#F9F8F6] transition-all duration-300 ease-out active:opacity-90 hover:-translate-y-0.5 hover:bg-[#F0EDE8] hover:opacity-[0.98] md:rounded-3xl"
                 >
                   <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl md:rounded-t-3xl">
                     <Image
                       src={post.image}
                       alt={post.title}
                       fill
-                      className="object-cover transition-transform duration-300 ease-out group-hover:scale-105 group-hover:brightness-105"
+                      className="object-cover transition-transform duration-300 ease-out group-active:opacity-95 group-hover:scale-105 group-hover:brightness-105"
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   </div>
@@ -211,7 +215,7 @@ export default function Home() {
       >
         <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
           <FadeInSection>
-            <p className="mb-10 text-sm tracking-[0.22em] leading-[1.6] text-[#2D2D2D]/60 sm:mb-12 md:mb-16">
+            <p className="mb-8 text-xs tracking-[0.2em] leading-[1.6] text-[#2D2D2D]/60 sm:mb-10 sm:text-sm sm:tracking-[0.22em] md:mb-16">
               WORKS
             </p>
           </FadeInSection>

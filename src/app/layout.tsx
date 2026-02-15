@@ -14,11 +14,11 @@ const shipporiMincho = Shippori_Mincho({
 
 export const metadata: Metadata = {
   title: {
-    default: "Build & Culture | Ryosuke",
+    default: "Build & Culture | つくって、育てる。",
     template: "%s | Build & Culture",
   },
   description:
-    "東京都板橋区の人事プロフェッショナル。AIを活用したアプリ開発と、組織文化づくり（Build & Culture）を探求・発信するポートフォリオサイト。",
+    "つくって、育てる。効率とロジックで仕組みを、対話と情熱で文化を編み直す。プロダクトをビルドすることと組織を育てること。Build & Culture のポートフォリオ。",
   keywords: [
     "人事",
     "HR",
@@ -29,8 +29,9 @@ export const metadata: Metadata = {
     "板橋",
   ],
   openGraph: {
-    title: "Build & Culture | Ryosuke",
-    description: "つくって、育てる。開発と組織文化のあわいで。",
+    title: "Build & Culture | つくって、育てる。",
+    description:
+      "効率とロジックで仕組みを、対話と情熱で文化を。プロダクトをビルドすることと組織を育てること。",
     siteName: "Build & Culture",
     locale: "ja_JP",
     type: "website",

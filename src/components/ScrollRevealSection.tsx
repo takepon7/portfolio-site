@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 
 const defaultTransition = {
-  duration: 1,
+  duration: 0.85,
   ease: [0.25, 0.46, 0.45, 0.94] as const,
 };
 
@@ -28,7 +28,7 @@ export function ScrollRevealSection({
   return (
     <motion.section
       id={id}
-      initial={{ opacity: 0, scale: scale ? 0.98 : 1, y: scale ? 12 : 0 }}
+      initial={{ opacity: 0, scale: scale ? 0.98 : 1, y: scale ? 6 : 0 }}
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: true, amount: 0.12, margin: "0px 0px -80px 0px" }}
       transition={defaultTransition}
