@@ -21,7 +21,7 @@ const WORKS = [
     subtitle: "社内AI実装",
     description:
       "カレンダー・週報データとClaude APIを連携し、マネジメント層の評価サマリーを自動生成。人事関連工数を約50%削減するPoCを成功裏に確立。",
-    images: ["/images/ios-supplement/ios-supplement-01.png"],
+    images: ["/images/ai-hr/ai-hr-concept.svg"],
     href: undefined,
   },
   {
@@ -29,7 +29,7 @@ const WORKS = [
     subtitle: "グローバルSaaS導入",
     description:
       "Workday（HCM/LMS）・ServiceNowの全社導入をエンドツーエンドで主導。15名以上の部門横断チームを統括し、要件定義・ベンダーマネジメント・データ移行を完遂。",
-    images: ["/images/ios-training/ios-training-01.png"],
+    images: ["/images/pm-works/pm-concept.svg"],
     href: undefined,
   },
 ];
@@ -103,7 +103,7 @@ export default function Home() {
             href="/"
             className="text-xs font-medium tracking-[0.2em] text-[#2D2D2D] transition-opacity hover:opacity-70 sm:text-sm md:text-base"
           >
-            Ryosuke Takeda
+            BUILD & CULTURE
           </Link>
           <div className="flex gap-4 sm:gap-8 md:gap-10">
             {[
@@ -127,35 +127,52 @@ export default function Home() {
 
       {/* ヒーローセクション */}
       <ScrollRevealSection
-        className="relative bg-[#FCFCFB] pt-[4.5rem] pb-16 sm:pt-28 sm:pb-20 md:pt-32 md:pb-24 lg:pt-40 lg:pb-28"
+        className="relative overflow-hidden bg-[#FCFCFB] pt-[4.5rem] pb-16 sm:pt-28 sm:pb-20 md:pt-32 md:pb-24 lg:pt-40 lg:pb-28"
         scale={true}
         borderTop={false}
       >
         <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
-          <div className="mx-auto max-w-3xl">
-            <h1 className="mb-8 text-left text-[1.75rem] font-medium tracking-[0.04em] text-[#2D2D2D] leading-tight sm:mb-10 sm:text-[2.25rem] md:mb-12 md:text-[2.75rem] lg:text-[3rem]">
-              業務の痛みを、
-              <br />
-              システムで解く。
-            </h1>
-            <p className="mb-10 max-w-2xl text-left text-[0.9375rem] leading-[2.4] tracking-[0.02em] text-[#2D2D2D]/75 sm:mb-12 sm:text-[1rem] sm:leading-[2.5] md:text-[1.0625rem] md:leading-[2.6]">
-              バックオフィスのドメイン知識 × フルスタック開発力 × AI実装。
-              <br className="hidden sm:block" />
-              現場課題の要件定義から商用SaaSのデリバリーまで、一気通貫で牽引します。
-            </p>
-            <div className="flex flex-wrap gap-3 sm:gap-4">
-              <Link
-                href="#works"
-                className="inline-block rounded-lg border border-[#2D2D2D]/20 bg-[#2D2D2D] px-6 py-3 text-[0.875rem] font-medium tracking-[0.06em] text-[#F9F8F6] transition-all duration-200 hover:bg-[#2D2D2D]/85 sm:px-8 sm:text-[0.9375rem]"
-              >
-                実績を見る
-              </Link>
-              <Link
-                href="#contact"
-                className="inline-block rounded-lg border border-[#2D2D2D]/20 px-6 py-3 text-[0.875rem] font-medium tracking-[0.06em] text-[#2D2D2D] transition-all duration-200 hover:border-[#2D2D2D]/40 hover:bg-[#2D2D2D]/05 sm:px-8 sm:text-[0.9375rem]"
-              >
-                お問い合わせ
-              </Link>
+          <div className="flex flex-col gap-10 md:flex-row md:items-center md:gap-12 lg:gap-16">
+            {/* テキスト */}
+            <div className="flex-1 md:max-w-[52%]">
+              <h1 className="mb-8 text-left text-[1.75rem] font-medium tracking-[0.04em] text-[#2D2D2D] leading-tight sm:mb-10 sm:text-[2.25rem] md:mb-12 md:text-[2.75rem] lg:text-[3rem]">
+                業務の痛みを、
+                <br />
+                システムで解く。
+              </h1>
+              <p className="mb-10 text-left text-[0.9375rem] leading-[2.4] tracking-[0.02em] text-[#2D2D2D]/75 sm:mb-12 sm:text-[1rem] sm:leading-[2.5] md:text-[1.0625rem] md:leading-[2.6]">
+                バックオフィスのドメイン知識 × フルスタック開発力 × AI実装。
+                <br className="hidden sm:block" />
+                現場課題の要件定義から商用SaaSのデリバリーまで、一気通貫で牽引します。
+              </p>
+              <div className="flex flex-wrap gap-3 sm:gap-4">
+                <Link
+                  href="#works"
+                  className="inline-block rounded-lg border border-[#2D2D2D]/20 bg-[#2D2D2D] px-6 py-3 text-[0.875rem] font-medium tracking-[0.06em] text-[#F9F8F6] transition-all duration-200 hover:bg-[#2D2D2D]/85 sm:px-8 sm:text-[0.9375rem]"
+                >
+                  実績を見る
+                </Link>
+                <Link
+                  href="#contact"
+                  className="inline-block rounded-lg border border-[#2D2D2D]/20 px-6 py-3 text-[0.875rem] font-medium tracking-[0.06em] text-[#2D2D2D] transition-all duration-200 hover:border-[#2D2D2D]/40 hover:bg-[#2D2D2D]/05 sm:px-8 sm:text-[0.9375rem]"
+                >
+                  お問い合わせ
+                </Link>
+              </div>
+            </div>
+            {/* ヒーロー画像 */}
+            <div className="relative w-full overflow-hidden rounded-2xl md:flex-1 md:rounded-3xl">
+              <div className="relative aspect-[4/3] w-full md:aspect-[3/4]">
+                <Image
+                  src="/images/hero/hero-main.jpg"
+                  alt=""
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 45vw"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#2D2D2D]/20 to-transparent" />
+              </div>
             </div>
           </div>
         </div>
@@ -234,9 +251,21 @@ export default function Home() {
       >
         <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
           <FadeInSection>
-            <p className="mb-8 text-xs tracking-[0.2em] leading-[1.6] text-[#2D2D2D]/60 sm:mb-10 sm:text-sm sm:tracking-[0.22em] md:mb-16">
-              WORKS
-            </p>
+            <div className="mb-8 flex items-center justify-between sm:mb-10 md:mb-16">
+              <p className="text-xs tracking-[0.2em] leading-[1.6] text-[#2D2D2D]/60 sm:text-sm sm:tracking-[0.22em]">
+                WORKS
+              </p>
+              <div className="relative h-12 w-12 overflow-hidden rounded-full border border-[#2D2D2D]/08 sm:h-14 sm:w-14">
+                <Image
+                  src="/images/profile/profile-concept.jpg"
+                  alt=""
+                  fill
+                  className="object-cover"
+                  sizes="56px"
+                  unoptimized
+                />
+              </div>
+            </div>
           </FadeInSection>
           <div className="grid gap-6 sm:gap-8 md:grid-cols-2 md:gap-12">
             {WORKS.map((product, i) => (

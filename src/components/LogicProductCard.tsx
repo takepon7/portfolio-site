@@ -69,6 +69,7 @@ export function LogicProductCard({
             className="object-contain"
             sizes="(max-width: 768px) 100vw, 50vw"
             onError={() => setMainError(true)}
+            unoptimized={currentSrc.endsWith(".svg")}
           />
         ) : (
           <div className="flex h-full items-center justify-center text-[0.85rem] tracking-wide text-[#2D2D2D]/40">
@@ -94,6 +95,7 @@ export function LogicProductCard({
                 fill
                 className="object-contain"
                 sizes="56px"
+                unoptimized={src.endsWith(".svg")}
               />
               {selectedIndex === i && (
                 <span className="absolute inset-0 border-2 border-[#B5A48B] rounded-lg" />
