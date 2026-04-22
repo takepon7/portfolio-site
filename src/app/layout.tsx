@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Shippori_Mincho } from "next/font/google";
 import { ContactSection } from "@/components/ContactSection";
-import { ProfileSection } from "@/components/ProfileSection";
 import "./globals.css";
 
 const shipporiMincho = Shippori_Mincho({
@@ -48,7 +47,6 @@ export default function RootLayout({
       <body className="flex min-h-screen flex-col bg-[#F9F8F6] text-[#2D2D2D] font-sans antialiased">
         <div className="flex-1">
           {children}
-          <ProfileSection />
           <ContactSection
             formspreeEndpoint={
               process.env.NEXT_PUBLIC_FORMSPREE_KEY
