@@ -9,6 +9,18 @@ const GITHUB_PERSONAL_GROWTH_APPS =
 
 const LOGIC_PRODUCTS = [
   {
+    title: "介護DXアシスト",
+    subtitle: "Web SaaS",
+    description:
+      "音声で話すだけで介護記録を自動生成するBtoB SaaS。Claude API・OpenAI Whisper・Supabase・Stripeを活用し、Claude Codeで単独開発。介護士の書類業務を90%削減することを目指す。",
+    images: [
+      "/images/kaigo-dx/kaigo-dx-01.png",
+      "/images/kaigo-dx/kaigo-dx-02.png",
+      "/images/kaigo-dx/kaigo-dx-03.png",
+    ],
+    href: "https://kaigo-dx.vercel.app",
+  },
+  {
     title: "Web占いアプリ",
     subtitle: "Web App",
     description:
