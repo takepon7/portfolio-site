@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Shippori_Mincho } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { ContactSection } from "@/components/ContactSection";
 import "./globals.css";
 
@@ -75,6 +76,7 @@ export default function RootLayout({
             </Link>
           </div>
         </footer>
+        <Analytics />
       </body>
     </html>
   );
