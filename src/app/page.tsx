@@ -25,6 +25,13 @@ const WORKS = [
     href: "https://meetin-mind.vercel.app",
   },
   {
+    title: "サプリメント管理アプリ",
+    subtitle: "Web App",
+    description: "日々のサプリメント服用を記録・管理するWebアプリ。Next.js / Supabase で構築。摂取ログの記録・統計表示・リマインダー機能を実装。",
+    images: ["/images/ios-supplement/ios-supplement-01.png", "/images/ios-supplement/ios-supplement-02.png"],
+    href: "https://supplement-app-sigma.vercel.app",
+  },
+  {
     title: "人事評価AI自動化（PoC）",
     subtitle: "社内AI実装",
     description:
