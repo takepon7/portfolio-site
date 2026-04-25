@@ -13,27 +13,44 @@ const shipporiMincho = Shippori_Mincho({
 
 export const metadata: Metadata = {
   title: {
-    default: "Build & Culture | つくって、育てる。",
-    template: "%s | Build & Culture",
+    default: "Ryosuke Takeda | Corporate Engineer × AI Developer",
+    template: "%s | Ryosuke Takeda",
   },
   description:
-    "つくって、育てる。効率とロジックで仕組みを、対話と情熱で文化を編み直す。プロダクトをビルドすることと組織を育てること。Build & Culture のポートフォリオ。",
+    "人事・HR領域のバックグラウンドを持つコーポレートエンジニア。Next.js / Supabase / Claude APIを使ったSaaS開発とAI業務自動化を実践。",
   keywords: [
+    "コーポレートエンジニア",
     "人事",
     "HR",
-    "組織開発",
-    "AIコーディング",
+    "AI開発",
     "Next.js",
+    "Supabase",
+    "Claude API",
+    "SaaS",
     "ポートフォリオ",
-    "板橋",
   ],
   openGraph: {
-    title: "Build & Culture | つくって、育てる。",
+    title: "Ryosuke Takeda | Corporate Engineer × AI Developer",
     description:
-      "効率とロジックで仕組みを、対話と情熱で文化を。プロダクトをビルドすることと組織を育てること。",
-    siteName: "Build & Culture",
+      "人事・HR領域のバックグラウンドを持つコーポレートエンジニア。Next.js / Supabase / Claude APIを使ったSaaS開発とAI業務自動化を実践。",
+    siteName: "Ryosuke Takeda",
     locale: "ja_JP",
     type: "website",
+    images: [
+      {
+        url: "/images/hero/hero-main.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ryosuke Takeda | Corporate Engineer × AI Developer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ryosuke Takeda | Corporate Engineer × AI Developer",
+    description:
+      "人事・HR領域のバックグラウンドを持つコーポレートエンジニア。Next.js / Supabase / Claude APIを使ったSaaS開発とAI業務自動化を実践。",
+    images: ["/images/hero/hero-main.jpg"],
   },
 };
 

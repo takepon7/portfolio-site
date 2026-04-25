@@ -18,6 +18,13 @@ const WORKS = [
     href: "https://kaigo-dx.vercel.app",
   },
   {
+    title: "MeetingMind AI",
+    subtitle: "Web App",
+    description: "会議のテキストをClaude APIで解析し、議事録・アクションアイテム・担当者・期日を自動抽出するWebアプリ。Next.js / Supabase / Claude APIで構築。",
+    images: ["/images/web-fortune/web-fortune-01.png"],
+    href: "https://meetin-mind.vercel.app",
+  },
+  {
     title: "人事評価AI自動化（PoC）",
     subtitle: "社内AI実装",
     description:
@@ -307,13 +314,12 @@ export default function Home() {
             </p>
           </FadeInSection>
           <div className="grid gap-10 sm:gap-8 md:grid-cols-2 md:gap-10 lg:gap-12">
-            {blogPosts.map((post, i) => (
-              <FadeInSection key={post.href} delay={80 + i * 80}>
-                <Link
-                  href={post.href}
-                  {...(post.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  className="group block overflow-hidden rounded-2xl bg-[#F9F8F6] transition-all duration-300 ease-out active:opacity-90 hover:-translate-y-0.5 hover:bg-[#F0EDE8] hover:opacity-[0.98] md:rounded-3xl"
-                >
+            {blogPosts.map((post, i) => {
+              const isExternal = post.href.startsWith("http");
+              const cardClass =
+                "group block overflow-hidden rounded-2xl bg-[#F9F8F6] transition-all duration-300 ease-out active:opacity-90 hover:-translate-y-0.5 hover:bg-[#F0EDE8] hover:opacity-[0.98] md:rounded-3xl";
+              const cardContent = (
+                <>
                   <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl md:rounded-t-3xl">
                     <Image
                       src={post.image}
@@ -334,9 +340,27 @@ export default function Home() {
                       {post.description}
                     </p>
                   </div>
-                </Link>
-              </FadeInSection>
-            ))}
+                </>
+              );
+              return (
+                <FadeInSection key={post.href} delay={80 + i * 80}>
+                  {isExternal ? (
+                    <a
+                      href={post.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={cardClass}
+                    >
+                      {cardContent}
+                    </a>
+                  ) : (
+                    <Link href={post.href} className={cardClass}>
+                      {cardContent}
+                    </Link>
+                  )}
+                </FadeInSection>
+              );
+            })}
           </div>
         </div>
       </ScrollRevealSection>
