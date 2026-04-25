@@ -62,7 +62,7 @@ const blogPosts = [
   {
     title: "人事がClaude Codeで介護記録SaaSを作ってみた",
     href: "https://qiita.com/takepon7/items/aab9486f8e3d2b807e4e",
-    image: "/images/blog/growth-equation.jpg",
+    image: "/images/blog/qiita-kaigo-dx.jpg",
     lead: "AIコーディングツールが気になって、音声から介護記録を自動生成するWebアプリを作ってみました。うまくいったことも、いかなかったことも正直に書いています。",
     description: "Claude Codeを使った非エンジニアの開発体験記。Next.js / Supabase / Stripe / Claude APIを使ったフルスタックSaaSの構築記録。",
   },
