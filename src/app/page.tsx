@@ -60,6 +60,13 @@ const SKILLS = [
 
 const blogPosts = [
   {
+    title: "人事がClaude Codeで介護記録SaaSを作ってみた",
+    href: "https://qiita.com/takepon7/items/aab9486f8e3d2b807e4e",
+    image: "/images/blog/growth-equation.jpg",
+    lead: "AIコーディングツールが気になって、音声から介護記録を自動生成するWebアプリを作ってみました。うまくいったことも、いかなかったことも正直に書いています。",
+    description: "Claude Codeを使った非エンジニアの開発体験記。Next.js / Supabase / Stripe / Claude APIを使ったフルスタックSaaSの構築記録。",
+  },
+  {
     title: "「事業成長の方程式」への挑戦：人事の私が、あえてコードを書く理由",
     href: "/heart/business-growth-equation",
     image: "/images/blog/growth-equation.jpg",
@@ -303,6 +310,7 @@ export default function Home() {
               <FadeInSection key={post.href} delay={80 + i * 80}>
                 <Link
                   href={post.href}
+                  {...(post.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   className="group block overflow-hidden rounded-2xl bg-[#F9F8F6] transition-all duration-300 ease-out active:opacity-90 hover:-translate-y-0.5 hover:bg-[#F0EDE8] hover:opacity-[0.98] md:rounded-3xl"
                 >
                   <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl md:rounded-t-3xl">
