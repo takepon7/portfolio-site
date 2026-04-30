@@ -21,7 +21,7 @@ const WORKS = [
     title: "MeetingMind AI",
     subtitle: "Web App",
     description: "会議のテキストをClaude APIで解析し、議事録・アクションアイテム・担当者・期日を自動抽出するWebアプリ。Next.js / Supabase / Claude APIで構築。",
-    images: ["/images/web-fortune/web-fortune-01.png"],
+    images: [],
     href: "https://meetin-mind.vercel.app",
   },
   {
