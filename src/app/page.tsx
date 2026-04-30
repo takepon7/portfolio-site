@@ -29,7 +29,21 @@ const WORKS = [
     subtitle: "Web App",
     description: "日々のサプリメント服用を記録・管理するWebアプリ。Next.js / Supabase で構築。摂取ログの記録・統計表示・リマインダー機能を実装。",
     images: ["/images/ios-supplement/ios-supplement-01.png", "/images/ios-supplement/ios-supplement-02.png"],
-    href: "https://supplement-app-sigma.vercel.app",
+    href: "https://github.com/takepon7/supplement-app",
+  },
+  {
+    title: "筋トレ記録アプリ",
+    subtitle: "iOS App",
+    description: "トレーニング記録・カレンダー表示・種目管理ができるiOSアプリ。Swift / SwiftUI / CoreDataで構築。",
+    images: ["/images/ios-training/ios-training-01.png", "/images/ios-training/ios-training-02.png"],
+    href: "https://github.com/takepon7/workout-tracker-ios",
+  },
+  {
+    title: "英会話学習アプリ",
+    subtitle: "iOS App",
+    description: "CEFRレベル別のレッスン・AIを活用した会話練習・発音評価ができるiOSアプリ。Swift / SwiftUI で構築。",
+    images: ["/images/ios-english/ios-english-01.png", "/images/ios-english/ios-english-02.png"],
+    href: "https://github.com/takepon7/speak-english-ios",
   },
   {
     title: "人事評価AI自動化（PoC）",
