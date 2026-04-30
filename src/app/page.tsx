@@ -96,6 +96,20 @@ const blogPosts = [
     description: "Claude Codeを使った非エンジニアの開発体験記。Next.js / Supabase / Stripe / Claude APIを使ったフルスタックSaaSの構築記録。",
   },
   {
+    title: "人事がClaude APIで会議録→アクションアイテム自動抽出を実装してみた",
+    href: "https://qiita.com/takepon7/items/d1f05ed66bd39a4a9d2a",
+    image: "/images/blog/growth-equation.jpg",
+    lead: "MeetingMind AIの開発記録。Claude APIのプロンプト設計・ストリーミング実装・詰まったところを正直に書きました。",
+    description: "Next.js / Claude API / Supabase を使った会議録自動化ツールの実装記録。",
+  },
+  {
+    title: "CursorからClaude Codeに乗り換えて、開発体験が変わった話",
+    href: "https://qiita.com/takepon7/items/27e23f0ac88246f05fa1",
+    image: "/images/blog/organizational-debt.jpg",
+    lead: "Cursor + Geminiで限界を感じてClaude Codeに切り替えた体験記。外部サービス連携の壁・エラーとの付き合い方・キャリアへの考え方。",
+    description: "非エンジニアがAI駆動開発を続ける中で気づいた6つのこと。",
+  },
+  {
     title: "「事業成長の方程式」への挑戦：人事の私が、あえてコードを書く理由",
     href: "/heart/business-growth-equation",
     image: "/images/blog/growth-equation.jpg",
