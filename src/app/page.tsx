@@ -21,7 +21,7 @@ const WORKS = [
     title: "MeetingMind AI",
     subtitle: "Web App",
     description: "会議のテキストをClaude APIで解析し、議事録・アクションアイテム・担当者・期日を自動抽出するWebアプリ。Next.js / Supabase / Claude APIで構築。",
-    images: [],
+    images: ["/images/meeting-mind/meeting-mind-01.png"],
     href: "https://meetin-mind.vercel.app",
   },
   {
@@ -98,14 +98,14 @@ const blogPosts = [
   {
     title: "人事がClaude APIで会議録→アクションアイテム自動抽出を実装してみた",
     href: "https://qiita.com/takepon7/items/d1f05ed66bd39a4a9d2a",
-    image: "/images/blog/growth-equation.jpg",
+    image: "/images/blog/qiita-article-02.png",
     lead: "MeetingMind AIの開発記録。Claude APIのプロンプト設計・ストリーミング実装・詰まったところを正直に書きました。",
     description: "Next.js / Claude API / Supabase を使った会議録自動化ツールの実装記録。",
   },
   {
     title: "CursorからClaude Codeに乗り換えて、開発体験が変わった話",
     href: "https://qiita.com/takepon7/items/27e23f0ac88246f05fa1",
-    image: "/images/blog/organizational-debt.jpg",
+    image: "/images/blog/qiita-article-03.png",
     lead: "Cursor + Geminiで限界を感じてClaude Codeに切り替えた体験記。外部サービス連携の壁・エラーとの付き合い方・キャリアへの考え方。",
     description: "非エンジニアがAI駆動開発を続ける中で気づいた6つのこと。",
   },
