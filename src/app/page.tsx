@@ -97,6 +97,20 @@ const SKILLS = [
 
 const blogPosts = [
   {
+    title: "連休4日で個人開発SaaSのStripe本番審査を通した話 - 申請から24時間で通過するための判断ログ",
+    href: "https://qiita.com/takepon7/items/55628b2091c43af5c5d4",
+    image: "/images/blog/qiita-article-04.jpeg",
+    lead: "コードを書く時間と同じくらい「審査・法令・本番運用準備」に時間が消えていく。連休4日間で個人開発のB2C SaaSを実際に決済できる状態まで持っていった判断ログ。",
+    description: "Stripe本番審査・Clerk Production移行・独自ドメイン取得・法的ページ整備。LP公開だけでは通らない、コード以外の戦いの記録。",
+  },
+  {
+    title: "Claude Codeが出した提案を却下する技術 - 個人開発SaaSをDDDで作りながら学んだこと",
+    href: "https://zenn.dev/takepon7/articles/3dd56bd4c46304",
+    image: "/images/blog/zenn-claude-code-reject.png",
+    lead: "AIに丸投げするのではなく、AIと判断する。Claude Codeの提案を1つずつ吟味し、却下・採用・後回しを判断ログとして残す開発の進め方。",
+    description: "meeting-pro開発で実践したDDD設計とAIコーディングの融合。判断軸を持って開発するための実践的な技術。",
+  },
+  {
     title: "人事がClaude Codeで介護記録SaaSを作ってみた",
     href: "https://qiita.com/takepon7/items/aab9486f8e3d2b807e4e",
     image: "/images/blog/qiita-kaigo-dx.jpg",
