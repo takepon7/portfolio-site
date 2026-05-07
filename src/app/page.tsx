@@ -7,6 +7,14 @@ import { ContactSection } from "@/components/ContactSection";
 
 const WORKS = [
   {
+    title: "biz-english-master",
+    subtitle: "B2C SaaS（商用運用中）",
+    description:
+      "外資系日本人向けのAI英会話練習サービス。Next.js 16 / Clerk Production / Stripe / Gemini APIで構築。Stripe本番審査を申請から24時間で通過、独自ドメイン取得・Clerk Production移行・法的ページ整備までを連休4日で完遂。月額¥2,980、7日間無料トライアル。",
+    images: ["/images/biz-english-master/biz-english-master-01.png"],
+    href: "https://biz-english-master.com",
+  },
+  {
     title: "介護DXアシスト",
     subtitle: "BtoB SaaS（商用）",
     description:
