@@ -3,7 +3,6 @@ import Image from "next/image";
 import { FadeInSection } from "@/components/FadeInSection";
 import { LogicProductCard } from "@/components/LogicProductCard";
 import { ScrollRevealSection } from "@/components/ScrollRevealSection";
-import { ContactSection } from "@/components/ContactSection";
 
 const WORKS = [
   {
@@ -400,9 +399,6 @@ export default function Home() {
           </div>
         </div>
       </ScrollRevealSection>
-
-      {/* Contact */}
-      <ContactSection formspreeEndpoint={process.env.NEXT_PUBLIC_FORMSPREE_KEY ?? null} />
     </div>
   );
 }
