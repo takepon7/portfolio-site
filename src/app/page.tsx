@@ -16,7 +16,7 @@ const WORKS = [
   },
   {
     title: "介護DXアシスト",
-    subtitle: "BtoB SaaS（商用）",
+    subtitle: "BtoB SaaS（β運用中・ユーザー獲得中）",
     description:
       "音声入力で介護記録を自動生成するBtoB SaaS。Next.js / Supabase / Stripe / Claude APIを用いてゼロから単独開発。月額サブスクリプション決済・テナント分離・AI記録生成を実装。",
     images: [
@@ -27,31 +27,10 @@ const WORKS = [
   },
   {
     title: "MeetingMind AI",
-    subtitle: "Web App",
+    subtitle: "Web App（PoC・改善中）",
     description: "会議のテキストをClaude APIで解析し、議事録・アクションアイテム・担当者・期日を自動抽出するWebアプリ。Next.js / Supabase / Claude APIで構築。",
     images: ["/images/meeting-mind/meeting-mind-01.png"],
     href: "https://meetin-mind.vercel.app",
-  },
-  {
-    title: "サプリメント管理アプリ",
-    subtitle: "Web App",
-    description: "日々のサプリメント服用を記録・管理するWebアプリ。Next.js / Supabase で構築。摂取ログの記録・統計表示・リマインダー機能を実装。",
-    images: ["/images/ios-supplement/ios-supplement-01.png", "/images/ios-supplement/ios-supplement-02.png"],
-    href: "https://github.com/takepon7/supplement-app",
-  },
-  {
-    title: "筋トレ記録アプリ",
-    subtitle: "iOS App",
-    description: "トレーニング記録・カレンダー表示・種目管理ができるiOSアプリ。Swift / SwiftUI / CoreDataで構築。",
-    images: ["/images/ios-training/ios-training-01.png", "/images/ios-training/ios-training-02.png"],
-    href: "https://github.com/takepon7/workout-tracker-ios",
-  },
-  {
-    title: "英会話学習アプリ",
-    subtitle: "iOS App",
-    description: "CEFRレベル別のレッスン・AIを活用した会話練習・発音評価ができるiOSアプリ。Swift / SwiftUI で構築。",
-    images: ["/images/ios-english/ios-english-01.png", "/images/ios-english/ios-english-02.png"],
-    href: "https://github.com/takepon7/speak-english-ios",
   },
   {
     title: "人事評価AI自動化（PoC）",
