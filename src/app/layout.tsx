@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Shippori_Mincho } from "next/font/google";
+import { Shippori_Mincho, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { ContactSection } from "@/components/ContactSection";
 import "./globals.css";
@@ -12,28 +11,38 @@ const shipporiMincho = Shippori_Mincho({
   display: "optional",
 });
 
+const jetBrainsMono = JetBrains_Mono({
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "optional",
+});
+
+const SITE_TITLE = "Ryosuke Takeda — 業務の痛みを、システムで解く";
+const SITE_DESCRIPTION =
+  "人事／People Opsの現場を10年以上見てきた個人開発者。介護・中小企業・HR・英語学習の現場の痛みを、AIプロダクトとして実装・販売しています。";
+
 export const metadata: Metadata = {
   title: {
-    default: "Ryosuke Takeda | Corporate Engineer × AI Developer",
+    default: SITE_TITLE,
     template: "%s | Ryosuke Takeda",
   },
-  description:
-    "人事・HR領域のバックグラウンドを持つコーポレートエンジニア。Next.js / Supabase / Claude APIを使ったSaaS開発とAI業務自動化を実践。",
+  description: SITE_DESCRIPTION,
   keywords: [
-    "コーポレートエンジニア",
-    "人事",
-    "HR",
+    "個人開発者",
+    "個人事業主",
+    "People Ops",
     "AI開発",
     "Next.js",
+    "Flutter",
     "Supabase",
     "Claude API",
     "SaaS",
-    "ポートフォリオ",
+    "DX",
   ],
   openGraph: {
-    title: "Ryosuke Takeda | Corporate Engineer × AI Developer",
-    description:
-      "人事・HR領域のバックグラウンドを持つコーポレートエンジニア。Next.js / Supabase / Claude APIを使ったSaaS開発とAI業務自動化を実践。",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     siteName: "Ryosuke Takeda",
     locale: "ja_JP",
     type: "website",
@@ -42,15 +51,14 @@ export const metadata: Metadata = {
         url: "/images/hero/hero-main.jpg",
         width: 1200,
         height: 630,
-        alt: "Ryosuke Takeda | Corporate Engineer × AI Developer",
+        alt: "Ryosuke Takeda — 業務の痛みを、システムで解く",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ryosuke Takeda | Corporate Engineer × AI Developer",
-    description:
-      "人事・HR領域のバックグラウンドを持つコーポレートエンジニア。Next.js / Supabase / Claude APIを使ったSaaS開発とAI業務自動化を実践。",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     images: ["/images/hero/hero-main.jpg"],
   },
 };
@@ -61,7 +69,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className={shipporiMincho.variable}>
+    <html lang="ja" className={`${shipporiMincho.variable} ${jetBrainsMono.variable}`}>
       <body className="flex min-h-screen flex-col bg-[#F9F8F6] text-[#2D2D2D] font-sans antialiased">
         <div className="flex-1">
           {children}
@@ -74,23 +82,18 @@ export default function RootLayout({
           />
         </div>
         <footer className="mt-auto border-t border-[#2D2D2D]/10 px-6 pt-16 pb-12 sm:px-8 sm:pt-20 md:px-12">
-          <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex flex-col items-center gap-2 text-center sm:items-start sm:text-left">
-              <p className="text-xs tracking-[0.05em] text-gray-400 sm:text-sm">
-                © 2026 Build & Culture / Ryosuke
+          <div className="mx-auto max-w-6xl">
+            <div className="flex flex-col items-center gap-3 text-center font-mono sm:flex-row sm:items-center sm:justify-between sm:text-left">
+              <p className="text-[0.72rem] tracking-[0.05em] text-gray-400">
+                © 2026 Ryosuke Takeda
               </p>
-              <p className="text-xs tracking-[0.03em] text-gray-400">
-                ※このサイトの内容は個人の見解であり、所属する組織の意見を代表するものではありません。
+              <p className="text-[0.72rem] tracking-[0.08em] text-gray-400">
+                現場のドメイン知識 × AI実装力
               </p>
             </div>
-            <Link
-              href="https://note.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs tracking-[0.05em] text-gray-400 transition-colors hover:text-[#B5A48B] sm:text-sm"
-            >
-              note
-            </Link>
+            <p className="mt-4 text-center text-[0.7rem] leading-relaxed tracking-[0.02em] text-gray-400/80 sm:text-left">
+              本サイトは個人としての活動・見解であり、所属する組織を代表するものではありません。
+            </p>
           </div>
         </footer>
         <Analytics />

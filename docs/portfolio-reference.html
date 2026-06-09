@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ryosuke Takeda — 業務の痛みを、システムで解く</title>
+<meta name="description" content="人事/People Opsの現場を10年以上見てきた個人開発者。介護・中小企業・HR・英語学習の現場の痛みを、AIプロダクトとして実装・販売しています。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EFF1EE;
+    --paper-2:#E6E9E3;
+    --ink:#16191B;
+    --ink-soft:#565D60;
+    --line:#D2D7CF;
+    --accent:#156B5A;
+    --accent-press:#0E5145;
+    --st-live:#156B5A;
+    --st-store:#2C5FB8;
+    --st-sell:#A96B14;
+    --st-prep:#7E837C;
+    --maxw:1080px;
+    --display:"Zen Kaku Gothic New",sans-serif;
+    --body:"Noto Sans JP",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .lbl{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
+
+  .site-head{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .head-row{max-width:var(--maxw);margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between}
+  .mark{font-family:var(--display);font-weight:700;font-size:1.02rem;letter-spacing:.01em;color:var(--ink);display:inline-flex;align-items:center;gap:.6ch}
+  .mark .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block}
+  .nav{display:flex;gap:26px}
+  .nav a{font-family:var(--mono);font-size:.8rem;letter-spacing:.04em;color:var(--ink-soft);transition:color .2s}
+  .nav a:hover{color:var(--accent)}
+  @media(max-width:640px){.nav{display:none}}
+
+  .hero{padding:104px 0 56px}
+  .hero .eyebrow{margin-bottom:26px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .hero h1{font-family:var(--display);font-weight:900;font-size:clamp(2.3rem,6.4vw,4.6rem);line-height:1.12;letter-spacing:-.01em;margin-bottom:20px}
+  .hero .sub{font-family:var(--display);font-weight:700;font-size:clamp(1rem,2.2vw,1.4rem);color:var(--accent);margin-bottom:26px;letter-spacing:.005em}
+  .hero .lead{max-width:52ch;font-size:clamp(1rem,1.7vw,1.18rem);color:var(--ink-soft);line-height:1.85}
+  .hero .lead strong{color:var(--ink);font-weight:700}
+  .meta-row{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;font-family:var(--mono);font-size:.78rem;color:var(--ink-soft)}
+  .meta-row .sep{width:1px;height:13px;background:var(--line)}
+  .meta-row b{color:var(--ink);font-weight:500}
+
+  .now{margin-top:46px;border:1px solid var(--line);border-left:3px solid var(--accent);background:color-mix(in srgb,var(--paper-2) 60%,transparent);padding:18px 20px;border-radius:4px;display:flex;gap:16px;align-items:baseline;flex-wrap:wrap}
+  .now .tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--accent);font-weight:700;white-space:nowrap}
+  .now .body{flex:1;min-width:240px}
+  .now p{font-size:.93rem;color:var(--ink);line-height:1.7}
+  .now .val{margin-top:7px;font-family:var(--mono);font-size:.74rem;color:var(--ink-soft)}
+
+  section.block{padding:64px 0;border-top:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:38px;flex-wrap:wrap}
+  .sec-head h2{font-family:var(--display);font-weight:700;font-size:clamp(1.4rem,3vw,2rem);letter-spacing:-.01em}
+
+  .reg{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+  .reg-row{display:grid;grid-template-columns:148px 1fr 230px 28px;gap:24px;align-items:center;padding:24px 14px;border-bottom:1px solid var(--line);position:relative;transition:background .25s ease}
+  .reg-row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform .28s ease}
+  .reg-row:hover{background:color-mix(in srgb,var(--paper-2) 55%,transparent)}
+  .reg-row:hover::before{transform:scaleY(1)}
+  .reg-row:hover .arrow{color:var(--accent);transform:translateX(3px)}
+  .status{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:.76rem;font-weight:500;letter-spacing:.02em}
+  .status .s-dot{width:9px;height:9px;border-radius:50%;flex:none;position:relative}
+  .status.live{color:var(--st-live)} .status.live .s-dot{background:var(--st-live)}
+  .status.store{color:var(--st-store)} .status.store .s-dot{background:var(--st-store)}
+  .status.sell{color:var(--st-sell)} .status.sell .s-dot{background:var(--st-sell)}
+  .status.prep{color:var(--st-prep)} .status.prep .s-dot{background:var(--st-prep)}
+  .pname{font-family:var(--display);font-weight:700;font-size:1.22rem;letter-spacing:.01em;line-height:1.3}
+  .pdesc{color:var(--ink-soft);font-size:.9rem;margin-top:3px;line-height:1.6}
+  .pdomain{display:inline-block;margin-top:9px;font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;color:var(--ink-soft);border:1px solid var(--line);border-radius:99px;padding:2px 10px}
+  .pstack{font-family:var(--mono);font-size:.74rem;color:var(--ink-soft);line-height:1.7}
+  .arrow{font-size:1.2rem;color:var(--line);justify-self:end;transition:color .25s,transform .25s}
+  @media(max-width:820px){.reg-row{grid-template-columns:1fr;gap:12px;padding:24px 8px}.pstack{order:4}.arrow{display:none}}
+
+  .status.live .s-dot::after,.status.store .s-dot::after{content:"";position:absolute;inset:0;border-radius:50%;animation:pulse 2.6s ease-out infinite}
+  .status.live .s-dot::after{box-shadow:0 0 0 0 color-mix(in srgb,var(--st-live) 60%,transparent)}
+  .status.store .s-dot::after{box-shadow:0 0 0 0 color-mix(in srgb,var(--st-store) 60%,transparent)}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,currentColor 16%,transparent)}70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+  @media(max-width:760px){.about-grid{grid-template-columns:1fr;gap:28px}}
+  .about p{font-size:1.02rem;line-height:1.95;color:var(--ink);margin-bottom:18px;max-width:46ch}
+  .about p.soft{color:var(--ink-soft)}
+  .cred{border-left:2px solid var(--line);padding-left:22px;display:flex;flex-direction:column;gap:18px}
+  .cred .item .k{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--accent);margin-bottom:5px}
+  .cred .item .v{font-size:.94rem;line-height:1.6}
+  .cred .item .v span{color:var(--ink-soft)}
+
+  .posts{display:flex;flex-direction:column;border-top:1px solid var(--line);margin-bottom:30px}
+  .post{display:flex;gap:22px;align-items:baseline;padding:20px 8px;border-bottom:1px solid var(--line);transition:background .25s}
+  .post:hover{background:color-mix(in srgb,var(--paper-2) 55%,transparent)}
+  .post .src{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;color:var(--accent);white-space:nowrap;flex:none;width:64px}
+  .post .ptitle{font-size:1rem;font-weight:500;line-height:1.5}
+  @media(max-width:560px){.post{flex-direction:column;gap:5px}}
+  .ext-links{display:flex;gap:12px;flex-wrap:wrap}
+  .pill{font-family:var(--mono);font-size:.8rem;letter-spacing:.03em;border:1px solid var(--line);border-radius:99px;padding:9px 18px;transition:all .22s;display:inline-flex;align-items:center;gap:8px}
+  .pill:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+
+  .contact{padding:80px 0 28px}
+  .contact h2{font-family:var(--display);font-weight:900;font-size:clamp(1.8rem,4.5vw,3rem);line-height:1.2;margin-bottom:18px;letter-spacing:-.01em}
+  .contact .lead{color:var(--ink-soft);max-width:44ch;margin-bottom:34px;font-size:1.02rem}
+  .contact .links{display:flex;gap:14px;flex-wrap:wrap}
+  .site-foot{border-top:1px solid var(--line);padding:26px 0;margin-top:60px}
+  .foot-row{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:.74rem;color:var(--ink-soft)}
+  .disc{margin-top:12px;font-size:.72rem;color:var(--ink-soft);opacity:.8;line-height:1.6}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.is-in{opacity:1;transform:none}
+  .hero .eyebrow,.hero h1,.hero .sub,.hero .lead,.hero .meta-row,.hero .now{opacity:0;transform:translateY(16px);animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
+  .hero h1{animation-delay:.06s}.hero .sub{animation-delay:.14s}.hero .lead{animation-delay:.22s}.hero .meta-row{animation-delay:.3s}.hero .now{animation-delay:.4s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.hero .eyebrow,.hero h1,.hero .sub,.hero .lead,.hero .meta-row,.hero .now{opacity:1;transform:none}}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="head-row">
+    <a href="#top" class="mark"><span class="dot"></span>Ryosuke Takeda</a>
+    <nav class="nav">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#writing">Writing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">
+        <span class="lbl">個人開発者 / 個人事業主</span>
+        <span class="lbl" style="color:var(--accent)">People&nbsp;Ops&nbsp;(VP)&nbsp;出身</span>
+      </div>
+      <h1>業務の痛みを、<br>システムで解く。</h1>
+      <p class="sub">現場のドメイン知識 × AI実装力で、DXをつくる。</p>
+      <p class="lead">
+        人事／People&nbsp;Opsの現場を10年以上見てきた人間が、いまは自分でコードを書いて
+        <strong>AIプロダクトを実装し、世に出しています</strong>。業務の“本当の痛み”を知っているから、
+        何を作って何を作らないかの判断がぶれない——それが軸です。
+      </p>
+      <div class="meta-row">
+        <span>領域&nbsp;/&nbsp;<b>介護&nbsp;・&nbsp;中小企業&nbsp;・&nbsp;HR&nbsp;・&nbsp;英語学習</b></span>
+        <span class="sep"></span>
+        <span>実装&nbsp;/&nbsp;<b>Next.js&nbsp;· Flutter&nbsp;· Supabase&nbsp;· Claude&nbsp;· Whisper</b></span>
+      </div>
+      <div class="now">
+        <span class="tag">// NOW</span>
+        <div class="body">
+          <p>HRシステムの導入・移行・運用ドキュメントをAIで加速するプロダクトを設計中。元People&nbsp;Opsの現場知見そのものを武器にした、次のDXです。</p>
+          <p class="val">前段の検証：人事評価サマリ自動生成のPoCで関連工数を約50%削減</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="work">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="lbl">01 — Work</span><h2>つくっているプロダクト</h2></div>
+      <div class="reg">
+
+        <a class="reg-row reveal" href="https://biz-english-master.com" target="_blank" rel="noopener">
+          <span class="status live"><span class="s-dot"></span>運用中</span>
+          <div>
+            <div class="pname">biz-english-master</div>
+            <div class="pdesc">外資系で働く日本人向けのAI英会話練習サービス。月額¥2,980・7日間無料。Stripe本番審査を申請から24時間で通過。</div>
+            <span class="pdomain">英語学習 / B2C</span>
+          </div>
+          <div class="pstack">Next.js / Clerk<br>Stripe / Gemini API</div>
+          <span class="arrow">→</span>
+        </a>
+
+        <a class="reg-row reveal" href="https://kaigo-dx.vercel.app" target="_blank" rel="noopener">
+          <span class="status sell"><span class="s-dot"></span>営業中</span>
+          <div>
+            <div class="pname">kaigo-dx</div>
+            <div class="pdesc">音声で話すだけで介護記録が完成するB2B&nbsp;SaaS。音声→文字起こし→AIが記録を構造化。β運用・ユーザー獲得中。</div>
+            <span class="pdomain">介護DX / B2B</span>
+          </div>
+          <div class="pstack">Next.js / Supabase<br>Stripe / Whisper・Claude</div>
+          <span class="arrow">→</span>
+        </a>
+
+        <a class="reg-row reveal" href="https://papatto-hp.com" target="_blank" rel="noopener">
+          <span class="status sell"><span class="s-dot"></span>営業中</span>
+          <div>
+            <div class="pname">papatto-hp</div>
+            <div class="pdesc">中小企業（工務店・士業）のホームページを、AIで最短24時間・定額で制作するサービス。</div>
+            <span class="pdomain">中小企業DX</span>
+          </div>
+          <div class="pstack">Next.js / 生成AI<br>制作 + IT相談</div>
+          <span class="arrow">→</span>
+        </a>
+
+        <a class="reg-row reveal" href="https://apps.apple.com/jp/app/%E3%81%9D%E3%81%84%E3%81%AD/id6775675437" target="_blank" rel="noopener">
+          <span class="status store"><span class="s-dot"></span>配信中</span>
+          <div>
+            <div class="pname">そいね / Soine</div>
+            <div class="pdesc">眠りにつくための“語り”のアプリ。日本語の物語とAI音声で入眠を誘うモバイルプロダクト。App&nbsp;Storeで配信中。</div>
+            <span class="pdomain">入眠 / ヘルスケア</span>
+          </div>
+          <div class="pstack">Flutter（iOS / Android）<br>サブスクリプション</div>
+          <span class="arrow">→</span>
+        </a>
+
+        <a class="reg-row reveal" href="#" rel="noopener">
+          <span class="status prep"><span class="s-dot"></span>準備中</span>
+          <div>
+            <div class="pname">pelago</div>
+            <div class="pdesc">世界の誰かと文通できるWebアプリ。AI翻訳で言語の壁を越えて手紙を交わす。コミュニティ醸成中。</div>
+            <span class="pdomain">グローバル / コミュニティ</span>
+          </div>
+          <div class="pstack">Web / AI翻訳・モデレーション<br>ローンチ準備中</div>
+          <span class="arrow">→</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="lbl">02 — About</span><h2>現場とシステムの、あいだに立つ</h2></div>
+      <div class="about-grid">
+        <div class="about reveal">
+          <p>10年以上、人事／People&nbsp;Opsの現場にいました。採用・評価・労務・組織設計の業務フローを内側から理解し、Workday&nbsp;HCM/LMSやServiceNowの全社導入を、現場と開発の間に立って動かしてきました。</p>
+          <p>いまはその現場感を持ったまま、自分でコードを書き、AIプロダクトとして実装・販売しています。CSの学位は持たず、Cursor/Geminiを経てClaude&nbsp;Codeを主戦場に独学で開発へ移行しました。</p>
+          <p class="soft">業務の本当の痛みを知っている人間が設計すると、判断がぶれない。設計の理由を言葉で説明できるエンジニアでありたい、と思っています。</p>
+        </div>
+        <div class="cred reveal">
+          <div class="item"><div class="k">BACKGROUND</div><div class="v">人事 / People Ops（VP）・10年以上<br><span>採用・評価・労務・組織設計</span></div></div>
+          <div class="item"><div class="k">ENTERPRISE</div><div class="v">Workday（HCM/LMS）・ServiceNow 全社導入PM<br><span>15名以上の部門横断チームを統括・データ移行を完遂</span></div></div>
+          <div class="item"><div class="k">STACK</div><div class="v">Next.js · Flutter · Supabase · Stripe<br><span>Claude API · Whisper · Gemini · DDD設計</span></div></div>
+          <div class="item"><div class="k">FOCUS</div><div class="v">介護 · 中小企業 · HR のDX / AX</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="writing">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="lbl">03 — Writing</span><h2>現場のDX実装と、組織の話</h2></div>
+      <div class="posts reveal">
+        <a class="post" href="https://qiita.com/takepon7/items/55628b2091c43af5c5d4" target="_blank" rel="noopener"><span class="src">Qiita</span><span class="ptitle">連休4日で個人開発SaaSのStripe本番審査を通した話 — 申請から24時間で通過する判断ログ</span></a>
+        <a class="post" href="https://zenn.dev/takepon7/articles/3dd56bd4c46304" target="_blank" rel="noopener"><span class="src">Zenn</span><span class="ptitle">Claude Codeが出した提案を却下する技術 — 個人開発SaaSをDDDで作りながら学んだこと</span></a>
+        <a class="post" href="https://qiita.com/takepon7/items/aab9486f8e3d2b807e4e" target="_blank" rel="noopener"><span class="src">Qiita</span><span class="ptitle">人事がClaude Codeで介護記録SaaSを作ってみた</span></a>
+        <a class="post" href="#" rel="noopener"><span class="src">Essay</span><span class="ptitle">MVC（Minimum Viable Culture）— 組織というプロダクトの「初期実装」</span></a>
+      </div>
+      <div class="ext-links reveal">
+        <a class="pill" href="https://qiita.com/takepon7" target="_blank" rel="noopener">Qiita ↗</a>
+        <a class="pill" href="https://zenn.dev/takepon7" target="_blank" rel="noopener">Zenn ↗</a>
+        <a class="pill" href="https://x.com/takepon_7" target="_blank" rel="noopener">X / @takepon_7 ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <span class="lbl reveal">04 — Contact</span>
+      <h2 class="reveal" style="margin-top:18px">お仕事・協業のご相談を。</h2>
+      <p class="lead reveal">プロダクトの導入、開発の相談、エンジニアとしての関わり——どれもお気軽にどうぞ。</p>
+      <div class="links reveal">
+        <a class="pill" href="https://github.com/takepon7" target="_blank" rel="noopener">GitHub / takepon7 ↗</a>
+        <a class="pill" href="https://x.com/takepon_7" target="_blank" rel="noopener">X / @takepon_7 ↗</a>
+        <a class="pill" href="mailto:takeponn7@gmail.com">Email ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-row">
+      <span>© <span id="yr"></span> Ryosuke Takeda</span>
+      <span>現場のドメイン知識 × AI実装力</span>
+    </div>
+    <p class="disc">本サイトは個人としての活動・見解であり、所属する組織を代表するものではありません。</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const io = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}});},{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

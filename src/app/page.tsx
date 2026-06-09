@@ -1,80 +1,98 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FadeInSection } from "@/components/FadeInSection";
-import { LogicProductCard } from "@/components/LogicProductCard";
 import { ScrollRevealSection } from "@/components/ScrollRevealSection";
+import { NowStrip } from "@/components/NowStrip";
+import { StatusRegistry, type WorkItem } from "@/components/StatusRegistry";
 
-const WORKS = [
+const WORKS: WorkItem[] = [
   {
-    title: "biz-english-master",
-    subtitle: "B2C SaaS（商用運用中）",
-    description:
-      "外資系日本人向けのAI英会話練習サービス。Next.js 16 / Clerk Production / Stripe / Gemini APIで構築。Stripe本番審査を申請から24時間で通過、独自ドメイン取得・Clerk Production移行・法的ページ整備までを連休4日で完遂。月額¥2,980、7日間無料トライアル。",
-    images: ["/images/biz-english-master/biz-english-master-01.png"],
-    href: "https://biz-english-master.com",
+    name: "biz-english-master",
+    status: "live",
+    domain: "英語学習 / B2C",
+    desc: "外資系で働く日本人向けのAI英会話練習サービス。月額¥2,980・7日間無料。Stripe本番審査を申請から24時間で通過。",
+    stack: ["Next.js", "Clerk", "Stripe", "Gemini API"],
+    url: "https://biz-english-master.com",
+    image: "/images/biz-english-master/biz-english-master-01.png",
   },
   {
-    title: "介護DXアシスト",
-    subtitle: "BtoB SaaS（β運用中・ユーザー獲得中）",
-    description:
-      "音声入力で介護記録を自動生成するBtoB SaaS。Next.js / Supabase / Stripe / Claude APIを用いてゼロから単独開発。月額サブスクリプション決済・テナント分離・AI記録生成を実装。",
-    images: [
-      "/images/kaigo-dx/kaigo-dx-01.png",
-      "/images/kaigo-dx/kaigo-dx-02.png",
-    ],
-    href: "https://kaigo-dx.vercel.app",
+    name: "kaigo-dx",
+    status: "selling",
+    domain: "介護DX / B2B",
+    desc: "音声で話すだけで介護記録が完成するB2B SaaS。音声→文字起こし→AIが記録を構造化。β運用・ユーザー獲得中。",
+    stack: ["Next.js", "Supabase", "Stripe", "Whisper", "Claude API"],
+    url: "https://kaigo-dx.vercel.app",
+    image: "/images/kaigo-dx/kaigo-dx-01.png",
   },
   {
-    title: "MeetingMind AI",
-    subtitle: "Web App（PoC・改善中）",
-    description: "会議のテキストをClaude APIで解析し、議事録・アクションアイテム・担当者・期日を自動抽出するWebアプリ。Next.js / Supabase / Claude APIで構築。",
-    images: ["/images/meeting-mind/meeting-mind-01.png"],
-    href: "https://meetin-mind.vercel.app",
+    name: "papatto-hp",
+    status: "selling",
+    domain: "中小企業DX",
+    desc: "中小企業（工務店・士業）のホームページを、AIで最短24時間・定額で制作するサービス。",
+    stack: ["Next.js", "生成AI"],
+    url: "https://papatto-hp.com",
+    image: "/images/papatto-hp/papatto-hp-01.png",
   },
   {
-    title: "人事評価AI自動化（PoC）",
-    subtitle: "社内AI実装",
-    description:
-      "カレンダー・週報データとClaude APIを連携し、マネジメント層の評価サマリーを自動生成。人事関連工数を約50%削減するPoCを成功裏に確立。",
-    images: ["/images/ai-hr/ai-hr-concept.svg"],
-    href: undefined,
+    name: "そいね / Soine",
+    status: "store",
+    domain: "入眠 / ヘルスケア",
+    desc: "眠りにつくための“語り”のアプリ。日本語の物語とAI音声で入眠を誘うモバイルプロダクト。App Storeで配信中。",
+    stack: ["Flutter (iOS/Android)", "サブスクリプション"],
+    url: "https://apps.apple.com/jp/app/%E3%81%9D%E3%81%84%E3%81%AD/id6775675437",
+    image: "/images/soine/soine-01.png",
   },
   {
-    title: "Workday / ServiceNow 全社導入PM",
-    subtitle: "グローバルSaaS導入",
-    description:
-      "Workday（HCM/LMS）・ServiceNowの全社導入をエンドツーエンドで主導。15名以上の部門横断チームを統括し、要件定義・ベンダーマネジメント・データ移行を完遂。",
-    images: ["/images/pm-works/pm-concept.svg"],
-    href: undefined,
+    name: "pelago",
+    status: "prep",
+    domain: "グローバル / コミュニティ",
+    desc: "世界の誰かと文通できるWebアプリ。AI翻訳で言語の壁を越えて手紙を交わす。コミュニティ醸成中。",
+    stack: ["Web", "AI翻訳・モデレーション"],
+    // 準備中：公開URL・スクショなし（プレースホルダ表示）
   },
 ];
 
-const ABOUT_CARDS = [
+const ABOUT_PILLARS = [
   {
     title: "ドメイン知識",
-    body: "人事責任者（VP of People）として、採用・評価・労務・組織設計の業務フローを深く理解。現場の痛みを誰よりもわかるからこそ、本質的なシステム要件を定義できる。",
+    body: "人事 / People Ops（VP）として、採用・評価・労務・組織設計の業務フローを内側から理解。現場の本当の痛みを知っているから、何を作って何を作らないかの判断がぶれない。",
   },
   {
     title: "フルスタック開発",
-    body: "Next.js / TypeScript / Supabase / Stripe APIを用いた商用レベルのBtoB SaaS開発を単独で完遂。要件定義・DB設計・認証・決済・AIインテグレーションまで一気通貫。",
+    body: "Next.js / Flutter / Supabase / Stripe を用いた商用プロダクトを単独で設計・実装・販売。要件定義・DB設計・認証・決済・AI連携まで一気通貫で出荷する。",
   },
   {
     title: "AI実装",
-    body: "Claude API・OpenAI Whisperを活用した業務自動化システムを設計・実装。LLMを「使う」だけでなく、プロダクトに組み込む実装力を持つ。",
+    body: "Claude API・Whisper・Gemini をプロダクトに組み込む実装力。LLMを「使う」だけでなく、業務の痛みを解く機能として届けることに軸を置く。",
   },
 ];
 
-const SKILLS = [
-  { category: "フロントエンド", items: ["Next.js", "TypeScript", "Tailwind CSS", "React"] },
-  { category: "バックエンド・DB", items: ["Supabase", "PostgreSQL", "Node.js", "REST API"] },
-  { category: "AI・LLM", items: ["Claude API", "OpenAI Whisper", "RAG", "Prompt Engineering"] },
-  { category: "決済・認証", items: ["Stripe API", "Supabase Auth", "JWT", "RLS"] },
-  { category: "SaaS導入PM", items: ["Workday（HCM/LMS）", "ServiceNow", "要件定義", "データ移行"] },
-  { category: "その他", items: ["Claude Code", "GitHub", "Vercel", "アジャイル開発"] },
+const CREDENTIALS = [
+  {
+    k: "BACKGROUND",
+    v: "人事 / People Ops（VP）・10年以上",
+    sub: "採用・評価・労務・組織設計",
+  },
+  {
+    k: "ENTERPRISE",
+    v: "Workday（HCM/LMS）・ServiceNow 全社導入PM",
+    sub: "15名以上の部門横断チームを統括・データ移行を完遂",
+  },
+  {
+    k: "STACK",
+    v: "Next.js · Flutter · Supabase · Stripe",
+    sub: "Claude API · Whisper · Gemini · DDD設計",
+  },
+  {
+    k: "FOCUS",
+    v: "介護 · 中小企業 · HR のDX / AX",
+    sub: "現場のドメイン知識 × AI実装力",
+  },
 ];
 
 const blogPosts = [
   {
+    source: "Qiita",
     title: "連休4日で個人開発SaaSのStripe本番審査を通した話 - 申請から24時間で通過するための判断ログ",
     href: "https://qiita.com/takepon7/items/55628b2091c43af5c5d4",
     image: "/images/blog/qiita-article-04.jpeg",
@@ -82,13 +100,15 @@ const blogPosts = [
     description: "Stripe本番審査・Clerk Production移行・独自ドメイン取得・法的ページ整備。LP公開だけでは通らない、コード以外の戦いの記録。",
   },
   {
+    source: "Zenn",
     title: "Claude Codeが出した提案を却下する技術 - 個人開発SaaSをDDDで作りながら学んだこと",
     href: "https://zenn.dev/takepon7/articles/3dd56bd4c46304",
     image: "/images/blog/zenn-claude-code-reject.png",
     lead: "AIに丸投げするのではなく、AIと判断する。Claude Codeの提案を1つずつ吟味し、却下・採用・後回しを判断ログとして残す開発の進め方。",
-    description: "meeting-pro開発で実践したDDD設計とAIコーディングの融合。判断軸を持って開発するための実践的な技術。",
+    description: "個人開発SaaSで実践したDDD設計とAIコーディングの融合。判断軸を持って開発するための実践的な技術。",
   },
   {
+    source: "Qiita",
     title: "人事がClaude Codeで介護記録SaaSを作ってみた",
     href: "https://qiita.com/takepon7/items/aab9486f8e3d2b807e4e",
     image: "/images/blog/qiita-kaigo-dx.jpg",
@@ -96,51 +116,42 @@ const blogPosts = [
     description: "Claude Codeを使った非エンジニアの開発体験記。Next.js / Supabase / Stripe / Claude APIを使ったフルスタックSaaSの構築記録。",
   },
   {
-    title: "人事がClaude APIで会議録→アクションアイテム自動抽出を実装してみた",
-    href: "https://qiita.com/takepon7/items/d1f05ed66bd39a4a9d2a",
-    image: "/images/blog/qiita-article-02.png",
-    lead: "MeetingMind AIの開発記録。Claude APIのプロンプト設計・ストリーミング実装・詰まったところを正直に書きました。",
-    description: "Next.js / Claude API / Supabase を使った会議録自動化ツールの実装記録。",
-  },
-  {
-    title: "CursorからClaude Codeに乗り換えて、開発体験が変わった話",
-    href: "https://qiita.com/takepon7/items/27e23f0ac88246f05fa1",
-    image: "/images/blog/qiita-article-03.png",
-    lead: "Cursor + Geminiで限界を感じてClaude Codeに切り替えた体験記。外部サービス連携の壁・エラーとの付き合い方・キャリアへの考え方。",
-    description: "非エンジニアがAI駆動開発を続ける中で気づいた6つのこと。",
-  },
-  {
-    title: "「事業成長の方程式」への挑戦：人事の私が、あえてコードを書く理由",
-    href: "/heart/business-growth-equation",
-    image: "/images/blog/growth-equation.jpg",
-    lead: "完璧な戦略やシステムがあるのに、なぜかうまくいかない。そんな時は、「熱量」という変数が少し不足しているのかもしれません。",
-    description:
-      "人と組織が加速する仕組みの作り方。論理を組織に適用した知見を、記事でやわらかく紐解いています。",
-  },
-  {
-    title: "組織における「技術的負債」の正体：見えない借金をどう返すか",
-    href: "/heart/organizational-debt",
-    image: "/images/blog/organizational-debt.jpg",
-    lead: "急成長の中で「とりあえず」と判断したこと。それは「技術的負債」のように、組織の成長痛として蓄積されていることがあります。",
-    description:
-      "エンジニアリングの概念を借りると、今の苦しさが説明できるかもしれません。見えない借金を、どう返すかのヒントを記事で提案しています。",
-  },
-  {
-    title: "組織を「正解」で上書きしない——事業成長のバグを見つける問い方",
-    href: "/heart/redefining-organization",
-    image: "/images/blog/redefining-org.jpg",
-    lead: "世の中の「組織論の正解」を疑い、自社独自の熱中の源泉を定義し直す。事業を有機的に育てるための人事の視点。",
-    description:
-      "外の正解で上書きせず、自社の文脈で問い続ける。事業を長期的に育てる視点を、記事でまとめています。",
-  },
-  {
+    source: "Essay",
     title: "MVC（Minimum Viable Culture）——組織というプロダクトの「初期実装」",
     href: "/heart/minimum-viable-culture",
     image: "/images/blog/mvc-culture.jpg",
     lead: "プロダクト開発の「MVP」という概念を組織に。オーバーエンジニアリングを防ぎ、事業成長に合わせて文化を「実装」する人事の視点。",
-    description:
-      "人事もまた、アジャイルな開発者である。文化を小さく試し、育てる。Build & Culture の視点でまとめています。",
+    description: "人事もまた、アジャイルな開発者である。文化を小さく試し、育てる。Build & Culture の視点でまとめています。",
   },
+  {
+    source: "Essay",
+    title: "「事業成長の方程式」への挑戦：人事の私が、あえてコードを書く理由",
+    href: "/heart/business-growth-equation",
+    image: "/images/blog/growth-equation.jpg",
+    lead: "完璧な戦略やシステムがあるのに、なぜかうまくいかない。そんな時は、「熱量」という変数が少し不足しているのかもしれません。",
+    description: "人と組織が加速する仕組みの作り方。論理を組織に適用した知見を、記事でやわらかく紐解いています。",
+  },
+  {
+    source: "Essay",
+    title: "組織における「技術的負債」の正体：見えない借金をどう返すか",
+    href: "/heart/organizational-debt",
+    image: "/images/blog/organizational-debt.jpg",
+    lead: "急成長の中で「とりあえず」と判断したこと。それは「技術的負債」のように、組織の成長痛として蓄積されていることがあります。",
+    description: "エンジニアリングの概念を借りると、今の苦しさが説明できるかもしれません。見えない借金を、どう返すかのヒントを記事で提案しています。",
+  },
+];
+
+const EXTERNAL_LINKS = [
+  { label: "Qiita ↗", href: "https://qiita.com/takepon7" },
+  { label: "Zenn ↗", href: "https://zenn.dev/takepon7" },
+  { label: "X / @takepon_7 ↗", href: "https://x.com/takepon_7" },
+];
+
+const NAV_ITEMS = [
+  { label: "Work", href: "#work" },
+  { label: "About", href: "#about" },
+  { label: "Writing", href: "#writing" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Home() {
@@ -150,23 +161,18 @@ export default function Home() {
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-[#2D2D2D]/10 bg-[#F9F8F6]/95 backdrop-blur-sm">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3.5 sm:px-8 sm:py-5 md:px-12">
           <Link
-            href="/"
-            className="text-xs font-medium tracking-[0.2em] text-[#2D2D2D] transition-opacity hover:opacity-70 sm:text-sm md:text-base"
+            href="#top"
+            className="flex items-center gap-2 text-sm font-medium tracking-[0.02em] text-[#2D2D2D] transition-opacity hover:opacity-70 sm:text-base"
           >
-            BUILD & CULTURE
+            <span className="h-2 w-2 rounded-full bg-accent" aria-hidden />
+            Ryosuke Takeda
           </Link>
-          <div className="flex gap-4 sm:gap-8 md:gap-10">
-            {[
-              { label: "About", href: "#about" },
-              { label: "Skills", href: "#skills" },
-              { label: "Works", href: "#works" },
-              { label: "Blog", href: "#blog" },
-              { label: "Contact", href: "#contact" },
-            ].map(({ label, href }) => (
+          <div className="flex gap-4 sm:gap-7 md:gap-9">
+            {NAV_ITEMS.map(({ label, href }) => (
               <Link
                 key={label}
                 href={href}
-                className="text-[0.65rem] font-medium tracking-[0.12em] text-[#2D2D2D]/80 transition-colors hover:text-[#B5A48B] sm:text-xs sm:tracking-[0.15em] md:text-sm"
+                className="font-mono text-[0.7rem] tracking-[0.04em] text-[#2D2D2D]/70 transition-colors hover:text-accent sm:text-[0.78rem]"
               >
                 {label}
               </Link>
@@ -177,77 +183,151 @@ export default function Home() {
 
       {/* ヒーローセクション */}
       <ScrollRevealSection
-        className="relative overflow-hidden bg-[#FCFCFB] pt-[4.5rem] pb-16 sm:pt-28 sm:pb-20 md:pt-32 md:pb-24 lg:pt-40 lg:pb-28"
+        id="top"
+        className="relative overflow-hidden bg-[#FCFCFB] pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 lg:pt-40 lg:pb-24"
         scale={true}
         borderTop={false}
       >
         <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
-          <div className="flex flex-col gap-10 md:flex-row md:items-center md:gap-12 lg:gap-16">
-            {/* テキスト */}
-            <div className="flex-1 md:max-w-[52%]">
-              <h1 className="mb-8 text-left text-[1.75rem] font-medium tracking-[0.04em] text-[#2D2D2D] leading-tight sm:mb-10 sm:text-[2.25rem] md:mb-12 md:text-[2.75rem] lg:text-[3rem]">
-                業務の痛みを、
-                <br />
-                システムで解く。
-              </h1>
-              <p className="mb-10 text-left text-[0.9375rem] leading-[2.4] tracking-[0.02em] text-[#2D2D2D]/75 sm:mb-12 sm:text-[1rem] sm:leading-[2.5] md:text-[1.0625rem] md:leading-[2.6]">
-                バックオフィスのドメイン知識 × フルスタック開発力 × AI実装。
-                <br className="hidden sm:block" />
-                現場課題の要件定義から商用SaaSのデリバリーまで、一気通貫で牽引します。
-              </p>
-              <div className="flex flex-wrap gap-3 sm:gap-4">
-                <Link
-                  href="#works"
-                  className="inline-block rounded-lg border border-[#2D2D2D]/20 bg-[#2D2D2D] px-6 py-3 text-[0.875rem] font-medium tracking-[0.06em] text-[#F9F8F6] transition-all duration-200 hover:bg-[#2D2D2D]/85 sm:px-8 sm:text-[0.9375rem]"
-                >
-                  実績を見る
-                </Link>
-                <Link
-                  href="#contact"
-                  className="inline-block rounded-lg border border-[#2D2D2D]/20 px-6 py-3 text-[0.875rem] font-medium tracking-[0.06em] text-[#2D2D2D] transition-all duration-200 hover:border-[#2D2D2D]/40 hover:bg-[#2D2D2D]/05 sm:px-8 sm:text-[0.9375rem]"
-                >
-                  お問い合わせ
-                </Link>
-              </div>
-            </div>
-            {/* ヒーロー画像 */}
-            <div className="relative w-full overflow-hidden rounded-2xl md:flex-1 md:rounded-3xl">
-              <div className="relative aspect-[4/3] w-full md:aspect-[3/4]">
-                <Image
-                  src="/images/hero/hero-main.jpg"
-                  alt=""
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 45vw"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#2D2D2D]/20 to-transparent" />
-              </div>
-            </div>
+          <div className="mb-7 flex flex-wrap items-center gap-x-4 gap-y-2">
+            <span className="font-mono text-[0.72rem] tracking-[0.12em] text-[#2D2D2D]/55">
+              個人開発者 / 個人事業主
+            </span>
+            <span className="font-mono text-[0.72rem] tracking-[0.12em] text-accent">
+              People Ops (VP) 出身
+            </span>
           </div>
+          <h1 className="mb-6 text-left text-[2rem] font-bold leading-tight tracking-[0.01em] text-[#2D2D2D] sm:text-[2.6rem] md:text-[3.2rem] lg:text-[3.6rem]">
+            業務の痛みを、
+            <br />
+            システムで解く。
+          </h1>
+          <p className="mb-7 text-left text-[1.05rem] font-medium tracking-[0.01em] text-accent sm:text-[1.2rem] md:text-[1.35rem]">
+            現場のドメイン知識 × AI実装力で、DXをつくる。
+          </p>
+          <p className="max-w-[52ch] text-left text-[0.95rem] leading-[2.1] tracking-[0.01em] text-[#2D2D2D]/70 sm:text-[1rem] md:text-[1.05rem]">
+            人事／People Opsの現場を10年以上見てきた人間が、いまは自分でコードを書いて
+            <strong className="font-medium text-[#2D2D2D]">AIプロダクトを実装し、世に出しています</strong>
+            。業務の“本当の痛み”を知っているから、何を作って何を作らないかの判断がぶれない——それが軸です。
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[0.74rem] text-[#2D2D2D]/55">
+            <span>
+              領域 / <b className="font-medium text-[#2D2D2D]/80">介護・中小企業・HR・英語学習</b>
+            </span>
+            <span className="hidden h-3 w-px bg-[#2D2D2D]/15 sm:inline-block" />
+            <span>
+              実装 /{" "}
+              <b className="font-medium text-[#2D2D2D]/80">Next.js · Flutter · Supabase · Claude · Whisper</b>
+            </span>
+          </div>
+
+          <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
+            <Link
+              href="#work"
+              className="inline-block rounded-lg bg-[#2D2D2D] px-7 py-3 text-[0.9rem] font-medium tracking-[0.04em] text-[#F9F8F6] transition-all duration-200 hover:bg-[#2D2D2D]/85 sm:px-8"
+            >
+              プロダクトを見る
+            </Link>
+            <Link
+              href="#contact"
+              className="inline-block rounded-lg border border-[#2D2D2D]/20 px-7 py-3 text-[0.9rem] font-medium tracking-[0.04em] text-[#2D2D2D] transition-all duration-200 hover:border-accent hover:text-accent sm:px-8"
+            >
+              相談する
+            </Link>
+          </div>
+
+          {/* NOW: build in public の入口 */}
+          <NowStrip />
+        </div>
+      </ScrollRevealSection>
+
+      {/* Work：ステータス・レジストリ */}
+      <ScrollRevealSection
+        id="work"
+        className="bg-[#F9F8F6] py-16 sm:py-24 md:py-28 lg:py-32"
+        borderTop={true}
+      >
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
+          <FadeInSection>
+            <div className="mb-10 flex items-baseline gap-4 sm:mb-12 md:mb-14">
+              <span className="font-mono text-[0.72rem] tracking-[0.14em] text-[#2D2D2D]/55">
+                01 — Work
+              </span>
+              <h2 className="text-[1.4rem] font-bold tracking-[0.01em] text-[#2D2D2D] sm:text-[1.7rem] md:text-[2rem]">
+                つくっているプロダクト
+              </h2>
+            </div>
+          </FadeInSection>
+          <FadeInSection delay={80}>
+            <StatusRegistry items={WORKS} />
+          </FadeInSection>
         </div>
       </ScrollRevealSection>
 
       {/* About */}
       <ScrollRevealSection
         id="about"
-        className="bg-[#F9F8F6] py-16 sm:py-24 md:py-28 lg:py-32"
+        className="bg-[#F7F6F4] py-16 sm:py-24 md:py-28 lg:py-32"
         borderTop={true}
       >
         <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
           <FadeInSection>
-            <p className="mb-8 text-xs tracking-[0.2em] leading-[1.6] text-[#2D2D2D]/60 sm:mb-10 sm:text-sm sm:tracking-[0.22em] md:mb-16">
-              ABOUT
-            </p>
+            <div className="mb-10 flex items-baseline gap-4 sm:mb-12 md:mb-14">
+              <span className="font-mono text-[0.72rem] tracking-[0.14em] text-[#2D2D2D]/55">
+                02 — About
+              </span>
+              <h2 className="text-[1.4rem] font-bold tracking-[0.01em] text-[#2D2D2D] sm:text-[1.7rem] md:text-[2rem]">
+                現場とシステムの、あいだに立つ
+              </h2>
+            </div>
           </FadeInSection>
-          <div className="grid gap-6 sm:gap-8 md:grid-cols-3 md:gap-10">
-            {ABOUT_CARDS.map((card, i) => (
+
+          <div className="grid gap-12 md:grid-cols-2 md:gap-16">
+            {/* ナラティブ */}
+            <FadeInSection>
+              <div className="space-y-5">
+                <p className="text-[0.98rem] leading-[2.05] text-[#2D2D2D]/90">
+                  10年以上、人事／People Opsの現場にいました。採用・評価・労務・組織設計の業務フローを内側から理解し、Workday HCM/LMS や ServiceNow の全社導入を、現場と開発の間に立って動かしてきました。
+                </p>
+                <p className="text-[0.98rem] leading-[2.05] text-[#2D2D2D]/90">
+                  いまはその現場感を持ったまま、自分でコードを書き、AIプロダクトとして実装・販売しています。Cursor / Gemini を経て Claude Code を主戦場に、独学で開発へ移行しました。
+                </p>
+                <p className="text-[0.98rem] leading-[2.05] text-[#2D2D2D]/65">
+                  業務の本当の痛みを知っている人間が設計すると、判断がぶれない。設計の理由を言葉で説明できるエンジニアでありたい、と思っています。
+                </p>
+              </div>
+            </FadeInSection>
+
+            {/* クレジット（PM経歴を含む） */}
+            <FadeInSection delay={80}>
+              <div className="flex flex-col gap-5 border-l-2 border-[#2D2D2D]/12 pl-6">
+                {CREDENTIALS.map((c) => (
+                  <div key={c.k}>
+                    <p className="mb-1.5 font-mono text-[0.68rem] tracking-[0.1em] text-accent">
+                      {c.k}
+                    </p>
+                    <p className="text-[0.92rem] leading-relaxed text-[#2D2D2D]">
+                      {c.v}
+                    </p>
+                    <p className="text-[0.85rem] leading-relaxed text-[#2D2D2D]/55">
+                      {c.sub}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </FadeInSection>
+          </div>
+
+          {/* 3本柱 */}
+          <div className="mt-14 grid gap-6 sm:gap-8 md:grid-cols-3 md:gap-8">
+            {ABOUT_PILLARS.map((card, i) => (
               <FadeInSection key={card.title} delay={80 + i * 80}>
-                <div className="rounded-2xl border border-[#2D2D2D]/08 bg-[#FCFCFB] p-7 sm:p-8 md:p-9">
-                  <h3 className="mb-4 text-[0.8rem] font-medium tracking-[0.18em] text-[#B5A48B] sm:mb-5 sm:text-[0.85rem]">
+                <div className="h-full rounded-2xl border border-[#2D2D2D]/08 bg-[#FCFCFB] p-7 sm:p-8">
+                  <h3 className="mb-4 font-mono text-[0.76rem] tracking-[0.1em] text-[#B5A48B]">
                     {card.title}
                   </h3>
-                  <p className="text-[0.9rem] leading-[2.1] tracking-[0.02em] text-[#2D2D2D]/80 sm:text-[0.9375rem] sm:leading-[2.2]">
+                  <p className="text-[0.9rem] leading-[2.05] text-[#2D2D2D]/80">
                     {card.body}
                   </p>
                 </div>
@@ -257,135 +337,63 @@ export default function Home() {
         </div>
       </ScrollRevealSection>
 
-      {/* Skills */}
+      {/* Writing */}
       <ScrollRevealSection
-        id="skills"
-        className="bg-[#F7F6F4] py-16 sm:py-24 md:py-28 lg:py-32"
-        borderTop={true}
-      >
-        <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
-          <FadeInSection>
-            <p className="mb-8 text-xs tracking-[0.2em] leading-[1.6] text-[#2D2D2D]/60 sm:mb-10 sm:text-sm sm:tracking-[0.22em] md:mb-16">
-              SKILLS
-            </p>
-          </FadeInSection>
-          <div className="grid gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 lg:gap-10">
-            {SKILLS.map((group, i) => (
-              <FadeInSection key={group.category} delay={60 + i * 60}>
-                <div>
-                  <p className="mb-3 text-[0.75rem] font-medium tracking-[0.16em] text-[#B5A48B] sm:mb-4">
-                    {group.category}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {group.items.map((item) => (
-                      <span
-                        key={item}
-                        className="rounded-md border border-[#2D2D2D]/10 bg-[#F9F8F6] px-3 py-1.5 text-[0.8rem] tracking-[0.03em] text-[#2D2D2D]/75"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </FadeInSection>
-            ))}
-          </div>
-        </div>
-      </ScrollRevealSection>
-
-      {/* Works */}
-      <ScrollRevealSection
-        id="works"
+        id="writing"
         className="bg-[#F9F8F6] py-16 sm:py-24 md:py-28 lg:py-32"
         borderTop={true}
       >
         <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
           <FadeInSection>
-            <div className="mb-8 flex items-center justify-between sm:mb-10 md:mb-16">
-              <p className="text-xs tracking-[0.2em] leading-[1.6] text-[#2D2D2D]/60 sm:text-sm sm:tracking-[0.22em]">
-                WORKS
-              </p>
-              <div className="relative h-12 w-12 overflow-hidden rounded-full border border-[#2D2D2D]/08 sm:h-14 sm:w-14">
-                <Image
-                  src="/images/profile/profile-concept.jpg"
-                  alt=""
-                  fill
-                  className="object-cover"
-                  sizes="56px"
-                  unoptimized
-                />
-              </div>
+            <div className="mb-3 flex items-baseline gap-4">
+              <span className="font-mono text-[0.72rem] tracking-[0.14em] text-[#2D2D2D]/55">
+                03 — Writing
+              </span>
+              <h2 className="text-[1.4rem] font-bold tracking-[0.01em] text-[#2D2D2D] sm:text-[1.7rem] md:text-[2rem]">
+                現場のDX実装と、組織の話
+              </h2>
             </div>
+            <p className="mb-10 text-[0.9rem] tracking-[0.02em] text-[#2D2D2D]/50 sm:mb-12 md:mb-14">
+              開発記事（Qiita / Zenn）と、組織・人事のエッセイ（HEART）。
+            </p>
           </FadeInSection>
-          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 md:gap-12">
-            {WORKS.map((product, i) => (
-              <FadeInSection key={product.title} delay={80 + i * 40}>
-                <LogicProductCard
-                  title={product.title}
-                  subtitle={product.subtitle}
-                  description={product.description}
-                  images={product.images}
-                  href={product.href}
-                />
-              </FadeInSection>
-            ))}
-          </div>
-        </div>
-      </ScrollRevealSection>
 
-      {/* Blog */}
-      <ScrollRevealSection
-        id="blog"
-        className="bg-[#F7F6F4] py-16 sm:py-24 md:py-28 lg:py-32"
-        borderTop={true}
-      >
-        <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
-          <FadeInSection>
-            <p className="mb-2 text-xs tracking-[0.2em] leading-[1.6] text-[#2D2D2D]/60 sm:text-sm sm:tracking-[0.22em]">
-              BLOG / INSIGHT
-            </p>
-            <p className="mb-8 text-[0.875rem] tracking-[0.04em] leading-[1.8] text-[#2D2D2D]/50 sm:mb-10 sm:text-[0.9375rem] md:mb-16">
-              組織・人事・テクノロジーの交差点から。
-            </p>
-          </FadeInSection>
           <div className="grid gap-10 sm:gap-8 md:grid-cols-2 md:gap-10 lg:gap-12">
             {blogPosts.map((post, i) => {
               const isExternal = post.href.startsWith("http");
               const cardClass =
-                "group block overflow-hidden rounded-2xl bg-[#F9F8F6] transition-all duration-300 ease-out active:opacity-90 hover:-translate-y-0.5 hover:bg-[#F0EDE8] hover:opacity-[0.98] md:rounded-3xl";
+                "group block overflow-hidden rounded-2xl bg-[#FCFCFB] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-[#F0EDE8]";
               const cardContent = (
                 <>
-                  <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl md:rounded-t-3xl">
+                  <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl">
                     <Image
                       src={post.image}
                       alt={post.title}
                       fill
-                      className="object-cover transition-transform duration-300 ease-out group-active:opacity-95 group-hover:scale-105 group-hover:brightness-105"
+                      className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
+                    <span className="absolute left-3 top-3 rounded bg-[#F9F8F6]/90 px-2 py-0.5 font-mono text-[0.62rem] tracking-[0.08em] text-accent">
+                      {post.source}
+                    </span>
                   </div>
-                  <div className="p-6 sm:p-8 md:p-10">
-                    <h3 className="mb-2 text-base font-medium tracking-[0.02em] text-[#2D2D2D] transition-colors group-hover:text-[#2D2D2D] sm:text-lg sm:leading-[1.45] md:text-[1.15rem] md:leading-[1.5]">
+                  <div className="p-6 sm:p-8">
+                    <h3 className="mb-2 text-base font-medium leading-snug tracking-[0.01em] text-[#2D2D2D] sm:text-lg">
                       {post.title}
                     </h3>
-                    <p className="mb-3 text-[0.9rem] tracking-[0.02em] leading-[2.05] text-[#2D2D2D]/75 sm:text-[0.95rem] sm:leading-[2.1]">
+                    <p className="mb-3 text-[0.9rem] leading-[2] text-[#2D2D2D]/70">
                       {post.lead}
                     </p>
-                    <p className="text-[0.9rem] tracking-[0.01em] leading-[2.05] text-[#2D2D2D]/80 transition-colors duration-300 group-hover:text-[#2D2D2D]/90 sm:text-[0.95rem] sm:leading-[2.1]">
+                    <p className="text-[0.9rem] leading-[2] text-[#2D2D2D]/80">
                       {post.description}
                     </p>
                   </div>
                 </>
               );
               return (
-                <FadeInSection key={post.href} delay={80 + i * 80}>
+                <FadeInSection key={post.href} delay={60 + i * 60}>
                   {isExternal ? (
-                    <a
-                      href={post.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={cardClass}
-                    >
+                    <a href={post.href} target="_blank" rel="noopener noreferrer" className={cardClass}>
                       {cardContent}
                     </a>
                   ) : (
@@ -397,6 +405,22 @@ export default function Home() {
               );
             })}
           </div>
+
+          <FadeInSection delay={80}>
+            <div className="mt-10 flex flex-wrap gap-3">
+              {EXTERNAL_LINKS.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center rounded-full border border-[#2D2D2D]/15 px-5 py-2 font-mono text-[0.78rem] tracking-[0.03em] text-[#2D2D2D]/70 transition-all hover:-translate-y-0.5 hover:border-accent hover:text-accent"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </FadeInSection>
         </div>
       </ScrollRevealSection>
     </div>
