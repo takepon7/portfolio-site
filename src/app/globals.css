@@ -1,9 +1,18 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* クラスベースのダークモード（.dark を <html> に付与して切替） */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #f9f8f6;
-  --foreground: #2d2d2d;
+  color-scheme: light;
+  /* 面（surface）階層 */
+  --paper: #f9f8f6;
+  --surface: #fcfcfb;
+  --surface-2: #f7f6f4;
+  --surface-3: #efede8;
+  --hover: #f0ede8;
+  --ink: #2d2d2d;
   --accent-gold: #b5a48b;
   /* 機能的ステータス色（運用中=green / 配信中=blue / 営業中=amber / 準備中=grey） */
   --accent: #156b5a;
@@ -11,11 +20,36 @@
   --st-store: #2c5fb8;
   --st-sell: #a96b14;
   --st-prep: #7e837c;
+  /* 後方互換 */
+  --background: var(--paper);
+  --foreground: var(--ink);
+}
+
+.dark {
+  color-scheme: dark;
+  --paper: #14171a;
+  --surface: #1b1f22;
+  --surface-2: #121517;
+  --surface-3: #232a2d;
+  --hover: #232a2d;
+  --ink: #e8eae6;
+  --accent-gold: #c9b8a0;
+  --accent: #34b89c;
+  --st-live: #34b89c;
+  --st-store: #6398f0;
+  --st-sell: #d6a242;
+  --st-prep: #9aa09a;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-hover: var(--hover);
+  --color-ink: var(--ink);
+  --color-background: var(--paper);
+  --color-foreground: var(--ink);
   --color-accent-gold: var(--accent-gold);
   --color-accent: var(--accent);
   --color-st-live: var(--st-live);
@@ -27,9 +61,10 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--paper);
+  color: var(--ink);
   font-family: var(--font-sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* キーボードフォーカス可視（アクセント outline） */

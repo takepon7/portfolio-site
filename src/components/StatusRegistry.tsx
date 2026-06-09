@@ -32,7 +32,7 @@ const STATUS_META: Record<
 
 function Thumbnail({ image, name }: { image?: string; name: string }) {
   return (
-    <div className="relative aspect-video w-full overflow-hidden rounded-md border border-[#2D2D2D]/08 bg-[#2D2D2D]/04 md:aspect-auto md:h-[58px]">
+    <div className="relative aspect-video w-full overflow-hidden rounded-md border border-ink/08 bg-ink/04 md:aspect-auto md:h-[58px]">
       {image ? (
         <Image
           src={image}
@@ -42,7 +42,7 @@ function Thumbnail({ image, name }: { image?: string; name: string }) {
           sizes="(max-width: 768px) 100vw, 92px"
         />
       ) : (
-        <div className="flex h-full items-center justify-center font-mono text-[0.6rem] tracking-wider text-[#2D2D2D]/40">
+        <div className="flex h-full items-center justify-center font-mono text-[0.6rem] tracking-wider text-ink/40">
           Coming Soon
         </div>
       )}
@@ -73,26 +73,26 @@ function RegistryRow({ item }: { item: WorkItem }) {
 
       {/* 本文 */}
       <div>
-        <div className="text-[1.1rem] font-medium leading-snug tracking-[0.01em] text-[#2D2D2D]">
+        <div className="text-[1.1rem] font-medium leading-snug tracking-[0.01em] text-ink">
           {item.name}
         </div>
-        <p className="mt-1 text-[0.85rem] leading-relaxed text-[#2D2D2D]/65">
+        <p className="mt-1 text-[0.85rem] leading-relaxed text-ink/65">
           {item.desc}
         </p>
-        <span className="mt-2.5 inline-block rounded-full border border-[#2D2D2D]/15 px-2.5 py-0.5 font-mono text-[0.64rem] tracking-[0.06em] text-[#2D2D2D]/60">
+        <span className="mt-2.5 inline-block rounded-full border border-ink/15 px-2.5 py-0.5 font-mono text-[0.64rem] tracking-[0.06em] text-ink/60">
           {item.domain}
         </span>
       </div>
 
       {/* スタック */}
-      <div className="font-mono text-[0.72rem] leading-relaxed text-[#2D2D2D]/55">
+      <div className="font-mono text-[0.72rem] leading-relaxed text-ink/55">
         {item.stack.join(" / ")}
       </div>
 
       {/* 矢印（リンク行のみ・デスクトップ） */}
       <span
         className={`hidden justify-self-end text-lg transition-transform md:block ${
-          item.url ? "text-[#2D2D2D]/25 group-hover:translate-x-1 group-hover:text-accent" : "text-transparent"
+          item.url ? "text-ink/25 group-hover:translate-x-1 group-hover:text-accent" : "text-transparent"
         }`}
         aria-hidden
       >
@@ -102,7 +102,7 @@ function RegistryRow({ item }: { item: WorkItem }) {
   );
 
   const gridClass =
-    "group grid grid-cols-1 items-start gap-3 border-b border-[#2D2D2D]/10 py-6 transition-colors md:grid-cols-[92px_120px_1fr_150px_18px] md:items-center md:gap-5 md:py-7";
+    "group grid grid-cols-1 items-start gap-3 border-b border-ink/10 py-6 transition-colors md:grid-cols-[92px_120px_1fr_150px_18px] md:items-center md:gap-5 md:py-7";
 
   if (item.url) {
     return (
@@ -110,7 +110,7 @@ function RegistryRow({ item }: { item: WorkItem }) {
         href={item.url}
         target="_blank"
         rel="noopener noreferrer"
-        className={`${gridClass} hover:bg-[#2D2D2D]/04`}
+        className={`${gridClass} hover:bg-ink/04`}
       >
         {inner}
       </a>
@@ -122,7 +122,7 @@ function RegistryRow({ item }: { item: WorkItem }) {
 
 export function StatusRegistry({ items }: { items: WorkItem[] }) {
   return (
-    <div className="border-t border-[#2D2D2D]/10">
+    <div className="border-t border-ink/10">
       {items.map((item) => (
         <RegistryRow key={item.name} item={item} />
       ))}

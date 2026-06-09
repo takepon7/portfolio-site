@@ -36,7 +36,7 @@ export function ScrollRevealSection({
     >
       {borderTop && (
         <motion.div
-          className="absolute left-0 right-0 top-0 h-px bg-[#2D2D2D]/08 origin-left"
+          className="absolute left-0 right-0 top-0 h-px bg-ink/08 origin-left"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true, amount: 0.2 }}
