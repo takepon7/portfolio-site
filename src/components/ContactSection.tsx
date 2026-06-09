@@ -87,43 +87,37 @@ export function ContactSection({ formspreeEndpoint = null }: ContactSectionProps
             ) : (
               <form ref={formRef} onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
                 <div>
-                  <label htmlFor="contact-name" className="sr-only">
-                    お名前
-                  </label>
                   <input
                     id="contact-name"
                     type="text"
                     name="name"
                     required
                     placeholder="お名前"
+                    aria-label="お名前"
                     className={inputBase}
                     disabled={status === "submitting"}
                   />
                 </div>
                 <div>
-                  <label htmlFor="contact-email" className="sr-only">
-                    メールアドレス
-                  </label>
                   <input
                     id="contact-email"
                     type="email"
                     name="email"
                     required
                     placeholder="メールアドレス"
+                    aria-label="メールアドレス"
                     className={inputBase}
                     disabled={status === "submitting"}
                   />
                 </div>
                 <div>
-                  <label htmlFor="contact-message" className="sr-only">
-                    メッセージ
-                  </label>
                   <textarea
                     id="contact-message"
                     name="message"
                     required
                     rows={5}
                     placeholder="メッセージ"
+                    aria-label="メッセージ"
                     className={`${inputBase} resize-y min-h-[120px]`}
                     disabled={status === "submitting"}
                   />
