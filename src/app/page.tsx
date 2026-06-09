@@ -5,7 +5,7 @@ import { ScrollRevealSection } from "@/components/ScrollRevealSection";
 import { NowStrip } from "@/components/NowStrip";
 import { HeroBackground } from "@/components/HeroBackground";
 import { SiteHeader } from "@/components/SiteHeader";
-import { CodePanel } from "@/components/CodePanel";
+import { ProductShowcase } from "@/components/ProductShowcase";
 import { StatusRegistry, type WorkItem } from "@/components/StatusRegistry";
 
 const WORKS: WorkItem[] = [
@@ -215,7 +215,7 @@ export default function Home() {
           </div>
             </div>
             <div className="hidden lg:block">
-              <CodePanel />
+              <ProductShowcase />
             </div>
           </div>
 
