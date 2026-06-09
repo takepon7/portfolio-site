@@ -4,7 +4,7 @@
  */
 export function NowStrip() {
   return (
-    <div className="mt-10 flex flex-col gap-3 rounded border border-ink/12 border-l-[3px] border-l-accent bg-ink/03 px-5 py-4 sm:flex-row sm:items-baseline sm:gap-4 sm:px-6 sm:py-5">
+    <div className="flex flex-col gap-3 rounded border border-ink/12 border-l-[3px] border-l-accent bg-ink/03 px-5 py-4 sm:flex-row sm:items-baseline sm:gap-4 sm:px-6 sm:py-5">
       <span className="flex-none font-mono text-[0.72rem] font-bold tracking-[0.12em] text-accent">
         {"// NOW"}
       </span>

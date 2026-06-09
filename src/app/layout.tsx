@@ -21,7 +21,7 @@ const jetBrainsMono = JetBrains_Mono({
   display: "optional",
 });
 
-const SITE_TITLE = "Ryosuke Takeda — 業務の痛みを、システムで解く";
+const SITE_TITLE = "Ryosuke Takeda — AIプロダクトを個人で開発・運営";
 const SITE_DESCRIPTION =
   "人事／People Opsの現場を10年以上見てきた個人開発者。介護・中小企業・HR・英語学習の現場の痛みを、AIプロダクトとして実装・販売しています。";
 
@@ -56,10 +56,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/hero/hero-main.jpg",
+        url: "/images/hero/hero-bg.jpg",
         width: 1200,
         height: 630,
-        alt: "Ryosuke Takeda — 業務の痛みを、システムで解く",
+        alt: "Ryosuke Takeda — AIプロダクトを個人で開発・運営",
       },
     ],
   },
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    images: ["/images/hero/hero-main.jpg"],
+    images: ["/images/hero/hero-bg.jpg"],
   },
 };
 
