@@ -3,6 +3,7 @@ import Image from "next/image";
 import { FadeInSection } from "@/components/FadeInSection";
 import { ScrollRevealSection } from "@/components/ScrollRevealSection";
 import { NowStrip } from "@/components/NowStrip";
+import { HeroBackground } from "@/components/HeroBackground";
 import { StatusRegistry, type WorkItem } from "@/components/StatusRegistry";
 
 const WORKS: WorkItem[] = [
@@ -188,13 +189,14 @@ export default function Home() {
         scale={true}
         borderTop={false}
       >
-        <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
+        <HeroBackground />
+        <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
           <div className="mb-7 flex flex-wrap items-center gap-x-4 gap-y-2">
             <span className="font-mono text-[0.72rem] tracking-[0.12em] text-[#2D2D2D]/55">
               個人開発者 / 個人事業主
             </span>
             <span className="font-mono text-[0.72rem] tracking-[0.12em] text-accent">
-              People Ops (VP) 出身
+              元 People Ops（VP）
             </span>
           </div>
           <h1 className="mb-6 text-left text-[2rem] font-bold leading-tight tracking-[0.01em] text-[#2D2D2D] sm:text-[2.6rem] md:text-[3.2rem] lg:text-[3.6rem]">
@@ -283,9 +285,31 @@ export default function Home() {
             </div>
           </FadeInSection>
 
-          <div className="grid gap-12 md:grid-cols-2 md:gap-16">
-            {/* ナラティブ */}
+          <div className="grid gap-12 lg:grid-cols-[320px_1fr] lg:items-start lg:gap-16">
+            {/* ポートレート（差し替え可能なプレースホルダ） */}
             <FadeInSection>
+              <figure className="lg:sticky lg:top-28">
+                <div className="group relative mx-auto aspect-[3/4] w-full max-w-[300px] overflow-hidden rounded-2xl border border-[#2D2D2D]/10 bg-[#EFEDE8] shadow-sm transition-transform duration-500 hover:scale-[1.02] lg:mx-0">
+                  <Image
+                    src="/images/profile/portrait-placeholder.svg"
+                    alt="Ryosuke Takeda"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 1024px) 300px, 320px"
+                    unoptimized
+                  />
+                  <span className="absolute left-4 top-4 h-2 w-2 rounded-full bg-accent" aria-hidden />
+                </div>
+                <figcaption className="mt-3 text-center font-mono text-[0.66rem] tracking-[0.1em] text-[#2D2D2D]/45 lg:text-left">
+                  Ryosuke Takeda — Indie Developer
+                </figcaption>
+              </figure>
+            </FadeInSection>
+
+            {/* 本文＋クレジット */}
+            <div className="grid gap-12 md:grid-cols-2 md:gap-12">
+              {/* ナラティブ */}
+              <FadeInSection>
               <div className="space-y-5">
                 <p className="text-[0.98rem] leading-[2.05] text-[#2D2D2D]/90">
                   10年以上、人事／People Opsの現場にいました。採用・評価・労務・組織設計の業務フローを内側から理解し、Workday HCM/LMS や ServiceNow の全社導入を、現場と開発の間に立って動かしてきました。
@@ -317,6 +341,7 @@ export default function Home() {
                 ))}
               </div>
             </FadeInSection>
+            </div>
           </div>
 
           {/* 3本柱 */}
