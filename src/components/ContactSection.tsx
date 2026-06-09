@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import { ScrollRevealSection } from "@/components/ScrollRevealSection";
 
 const inputBase =
-  "w-full rounded-lg border border-gray-200 bg-white/60 px-4 py-3 text-[0.9375rem] tracking-[0.02em] text-[#2D2D2D] placeholder:text-gray-400/90 transition-all duration-200 focus:border-gray-300 focus:bg-white focus:outline-none focus:shadow-[0_0_0_1px_rgba(0,0,0,0.06)]";
+  "w-full rounded-lg border border-ink/15 bg-surface px-4 py-3 text-[0.9375rem] tracking-[0.02em] text-ink placeholder:text-ink/40 transition-all duration-200 focus:border-accent focus:bg-surface-2 focus:outline-none";
 
 /** サーバーから渡す Formspree の送信先URL（環境変数はサーバーで読み、props で渡す） */
 export interface ContactSectionProps {
@@ -57,19 +57,19 @@ export function ContactSection({ formspreeEndpoint = null }: ContactSectionProps
   return (
     <ScrollRevealSection
       id="contact"
-      className="bg-[#F9F8F6] pb-24 pt-16 sm:pb-28 sm:pt-24 md:pb-32 md:pt-28 lg:pb-36 lg:pt-32"
+      className="bg-paper pb-24 pt-16 sm:pb-28 sm:pt-24 md:pb-32 md:pt-28 lg:pb-36 lg:pt-32"
       borderTop={true}
     >
       <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
-        <p className="mb-10 text-sm tracking-[0.22em] leading-[1.6] text-[#2D2D2D]/60 sm:mb-12 md:mb-16">
+        <p className="mb-10 text-sm tracking-[0.22em] leading-[1.6] text-ink/60 sm:mb-12 md:mb-16">
           CONTACT
         </p>
-        <p className="mb-10 max-w-lg text-[0.95rem] tracking-[0.02em] leading-[2.1] text-[#2D2D2D]/85 sm:mb-12 sm:text-[1rem] sm:leading-[2.15] md:mb-14">
+        <p className="mb-10 max-w-lg text-[0.95rem] tracking-[0.02em] leading-[2.1] text-ink/85 sm:mb-12 sm:text-[1rem] sm:leading-[2.15] md:mb-14">
           お仕事の相談や感想など、お気軽にご連絡ください。
         </p>
 
         {!formAction ? (
-          <p className="text-[0.9rem] text-[#2D2D2D]/60">
+          <p className="text-[0.9rem] text-ink/60">
             フォームは設定後に表示されます。
           </p>
         ) : (
@@ -81,7 +81,7 @@ export function ContactSection({ formspreeEndpoint = null }: ContactSectionProps
             className="max-w-xl"
           >
             {status === "success" ? (
-              <p className="py-8 text-[1rem] leading-[2.2] tracking-[0.02em] text-[#2D2D2D]/90 sm:text-[1.0625rem]">
+              <p className="py-8 text-[1rem] leading-[2.2] tracking-[0.02em] text-ink/90 sm:text-[1.0625rem]">
                 無事に届きました。ありがとうございます。
               </p>
             ) : (
@@ -123,12 +123,12 @@ export function ContactSection({ formspreeEndpoint = null }: ContactSectionProps
                   />
                 </div>
                 {status === "error" && errorMessage && (
-                  <p className="text-[0.875rem] text-[#2D2D2D]/70">{errorMessage}</p>
+                  <p className="text-[0.875rem] text-ink/70">{errorMessage}</p>
                 )}
                 <button
                   type="submit"
                   disabled={status === "submitting"}
-                  className="rounded-lg border border-gray-200 bg-white/80 px-6 py-3 text-[0.9375rem] tracking-[0.02em] text-[#2D2D2D] transition-all duration-200 active:opacity-90 hover:border-gray-300 hover:bg-white hover:shadow-[0_0_0_1px_rgba(0,0,0,0.06)] disabled:opacity-60"
+                  className="rounded-lg border border-ink/15 bg-surface px-6 py-3 text-[0.9375rem] tracking-[0.02em] text-ink transition-all duration-200 active:opacity-90 hover:border-accent hover:text-accent disabled:opacity-60"
                 >
                   {status === "submitting" ? "送信中…" : "送信"}
                 </button>

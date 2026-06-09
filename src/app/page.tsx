@@ -4,6 +4,8 @@ import { FadeInSection } from "@/components/FadeInSection";
 import { ScrollRevealSection } from "@/components/ScrollRevealSection";
 import { NowStrip } from "@/components/NowStrip";
 import { HeroBackground } from "@/components/HeroBackground";
+import { SiteHeader } from "@/components/SiteHeader";
+import { CodePanel } from "@/components/CodePanel";
 import { StatusRegistry, type WorkItem } from "@/components/StatusRegistry";
 
 const WORKS: WorkItem[] = [
@@ -148,58 +150,31 @@ const EXTERNAL_LINKS = [
   { label: "X / @takepon_7 ↗", href: "https://x.com/takepon_7" },
 ];
 
-const NAV_ITEMS = [
-  { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
-  { label: "Writing", href: "#writing" },
-  { label: "Contact", href: "#contact" },
-];
-
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#F9F8F6]">
-      {/* ナビゲーション */}
-      <header className="fixed top-0 left-0 right-0 z-50 border-b border-[#2D2D2D]/10 bg-[#F9F8F6]/95 backdrop-blur-sm">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3.5 sm:px-8 sm:py-5 md:px-12">
-          <Link
-            href="#top"
-            className="flex items-center gap-2 text-sm font-medium tracking-[0.02em] text-[#2D2D2D] transition-opacity hover:opacity-70 sm:text-base"
-          >
-            <span className="h-2 w-2 rounded-full bg-accent" aria-hidden />
-            Ryosuke Takeda
-          </Link>
-          <div className="flex gap-4 sm:gap-7 md:gap-9">
-            {NAV_ITEMS.map(({ label, href }) => (
-              <Link
-                key={label}
-                href={href}
-                className="font-mono text-[0.7rem] tracking-[0.04em] text-[#2D2D2D]/70 transition-colors hover:text-accent sm:text-[0.78rem]"
-              >
-                {label}
-              </Link>
-            ))}
-          </div>
-        </nav>
-      </header>
+    <div className="min-h-screen bg-paper">
+      <SiteHeader />
 
       {/* ヒーローセクション */}
       <ScrollRevealSection
         id="top"
-        className="relative overflow-hidden bg-[#FCFCFB] pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 lg:pt-40 lg:pb-24"
+        className="relative overflow-hidden bg-surface pt-14 pb-14 sm:pt-16 sm:pb-16 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24"
         scale={true}
         borderTop={false}
       >
         <HeroBackground />
         <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
+          <div className="grid items-center gap-10 lg:grid-cols-[1fr_minmax(0,400px)] lg:gap-14">
+            <div>
           <div className="mb-7 flex flex-wrap items-center gap-x-4 gap-y-2">
-            <span className="font-mono text-[0.72rem] tracking-[0.12em] text-[#2D2D2D]/55">
+            <span className="font-mono text-[0.72rem] tracking-[0.12em] text-ink/55">
               個人開発者 / 個人事業主
             </span>
             <span className="font-mono text-[0.72rem] tracking-[0.12em] text-accent">
               元 People Ops（VP）
             </span>
           </div>
-          <h1 className="mb-6 text-left text-[2rem] font-bold leading-tight tracking-[0.01em] text-[#2D2D2D] sm:text-[2.6rem] md:text-[3.2rem] lg:text-[3.6rem]">
+          <h1 className="mb-6 text-left text-[2rem] font-bold leading-tight tracking-[0.01em] text-ink sm:text-[2.6rem] md:text-[3.2rem] lg:text-[3.6rem]">
             業務の痛みを、
             <br />
             システムで解く。
@@ -207,36 +182,41 @@ export default function Home() {
           <p className="mb-7 text-left text-[1.05rem] font-medium tracking-[0.01em] text-accent sm:text-[1.2rem] md:text-[1.35rem]">
             現場のドメイン知識 × AI実装力で、DXをつくる。
           </p>
-          <p className="max-w-[52ch] text-left text-[0.95rem] leading-[2.1] tracking-[0.01em] text-[#2D2D2D]/70 sm:text-[1rem] md:text-[1.05rem]">
+          <p className="max-w-[52ch] text-left text-[0.95rem] leading-[2.1] tracking-[0.01em] text-ink/70 sm:text-[1rem] md:text-[1.05rem]">
             人事／People Opsの現場を10年以上見てきた人間が、いまは自分でコードを書いて
-            <strong className="font-medium text-[#2D2D2D]">AIプロダクトを実装し、世に出しています</strong>
+            <strong className="font-medium text-ink">AIプロダクトを実装し、世に出しています</strong>
             。業務の“本当の痛み”を知っているから、何を作って何を作らないかの判断がぶれない——それが軸です。
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[0.74rem] text-[#2D2D2D]/55">
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[0.74rem] text-ink/55">
             <span>
-              領域 / <b className="font-medium text-[#2D2D2D]/80">介護・中小企業・HR・英語学習</b>
+              領域 / <b className="font-medium text-ink/80">介護・中小企業・HR・英語学習</b>
             </span>
-            <span className="hidden h-3 w-px bg-[#2D2D2D]/15 sm:inline-block" />
+            <span className="hidden h-3 w-px bg-ink/15 sm:inline-block" />
             <span>
               実装 /{" "}
-              <b className="font-medium text-[#2D2D2D]/80">Next.js · Flutter · Supabase · Claude · Whisper</b>
+              <b className="font-medium text-ink/80">Next.js · Flutter · Supabase · Claude · Whisper</b>
             </span>
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
             <Link
               href="#work"
-              className="inline-block rounded-lg bg-[#2D2D2D] px-7 py-3 text-[0.9rem] font-medium tracking-[0.04em] text-[#F9F8F6] transition-all duration-200 hover:bg-[#2D2D2D]/85 sm:px-8"
+              className="inline-block rounded-lg bg-ink px-7 py-3 text-[0.9rem] font-medium tracking-[0.04em] text-paper transition-all duration-200 hover:bg-ink/85 sm:px-8"
             >
               プロダクトを見る
             </Link>
             <Link
               href="#contact"
-              className="inline-block rounded-lg border border-[#2D2D2D]/20 px-7 py-3 text-[0.9rem] font-medium tracking-[0.04em] text-[#2D2D2D] transition-all duration-200 hover:border-accent hover:text-accent sm:px-8"
+              className="inline-block rounded-lg border border-ink/20 px-7 py-3 text-[0.9rem] font-medium tracking-[0.04em] text-ink transition-all duration-200 hover:border-accent hover:text-accent sm:px-8"
             >
               相談する
             </Link>
+          </div>
+            </div>
+            <div className="hidden lg:block">
+              <CodePanel />
+            </div>
           </div>
 
           {/* NOW: build in public の入口 */}
@@ -247,16 +227,16 @@ export default function Home() {
       {/* Work：ステータス・レジストリ */}
       <ScrollRevealSection
         id="work"
-        className="bg-[#F9F8F6] py-16 sm:py-24 md:py-28 lg:py-32"
+        className="bg-paper py-16 sm:py-24 md:py-28 lg:py-32"
         borderTop={true}
       >
         <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
           <FadeInSection>
             <div className="mb-10 flex items-baseline gap-4 sm:mb-12 md:mb-14">
-              <span className="font-mono text-[0.72rem] tracking-[0.14em] text-[#2D2D2D]/55">
+              <span className="font-mono text-[0.72rem] tracking-[0.14em] text-ink/55">
                 01 — Work
               </span>
-              <h2 className="text-[1.4rem] font-bold tracking-[0.01em] text-[#2D2D2D] sm:text-[1.7rem] md:text-[2rem]">
+              <h2 className="text-[1.4rem] font-bold tracking-[0.01em] text-ink sm:text-[1.7rem] md:text-[2rem]">
                 つくっているプロダクト
               </h2>
             </div>
@@ -270,37 +250,37 @@ export default function Home() {
       {/* About */}
       <ScrollRevealSection
         id="about"
-        className="bg-[#F7F6F4] py-16 sm:py-24 md:py-28 lg:py-32"
+        className="bg-surface-2 py-16 sm:py-24 md:py-28 lg:py-32"
         borderTop={true}
       >
         <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
           <FadeInSection>
             <div className="mb-10 flex items-baseline gap-4 sm:mb-12 md:mb-14">
-              <span className="font-mono text-[0.72rem] tracking-[0.14em] text-[#2D2D2D]/55">
+              <span className="font-mono text-[0.72rem] tracking-[0.14em] text-ink/55">
                 02 — About
               </span>
-              <h2 className="text-[1.4rem] font-bold tracking-[0.01em] text-[#2D2D2D] sm:text-[1.7rem] md:text-[2rem]">
+              <h2 className="text-[1.4rem] font-bold tracking-[0.01em] text-ink sm:text-[1.7rem] md:text-[2rem]">
                 現場とシステムの、あいだに立つ
               </h2>
             </div>
           </FadeInSection>
 
-          <div className="grid gap-12 lg:grid-cols-[320px_1fr] lg:items-start lg:gap-16">
-            {/* ポートレート（差し替え可能なプレースホルダ） */}
+          <div className="grid gap-10 lg:grid-cols-[240px_1fr] lg:items-start lg:gap-16">
+            {/* ポートレート */}
             <FadeInSection>
               <figure className="lg:sticky lg:top-28">
-                <div className="group relative mx-auto aspect-[3/4] w-full max-w-[300px] overflow-hidden rounded-2xl border border-[#2D2D2D]/10 bg-[#EFEDE8] shadow-sm transition-transform duration-500 hover:scale-[1.02] lg:mx-0">
+                <div className="group relative mx-auto aspect-[3/4] w-full max-w-[220px] overflow-hidden rounded-2xl border border-ink/10 bg-surface-3 shadow-sm transition-transform duration-500 hover:scale-[1.02] lg:mx-0">
                   <Image
                     src="/images/profile/portrait.jpg"
                     alt="Ryosuke Takeda"
                     fill
                     className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 1024px) 300px, 320px"
+                    sizes="(max-width: 1024px) 220px, 240px"
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#2D2D2D]/15 to-transparent" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/15 to-transparent" />
                 </div>
-                <figcaption className="mt-3 text-center font-mono text-[0.66rem] tracking-[0.1em] text-[#2D2D2D]/45 lg:text-left">
-                  Ryosuke Takeda — Indie Developer
+                <figcaption className="mt-3 text-center font-mono text-[0.66rem] tracking-[0.1em] text-ink/45 lg:text-left">
+                  Ryosuke Takeda ／ 個人開発者
                 </figcaption>
               </figure>
             </FadeInSection>
@@ -310,13 +290,13 @@ export default function Home() {
               {/* ナラティブ */}
               <FadeInSection>
               <div className="space-y-5">
-                <p className="text-[0.98rem] leading-[2.05] text-[#2D2D2D]/90">
+                <p className="text-[0.98rem] leading-[2.05] text-ink/90">
                   10年以上、人事／People Opsの現場にいました。採用・評価・労務・組織設計の業務フローを内側から理解し、Workday HCM/LMS や ServiceNow の全社導入を、現場と開発の間に立って動かしてきました。
                 </p>
-                <p className="text-[0.98rem] leading-[2.05] text-[#2D2D2D]/90">
+                <p className="text-[0.98rem] leading-[2.05] text-ink/90">
                   いまはその現場感を持ったまま、自分でコードを書き、AIプロダクトとして実装・販売しています。Cursor / Gemini を経て Claude Code を主戦場に、独学で開発へ移行しました。
                 </p>
-                <p className="text-[0.98rem] leading-[2.05] text-[#2D2D2D]/65">
+                <p className="text-[0.98rem] leading-[2.05] text-ink/65">
                   業務の本当の痛みを知っている人間が設計すると、判断がぶれない。設計の理由を言葉で説明できるエンジニアでありたい、と思っています。
                 </p>
               </div>
@@ -324,16 +304,16 @@ export default function Home() {
 
             {/* クレジット（PM経歴を含む） */}
             <FadeInSection delay={80}>
-              <div className="flex flex-col gap-5 border-l-2 border-[#2D2D2D]/12 pl-6">
+              <div className="flex flex-col gap-5 border-l-2 border-ink/12 pl-6">
                 {CREDENTIALS.map((c) => (
                   <div key={c.k}>
                     <p className="mb-1.5 font-mono text-[0.68rem] tracking-[0.1em] text-accent">
                       {c.k}
                     </p>
-                    <p className="text-[0.92rem] leading-relaxed text-[#2D2D2D]">
+                    <p className="text-[0.92rem] leading-relaxed text-ink">
                       {c.v}
                     </p>
-                    <p className="text-[0.85rem] leading-relaxed text-[#2D2D2D]/55">
+                    <p className="text-[0.85rem] leading-relaxed text-ink/55">
                       {c.sub}
                     </p>
                   </div>
@@ -347,11 +327,11 @@ export default function Home() {
           <div className="mt-14 grid gap-6 sm:gap-8 md:grid-cols-3 md:gap-8">
             {ABOUT_PILLARS.map((card, i) => (
               <FadeInSection key={card.title} delay={80 + i * 80}>
-                <div className="h-full rounded-2xl border border-[#2D2D2D]/08 bg-[#FCFCFB] p-7 sm:p-8">
-                  <h3 className="mb-4 font-mono text-[0.76rem] tracking-[0.1em] text-[#B5A48B]">
+                <div className="h-full rounded-2xl border border-ink/08 bg-surface p-7 sm:p-8">
+                  <h3 className="mb-4 font-mono text-[0.76rem] tracking-[0.1em] text-accent-gold">
                     {card.title}
                   </h3>
-                  <p className="text-[0.9rem] leading-[2.05] text-[#2D2D2D]/80">
+                  <p className="text-[0.9rem] leading-[2.05] text-ink/80">
                     {card.body}
                   </p>
                 </div>
@@ -364,20 +344,20 @@ export default function Home() {
       {/* Writing */}
       <ScrollRevealSection
         id="writing"
-        className="bg-[#F9F8F6] py-16 sm:py-24 md:py-28 lg:py-32"
+        className="bg-paper py-16 sm:py-24 md:py-28 lg:py-32"
         borderTop={true}
       >
         <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
           <FadeInSection>
             <div className="mb-3 flex items-baseline gap-4">
-              <span className="font-mono text-[0.72rem] tracking-[0.14em] text-[#2D2D2D]/55">
+              <span className="font-mono text-[0.72rem] tracking-[0.14em] text-ink/55">
                 03 — Writing
               </span>
-              <h2 className="text-[1.4rem] font-bold tracking-[0.01em] text-[#2D2D2D] sm:text-[1.7rem] md:text-[2rem]">
+              <h2 className="text-[1.4rem] font-bold tracking-[0.01em] text-ink sm:text-[1.7rem] md:text-[2rem]">
                 現場のDX実装と、組織の話
               </h2>
             </div>
-            <p className="mb-10 text-[0.9rem] tracking-[0.02em] text-[#2D2D2D]/50 sm:mb-12 md:mb-14">
+            <p className="mb-10 text-[0.9rem] tracking-[0.02em] text-ink/50 sm:mb-12 md:mb-14">
               開発記事（Qiita / Zenn）と、組織・人事のエッセイ（HEART）。
             </p>
           </FadeInSection>
@@ -386,7 +366,7 @@ export default function Home() {
             {blogPosts.map((post, i) => {
               const isExternal = post.href.startsWith("http");
               const cardClass =
-                "group block overflow-hidden rounded-2xl bg-[#FCFCFB] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-[#F0EDE8]";
+                "group block overflow-hidden rounded-2xl bg-surface transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-hover";
               const cardContent = (
                 <>
                   <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl">
@@ -397,18 +377,18 @@ export default function Home() {
                       className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
-                    <span className="absolute left-3 top-3 rounded bg-[#F9F8F6]/90 px-2 py-0.5 font-mono text-[0.62rem] tracking-[0.08em] text-accent">
+                    <span className="absolute left-3 top-3 rounded bg-paper/90 px-2 py-0.5 font-mono text-[0.62rem] tracking-[0.08em] text-accent">
                       {post.source}
                     </span>
                   </div>
                   <div className="p-6 sm:p-8">
-                    <h3 className="mb-2 text-base font-medium leading-snug tracking-[0.01em] text-[#2D2D2D] sm:text-lg">
+                    <h3 className="mb-2 text-base font-medium leading-snug tracking-[0.01em] text-ink sm:text-lg">
                       {post.title}
                     </h3>
-                    <p className="mb-3 text-[0.9rem] leading-[2] text-[#2D2D2D]/70">
+                    <p className="mb-3 text-[0.9rem] leading-[2] text-ink/70">
                       {post.lead}
                     </p>
-                    <p className="text-[0.9rem] leading-[2] text-[#2D2D2D]/80">
+                    <p className="text-[0.9rem] leading-[2] text-ink/80">
                       {post.description}
                     </p>
                   </div>
@@ -438,7 +418,7 @@ export default function Home() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center rounded-full border border-[#2D2D2D]/15 px-5 py-2 font-mono text-[0.78rem] tracking-[0.03em] text-[#2D2D2D]/70 transition-all hover:-translate-y-0.5 hover:border-accent hover:text-accent"
+                  className="inline-flex items-center rounded-full border border-ink/15 px-5 py-2 font-mono text-[0.78rem] tracking-[0.03em] text-ink/70 transition-all hover:-translate-y-0.5 hover:border-accent hover:text-accent"
                 >
                   {link.label}
                 </a>
