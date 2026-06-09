@@ -291,14 +291,13 @@ export default function Home() {
               <figure className="lg:sticky lg:top-28">
                 <div className="group relative mx-auto aspect-[3/4] w-full max-w-[300px] overflow-hidden rounded-2xl border border-[#2D2D2D]/10 bg-[#EFEDE8] shadow-sm transition-transform duration-500 hover:scale-[1.02] lg:mx-0">
                   <Image
-                    src="/images/profile/portrait-placeholder.svg"
+                    src="/images/profile/portrait.jpg"
                     alt="Ryosuke Takeda"
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 1024px) 300px, 320px"
-                    unoptimized
                   />
-                  <span className="absolute left-4 top-4 h-2 w-2 rounded-full bg-accent" aria-hidden />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#2D2D2D]/15 to-transparent" />
                 </div>
                 <figcaption className="mt-3 text-center font-mono text-[0.66rem] tracking-[0.1em] text-[#2D2D2D]/45 lg:text-left">
                   Ryosuke Takeda — Indie Developer
