@@ -31,7 +31,7 @@ const WORKS: WorkItem[] = [
     desc: "中小企業（工務店・士業）のホームページを、AIで最短24時間・定額で制作するサービス。",
     stack: ["Next.js", "生成AI"],
     url: "https://papatto-hp.com",
-    // TODO(screenshot): public/images/papatto-hp/ に papatto-hp.com のスクショを配置して image を設定
+    image: "/images/papatto-hp/papatto-hp-01.png",
   },
   {
     name: "そいね / Soine",
@@ -40,7 +40,7 @@ const WORKS: WorkItem[] = [
     desc: "眠りにつくための“語り”のアプリ。日本語の物語とAI音声で入眠を誘うモバイルプロダクト。App Storeで配信中。",
     stack: ["Flutter (iOS/Android)", "サブスクリプション"],
     url: "https://apps.apple.com/jp/app/%E3%81%9D%E3%81%84%E3%81%AD/id6775675437",
-    // TODO(screenshot): public/images/soine/ に App Store / アプリ画面のスクショを配置して image を設定
+    image: "/images/soine/soine-01.png",
   },
   {
     name: "pelago",
