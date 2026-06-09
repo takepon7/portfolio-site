@@ -5,7 +5,7 @@ import { ScrollRevealSection } from "@/components/ScrollRevealSection";
 import { NowStrip } from "@/components/NowStrip";
 import { HeroBackground } from "@/components/HeroBackground";
 import { SiteHeader } from "@/components/SiteHeader";
-import { CodePanel } from "@/components/CodePanel";
+import { ProductShowcase } from "@/components/ProductShowcase";
 import { StatusRegistry, type WorkItem } from "@/components/StatusRegistry";
 
 const WORKS: WorkItem[] = [
@@ -174,13 +174,13 @@ export default function Home() {
               元 People Ops（VP）
             </span>
           </div>
-          <h1 className="mb-6 text-left text-[2rem] font-bold leading-tight tracking-[0.01em] text-ink sm:text-[2.6rem] md:text-[3.2rem] lg:text-[3.6rem]">
-            業務の痛みを、
+          <h1 className="mb-6 text-left text-[1.9rem] font-bold leading-[1.25] tracking-[0.01em] text-ink sm:text-[2.4rem] md:text-[2.9rem] lg:text-[3.15rem]">
+            AIプロダクトを、
             <br />
-            システムで解く。
+            個人で開発・運営しています。
           </h1>
-          <p className="mb-7 text-left text-[1.05rem] font-medium tracking-[0.01em] text-accent sm:text-[1.2rem] md:text-[1.35rem]">
-            現場のドメイン知識 × AI実装力で、DXをつくる。
+          <p className="mb-7 text-left text-[1.05rem] font-medium tracking-[0.01em] text-accent sm:text-[1.2rem] md:text-[1.3rem]">
+            People Ops出身の個人開発者。業務の痛みを知る人間が、実装して世に出す。
           </p>
           <p className="max-w-[52ch] text-left text-[0.95rem] leading-[2.1] tracking-[0.01em] text-ink/70 sm:text-[1rem] md:text-[1.05rem]">
             人事／People Opsの現場を10年以上見てきた人間が、いまは自分でコードを書いて
@@ -215,7 +215,7 @@ export default function Home() {
           </div>
             </div>
             <div className="hidden lg:block">
-              <CodePanel />
+              <ProductShowcase />
             </div>
           </div>
 

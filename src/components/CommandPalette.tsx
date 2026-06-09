@@ -23,14 +23,6 @@ function openExternal(url: string) {
   window.open(url, "_blank", "noopener,noreferrer");
 }
 
-function toggleTheme() {
-  const next = !document.documentElement.classList.contains("dark");
-  document.documentElement.classList.toggle("dark", next);
-  try {
-    localStorage.setItem("theme", next ? "dark" : "light");
-  } catch {}
-}
-
 const COMMANDS: Command[] = [
   { group: "移動", label: "Work — つくっているプロダクト", hint: "01", run: () => go("#work") },
   { group: "移動", label: "About — 現場とシステムのあいだ", hint: "02", run: () => go("#about") },
@@ -44,7 +36,6 @@ const COMMANDS: Command[] = [
   { group: "リンク", label: "Qiita / takepon7", run: () => openExternal("https://qiita.com/takepon7") },
   { group: "リンク", label: "Zenn / takepon7", run: () => openExternal("https://zenn.dev/takepon7") },
   { group: "リンク", label: "X / @takepon_7", run: () => openExternal("https://x.com/takepon_7") },
-  { group: "操作", label: "テーマを切り替え（ダーク / ライト）", run: toggleTheme },
 ];
 
 export function CommandPalette() {

@@ -1,9 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* クラスベースのダークモード（.dark を <html> に付与して切替） */
-@custom-variant dark (&:where(.dark, .dark *));
-
 :root {
   color-scheme: light;
   /* 面（surface）階層 */
@@ -23,22 +20,6 @@
   /* 後方互換 */
   --background: var(--paper);
   --foreground: var(--ink);
-}
-
-.dark {
-  color-scheme: dark;
-  --paper: #14171a;
-  --surface: #1b1f22;
-  --surface-2: #121517;
-  --surface-3: #232a2d;
-  --hover: #232a2d;
-  --ink: #e8eae6;
-  --accent-gold: #c9b8a0;
-  --accent: #34b89c;
-  --st-live: #34b89c;
-  --st-store: #6398f0;
-  --st-sell: #d6a242;
-  --st-prep: #9aa09a;
 }
 
 @theme inline {
