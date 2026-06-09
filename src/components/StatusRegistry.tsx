@@ -13,9 +13,9 @@ export interface WorkItem {
   desc: string;
   /** 技術スタック */
   stack: string[];
-  /** 公開URL（無ければ非リンク行＝準備中など） */
+  /** 公開URL（無ければ非リンク＝準備中など） */
   url?: string;
-  /** サムネイル画像パス（無ければプレースホルダ） */
+  /** スクリーンショット画像パス（無ければプレースホルダ） */
   image?: string;
 }
 
@@ -30,101 +30,84 @@ const STATUS_META: Record<
   prep: { label: "準備中", tone: "text-st-prep", dot: "bg-st-prep", pulse: false },
 };
 
-function Thumbnail({ image, name }: { image?: string; name: string }) {
-  return (
-    <div className="relative aspect-video w-full overflow-hidden rounded-md border border-ink/08 bg-ink/04 md:aspect-auto md:h-[58px]">
-      {image ? (
-        <Image
-          src={image}
-          alt={`${name} のスクリーンショット`}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, 92px"
-        />
-      ) : (
-        <div className="flex h-full items-center justify-center font-mono text-[0.6rem] tracking-wider text-ink/40">
-          Coming Soon
-        </div>
-      )}
-    </div>
-  );
-}
-
-function RegistryRow({ item }: { item: WorkItem }) {
+function ProductCard({ item }: { item: WorkItem }) {
   const meta = STATUS_META[item.status];
 
   const inner = (
     <>
-      {/* サムネイル（モバイル:上部 / デスクトップ:左端の小プレビュー） */}
-      <Thumbnail image={item.image} name={item.name} />
+      {/* プロダクト画像（大きく・はっきり） */}
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-3">
+        {item.image ? (
+          <Image
+            src={item.image}
+            alt={`${item.name} の画面`}
+            fill
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 440px"
+          />
+        ) : (
+          <div className="flex h-full items-center justify-center font-mono text-[0.8rem] tracking-wider text-ink/35">
+            Coming Soon
+          </div>
+        )}
 
-      {/* ステータスバッジ */}
-      <span
-        className={`flex items-center gap-2 font-mono text-[0.76rem] font-medium tracking-[0.02em] ${meta.tone}`}
-      >
+        {/* ステータスバッジ（画像に浮かぶ） */}
         <span
-          className={`h-2.5 w-2.5 flex-none rounded-full ${meta.dot} ${meta.tone} ${
-            meta.pulse ? "status-pulse" : ""
-          }`}
-          aria-hidden
-        />
-        {meta.label}
-      </span>
-
-      {/* 本文 */}
-      <div>
-        <div className="text-[1.1rem] font-medium leading-snug tracking-[0.01em] text-ink">
-          {item.name}
-        </div>
-        <p className="mt-1 text-[0.85rem] leading-relaxed text-ink/65">
-          {item.desc}
-        </p>
-        <span className="mt-2.5 inline-block rounded-full border border-ink/15 px-2.5 py-0.5 font-mono text-[0.64rem] tracking-[0.06em] text-ink/60">
-          {item.domain}
+          className={`absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-ink/08 bg-surface/90 px-2.5 py-1 font-mono text-[0.68rem] font-medium shadow-sm backdrop-blur ${meta.tone}`}
+        >
+          <span
+            className={`h-2 w-2 flex-none rounded-full ${meta.dot} ${meta.tone} ${meta.pulse ? "status-pulse" : ""}`}
+            aria-hidden
+          />
+          {meta.label}
         </span>
       </div>
 
-      {/* スタック */}
-      <div className="font-mono text-[0.72rem] leading-relaxed text-ink/55">
-        {item.stack.join(" / ")}
+      {/* 本文 */}
+      <div className="p-5 sm:p-6">
+        <div className="flex items-center justify-between gap-3">
+          <h3 className="text-[1.1rem] font-medium tracking-[0.01em] text-ink">
+            {item.name}
+          </h3>
+          {item.url && (
+            <span
+              className="flex-none text-lg text-ink/25 transition-transform group-hover:translate-x-1 group-hover:text-accent"
+              aria-hidden
+            >
+              →
+            </span>
+          )}
+        </div>
+        <span className="mt-2 inline-block rounded-full border border-ink/15 px-2.5 py-0.5 font-mono text-[0.64rem] tracking-[0.06em] text-ink/60">
+          {item.domain}
+        </span>
+        <p className="mt-3 text-[0.9rem] leading-relaxed text-ink/70">{item.desc}</p>
+        <p className="mt-4 font-mono text-[0.72rem] leading-relaxed text-ink/50">
+          {item.stack.join(" / ")}
+        </p>
       </div>
-
-      {/* 矢印（リンク行のみ・デスクトップ） */}
-      <span
-        className={`hidden justify-self-end text-lg transition-transform md:block ${
-          item.url ? "text-ink/25 group-hover:translate-x-1 group-hover:text-accent" : "text-transparent"
-        }`}
-        aria-hidden
-      >
-        →
-      </span>
     </>
   );
 
-  const gridClass =
-    "group grid grid-cols-1 items-start gap-3 border-b border-ink/10 py-6 transition-colors md:grid-cols-[92px_120px_1fr_150px_18px] md:items-center md:gap-5 md:py-7";
+  const cardClass =
+    "group block overflow-hidden rounded-2xl border border-ink/10 bg-surface transition-all duration-300 hover:-translate-y-1 hover:shadow-xl";
 
   if (item.url) {
     return (
-      <a
-        href={item.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`${gridClass} hover:bg-ink/04`}
-      >
+      <a href={item.url} target="_blank" rel="noopener noreferrer" className={cardClass}>
         {inner}
       </a>
     );
   }
 
-  return <div className={gridClass}>{inner}</div>;
+  return <div className={cardClass}>{inner}</div>;
 }
 
 export function StatusRegistry({ items }: { items: WorkItem[] }) {
   return (
-    <div className="border-t border-ink/10">
+    <div className="grid gap-6 sm:gap-7 md:grid-cols-2 md:gap-8">
       {items.map((item) => (
-        <RegistryRow key={item.name} item={item} />
+        <ProductCard key={item.name} item={item} />
       ))}
     </div>
   );
