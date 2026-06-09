@@ -55,6 +55,50 @@ body {
   animation: status-pulse 2.6s ease-out infinite;
 }
 
+/* Hero 背景アート：微細なドットグリッド＋ゆっくり漂うオーラ（ミニマル高級） */
+.hero-grid {
+  background-image: radial-gradient(circle at center, rgba(45, 45, 45, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 32% 30%, #000 25%, transparent 78%);
+  mask-image: radial-gradient(ellipse 75% 65% at 32% 30%, #000 25%, transparent 78%);
+}
+.hero-aura {
+  position: absolute;
+  width: 42rem;
+  height: 42rem;
+  border-radius: 9999px;
+  filter: blur(90px);
+  will-change: transform;
+}
+.hero-aura-1 {
+  top: -16rem;
+  right: -10rem;
+  opacity: 0.16;
+  background: radial-gradient(circle, var(--accent), transparent 62%);
+  animation: aura-drift-1 26s ease-in-out infinite;
+}
+.hero-aura-2 {
+  bottom: -18rem;
+  left: -12rem;
+  opacity: 0.14;
+  background: radial-gradient(circle, var(--accent-gold), transparent 62%);
+  animation: aura-drift-2 32s ease-in-out infinite;
+}
+@keyframes aura-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-3rem, 2.5rem) scale(1.08); }
+}
+@keyframes aura-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(2.5rem, -2rem) scale(1.1); }
+}
+
+/* 画像の上品な登場（reveal）— framer不要の軽量演出 */
+@keyframes soft-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
 /* prefers-reduced-motion 尊重：パルス・アニメ・トランジションを抑制 */
 @media (prefers-reduced-motion: reduce) {
   .status-pulse {
