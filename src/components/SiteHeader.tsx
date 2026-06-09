@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ThemeToggle } from "@/components/ThemeToggle";
 
 const NAV_ITEMS = [
   { label: "Work", id: "work" },
@@ -88,8 +87,6 @@ export function SiteHeader() {
               <path d="m20 20-3-3" />
             </svg>
           </button>
-
-          <ThemeToggle />
         </div>
       </nav>
     </header>

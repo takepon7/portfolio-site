@@ -77,14 +77,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className={`${shipporiMincho.variable} ${jetBrainsMono.variable}`} suppressHydrationWarning>
+    <html lang="ja" className={`${shipporiMincho.variable} ${jetBrainsMono.variable}`}>
       <head>
-        <script
-          // テーマ初期化（描画前に実行してフラッシュを防ぐ）
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`,
-          }}
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
