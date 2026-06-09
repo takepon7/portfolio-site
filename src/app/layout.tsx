@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Shippori_Mincho, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { ContactSection } from "@/components/ContactSection";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import "./globals.css";
 
 const shipporiMincho = Shippori_Mincho({
@@ -71,6 +72,7 @@ export default function RootLayout({
   return (
     <html lang="ja" className={`${shipporiMincho.variable} ${jetBrainsMono.variable}`}>
       <body className="flex min-h-screen flex-col bg-[#F9F8F6] text-[#2D2D2D] font-sans antialiased">
+        <ScrollProgress />
         <div className="flex-1">
           {children}
           <ContactSection
