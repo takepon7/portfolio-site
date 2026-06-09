@@ -3,9 +3,7 @@ import Image from "next/image";
 import { FadeInSection } from "@/components/FadeInSection";
 import { ScrollRevealSection } from "@/components/ScrollRevealSection";
 import { NowStrip } from "@/components/NowStrip";
-import { HeroBackground } from "@/components/HeroBackground";
 import { SiteHeader } from "@/components/SiteHeader";
-import { ProductShowcase } from "@/components/ProductShowcase";
 import { StatusRegistry, type WorkItem } from "@/components/StatusRegistry";
 
 const WORKS: WorkItem[] = [
@@ -155,74 +153,74 @@ export default function Home() {
     <div className="min-h-screen bg-paper">
       <SiteHeader />
 
-      {/* ヒーローセクション */}
-      <ScrollRevealSection
-        id="top"
-        className="relative overflow-hidden bg-surface pt-14 pb-14 sm:pt-16 sm:pb-16 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24"
-        scale={true}
-        borderTop={false}
-      >
-        <HeroBackground />
-        <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
-          <div className="grid items-center gap-10 lg:grid-cols-[1fr_minmax(0,400px)] lg:gap-14">
-            <div>
-          <div className="mb-7 flex flex-wrap items-center gap-x-4 gap-y-2">
-            <span className="font-mono text-[0.72rem] tracking-[0.12em] text-ink/55">
-              個人開発者 / 個人事業主
-            </span>
-            <span className="font-mono text-[0.72rem] tracking-[0.12em] text-accent">
-              元 People Ops（VP）
-            </span>
-          </div>
-          <h1 className="mb-6 text-left text-[1.9rem] font-bold leading-[1.25] tracking-[0.01em] text-ink sm:text-[2.4rem] md:text-[2.9rem] lg:text-[3.15rem]">
+      {/* ヒーロー：全面背景写真＋オーバーレイ（papatto 風） */}
+      <section id="top" className="relative flex min-h-[88vh] items-center overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/hero/hero-bg.jpg"
+            alt=""
+            fill
+            priority
+            className="hero-kenburns object-cover"
+            sizes="100vw"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(95deg, rgba(18,22,20,0.92) 0%, rgba(18,22,20,0.70) 44%, rgba(18,22,20,0.34) 100%)",
+            }}
+          />
+        </div>
+
+        <div className="relative z-10 mx-auto w-full max-w-6xl px-6 py-28 sm:px-8 md:px-12 md:py-32">
+          <p className="hero-fade-up mb-6 font-mono text-[0.7rem] tracking-[0.3em] text-[#D8C7B0]">
+            個人開発者 / 個人事業主 ・ 元 People Ops（VP）
+          </p>
+          <h1 className="hero-fade-up d1 mb-7 max-w-4xl text-[2rem] font-bold leading-[1.22] tracking-[0.01em] text-white sm:text-[2.8rem] md:text-[3.3rem]">
             AIプロダクトを、
             <br />
             個人で開発・運営しています。
           </h1>
-          <p className="mb-7 text-left text-[1.05rem] font-medium tracking-[0.01em] text-accent sm:text-[1.2rem] md:text-[1.3rem]">
-            People Ops出身の個人開発者。業務の痛みを知る人間が、実装して世に出す。
-          </p>
-          <p className="max-w-[52ch] text-left text-[0.95rem] leading-[2.1] tracking-[0.01em] text-ink/70 sm:text-[1rem] md:text-[1.05rem]">
-            人事／People Opsの現場を10年以上見てきた人間が、いまは自分でコードを書いて
-            <strong className="font-medium text-ink">AIプロダクトを実装し、世に出しています</strong>
-            。業務の“本当の痛み”を知っているから、何を作って何を作らないかの判断がぶれない——それが軸です。
+          <p className="hero-fade-up d2 mb-9 max-w-xl text-[0.98rem] leading-[1.95] text-white/85 md:text-[1.1rem]">
+            People Opsの現場を10年以上見てきた個人開発者。業務の
+            <strong className="font-semibold text-white">本当の痛み</strong>
+            を知る人間が、自分で実装して世に出しています。
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[0.74rem] text-ink/55">
-            <span>
-              領域 / <b className="font-medium text-ink/80">介護・中小企業・HR・英語学習</b>
-            </span>
-            <span className="hidden h-3 w-px bg-ink/15 sm:inline-block" />
-            <span>
-              実装 /{" "}
-              <b className="font-medium text-ink/80">Next.js · Flutter · Supabase · Claude · Whisper</b>
-            </span>
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
+          <div className="hero-fade-up d3 flex flex-col gap-3 sm:flex-row sm:gap-4">
             <Link
               href="#work"
-              className="inline-block rounded-lg bg-ink px-7 py-3 text-[0.9rem] font-medium tracking-[0.04em] text-paper transition-all duration-200 hover:bg-ink/85 sm:px-8"
+              className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-3.5 text-[0.92rem] font-medium tracking-[0.04em] text-white shadow-lg transition-opacity hover:opacity-90"
             >
               プロダクトを見る
             </Link>
             <Link
               href="#contact"
-              className="inline-block rounded-lg border border-ink/20 px-7 py-3 text-[0.9rem] font-medium tracking-[0.04em] text-ink transition-all duration-200 hover:border-accent hover:text-accent sm:px-8"
+              className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-8 py-3.5 text-[0.92rem] font-medium tracking-[0.04em] text-white backdrop-blur-sm transition-colors hover:bg-white/20"
             >
               相談する
             </Link>
           </div>
-            </div>
-            <div className="hidden lg:block">
-              <ProductShowcase />
-            </div>
-          </div>
 
-          {/* NOW: build in public の入口 */}
+          <div className="hero-fade-up d3 mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[0.72rem] text-white/65">
+            <span>
+              領域 / <b className="font-medium text-white/85">介護・中小企業・HR・英語学習</b>
+            </span>
+            <span className="hidden h-3 w-px bg-white/25 sm:inline-block" />
+            <span>
+              実装 / <b className="font-medium text-white/85">Next.js · Flutter · Supabase · Claude · Whisper</b>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* NOW: build in public の入口 */}
+      <section className="bg-paper">
+        <div className="mx-auto max-w-6xl px-6 pt-10 sm:px-8 md:px-12">
           <NowStrip />
         </div>
-      </ScrollRevealSection>
+      </section>
 
       {/* Work：ステータス・レジストリ */}
       <ScrollRevealSection
