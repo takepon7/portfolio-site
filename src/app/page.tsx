@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { FadeInSection } from "@/components/FadeInSection";
 import { ScrollRevealSection } from "@/components/ScrollRevealSection";
-import { NowStrip } from "@/components/NowStrip";
 import { SiteHeader } from "@/components/SiteHeader";
 import { StatusRegistry, type WorkItem } from "@/components/StatusRegistry";
 
@@ -241,45 +240,6 @@ export default function Home() {
             <span>
               実装 / <b className="font-medium text-white/85">Next.js · Flutter · Supabase · Claude · Whisper</b>
             </span>
-          </div>
-        </div>
-      </section>
-
-      {/* NOW: build in public の入口 */}
-      <section className="bg-paper">
-        <div className="mx-auto max-w-6xl px-6 pt-10 sm:px-8 md:px-12">
-          <NowStrip />
-
-          {/* 設計判断ログ：AIと協働する開発の進め方を提示（AI Solution Engineer 向け導線） */}
-          <div className="mt-3 flex flex-col gap-3 rounded border border-ink/12 border-l-[3px] border-l-accent-gold bg-ink/03 px-5 py-4 sm:flex-row sm:items-baseline sm:gap-4 sm:px-6 sm:py-5">
-            <span className="flex-none font-mono text-[0.72rem] font-bold tracking-[0.12em] text-accent-gold">
-              {"// DECISION LOG"}
-            </span>
-            <div className="min-w-0">
-              <p className="text-[0.92rem] leading-relaxed text-ink/90">
-                AIの提案を
-                <strong className="font-semibold text-ink">採用・却下・後回し</strong>
-                に分けて記録した設計判断ログ。AIに丸投げせず「何を作って何を作らないか」を決める実装の進め方を、ケーススタディとして公開しています。
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                <a
-                  href="https://github.com/takepon7/kaigo-dx-case-study"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center rounded-full border border-ink/15 px-3.5 py-1 font-mono text-[0.7rem] tracking-[0.04em] text-ink/65 transition-colors hover:border-accent hover:text-accent"
-                >
-                  kaigo-dx 事例紹介 ↗
-                </a>
-                <a
-                  href="https://github.com/takepon7/claude-code-ddd-case-study"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center rounded-full border border-ink/15 px-3.5 py-1 font-mono text-[0.7rem] tracking-[0.04em] text-ink/65 transition-colors hover:border-accent hover:text-accent"
-                >
-                  Claude Code × DDD 事例 ↗
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       </section>
