@@ -15,6 +15,9 @@ const WORKS: WorkItem[] = [
     stack: ["Next.js", "Clerk", "Stripe", "Gemini API"],
     url: "https://biz-english-master.com",
     image: "/images/biz-english-master/biz-english-master-01.png",
+    links: [
+      { label: "Qiita: Stripe審査の判断ログ ↗", href: "https://qiita.com/takepon7/items/55628b2091c43af5c5d4" },
+    ],
   },
   {
     name: "kaigo-dx",
@@ -24,6 +27,10 @@ const WORKS: WorkItem[] = [
     stack: ["Next.js", "Supabase", "Stripe", "Whisper", "Claude API"],
     url: "https://kaigo-dx.vercel.app",
     image: "/images/kaigo-dx/kaigo-dx-01.png",
+    links: [
+      { label: "事例紹介 ↗", href: "https://github.com/takepon7/kaigo-dx-case-study" },
+      { label: "Qiita: 開発記 ↗", href: "https://qiita.com/takepon7/items/aab9486f8e3d2b807e4e" },
+    ],
   },
   {
     name: "papatto-hp",
@@ -39,9 +46,24 @@ const WORKS: WorkItem[] = [
     status: "store",
     domain: "入眠 / ヘルスケア",
     desc: "眠りにつくための“語り”のアプリ。日本語の物語とAI音声で入眠を誘うモバイルプロダクト。App Storeで配信中。",
-    stack: ["Flutter (iOS/Android)", "サブスクリプション"],
+    stack: ["SwiftUI (iOS)", "Azure Neural TTS", "サブスクリプション"],
     url: "https://apps.apple.com/jp/app/%E3%81%9D%E3%81%84%E3%81%AD/id6775675437",
     image: "/images/soine/soine-01.png",
+    links: [
+      { label: "Qiita: AI音声の作り直し ↗", href: "https://qiita.com/takepon7/items/7a5baa9d115c4a28abde" },
+    ],
+  },
+  {
+    name: "sakigake / 魁",
+    status: "prep",
+    domain: "SaaS基盤 / DevTool",
+    desc: "Claude Code・AIエージェントネイティブな日本語ファーストSaaSボイラープレート。厳格なDDD構成（318 tests / 130 modules / DDD違反0 / ADR×5）で開発中。",
+    stack: ["Next.js", "DDD", "Claude Code"],
+    url: "https://sakigake.dev",
+    links: [
+      { label: "Zenn: AIの提案を却下する技術 ↗", href: "https://zenn.dev/takepon7/articles/3dd56bd4c46304" },
+      { label: "Claude Code × DDD 事例 ↗", href: "https://github.com/takepon7/claude-code-ddd-case-study" },
+    ],
   },
   {
     name: "pelago",
@@ -50,6 +72,14 @@ const WORKS: WorkItem[] = [
     desc: "世界の誰かと文通できるWebアプリ。AI翻訳で言語の壁を越えて手紙を交わす。コミュニティ醸成中。",
     stack: ["Web", "AI翻訳・モデレーション"],
     // 準備中：公開URL・スクショなし（プレースホルダ表示）
+  },
+  {
+    name: "個人開発者向けGTM支援ツール",
+    status: "prep",
+    domain: "GTM / 個人開発者支援",
+    desc: "個人開発者の「作れるけど売れない」を解決するGTM支援ツール。Coming Soon。",
+    stack: ["Web", "生成AI"],
+    // 準備中：名称・公開URL未定（Coming Soon プレースホルダ表示）
   },
 ];
 
@@ -219,6 +249,38 @@ export default function Home() {
       <section className="bg-paper">
         <div className="mx-auto max-w-6xl px-6 pt-10 sm:px-8 md:px-12">
           <NowStrip />
+
+          {/* 設計判断ログ：AIと協働する開発の進め方を提示（AI Solution Engineer 向け導線） */}
+          <div className="mt-3 flex flex-col gap-3 rounded border border-ink/12 border-l-[3px] border-l-accent-gold bg-ink/03 px-5 py-4 sm:flex-row sm:items-baseline sm:gap-4 sm:px-6 sm:py-5">
+            <span className="flex-none font-mono text-[0.72rem] font-bold tracking-[0.12em] text-accent-gold">
+              {"// DECISION LOG"}
+            </span>
+            <div className="min-w-0">
+              <p className="text-[0.92rem] leading-relaxed text-ink/90">
+                AIの提案を
+                <strong className="font-semibold text-ink">採用・却下・後回し</strong>
+                に分けて記録した設計判断ログ。AIに丸投げせず「何を作って何を作らないか」を決める実装の進め方を、ケーススタディとして公開しています。
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <a
+                  href="https://github.com/takepon7/kaigo-dx-case-study"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center rounded-full border border-ink/15 px-3.5 py-1 font-mono text-[0.7rem] tracking-[0.04em] text-ink/65 transition-colors hover:border-accent hover:text-accent"
+                >
+                  kaigo-dx 事例紹介 ↗
+                </a>
+                <a
+                  href="https://github.com/takepon7/claude-code-ddd-case-study"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center rounded-full border border-ink/15 px-3.5 py-1 font-mono text-[0.7rem] tracking-[0.04em] text-ink/65 transition-colors hover:border-accent hover:text-accent"
+                >
+                  Claude Code × DDD 事例 ↗
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -17,6 +17,8 @@ export interface WorkItem {
   url?: string;
   /** スクリーンショット画像パス（無ければプレースホルダ） */
   image?: string;
+  /** 関連リンク（事例紹介・記事など）。カード下部にチップ表示 */
+  links?: { label: string; href: string }[];
 }
 
 /** ステータスごとの和名ラベル・色クラス・稼働パルス有無を一元管理 */
@@ -90,17 +92,36 @@ function ProductCard({ item }: { item: WorkItem }) {
   );
 
   const cardClass =
-    "group block overflow-hidden rounded-2xl border border-ink/10 bg-surface transition-all duration-300 hover:-translate-y-1 hover:shadow-xl";
+    "group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-surface transition-all duration-300 hover:-translate-y-1 hover:shadow-xl";
 
-  if (item.url) {
-    return (
-      <a href={item.url} target="_blank" rel="noopener noreferrer" className={cardClass}>
-        {inner}
-      </a>
-    );
-  }
+  return (
+    <div className={cardClass}>
+      {item.url ? (
+        <a href={item.url} target="_blank" rel="noopener noreferrer" className="block">
+          {inner}
+        </a>
+      ) : (
+        <div>{inner}</div>
+      )}
 
-  return <div className={cardClass}>{inner}</div>;
+      {/* 関連リンク（事例紹介・記事）。本体リンクと入れ子にならないよう兄弟要素として配置 */}
+      {item.links && item.links.length > 0 && (
+        <div className="mt-auto flex flex-wrap gap-2 border-t border-ink/08 px-5 pb-5 pt-4 sm:px-6">
+          {item.links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-full border border-ink/12 px-3 py-1 font-mono text-[0.68rem] tracking-[0.04em] text-ink/60 transition-colors hover:border-accent hover:text-accent"
+            >
+              {l.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 export function StatusRegistry({ items }: { items: WorkItem[] }) {
