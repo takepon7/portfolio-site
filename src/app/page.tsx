@@ -167,54 +167,51 @@ const CREDENTIALS = [
   },
 ];
 
+// Writing カードはトンマナ統一のため画像を使わない（各媒体のOGP・スクショ・
+// ストックフォトが混在して世界観が崩れるため、サイトのトークンだけで組む）。
+// ソース色は Work のステータス色システムを再利用して呼応させる。
+const SOURCE_STYLES: Record<string, { chip: string; readLabel: string }> = {
+  Qiita: { chip: "bg-accent/10 text-accent", readLabel: "Qiita で読む ↗" },
+  Zenn: { chip: "bg-st-store/10 text-st-store", readLabel: "Zenn で読む ↗" },
+  Essay: { chip: "bg-st-sell/10 text-st-sell", readLabel: "エッセイを読む →" },
+};
+
 const blogPosts = [
   {
     source: "Qiita",
     title: "連休4日で個人開発SaaSのStripe本番審査を通した話 - 申請から24時間で通過するための判断ログ",
     href: "https://qiita.com/takepon7/items/55628b2091c43af5c5d4",
-    image: "/images/blog/qiita-article-04.jpeg",
     lead: "コードを書く時間と同じくらい「審査・法令・本番運用準備」に時間が消えていく。連休4日間で個人開発のB2C SaaSを実際に決済できる状態まで持っていった判断ログ。",
-    description: "Stripe本番審査・Clerk Production移行・独自ドメイン取得・法的ページ整備。LP公開だけでは通らない、コード以外の戦いの記録。",
   },
   {
     source: "Zenn",
     title: "Claude Codeが出した提案を却下する技術 - 個人開発SaaSをDDDで作りながら学んだこと",
     href: "https://zenn.dev/takepon7/articles/3dd56bd4c46304",
-    image: "/images/blog/zenn-claude-code-reject.png",
     lead: "AIに丸投げするのではなく、AIと判断する。Claude Codeの提案を1つずつ吟味し、却下・採用・後回しを判断ログとして残す開発の進め方。",
-    description: "個人開発SaaSで実践したDDD設計とAIコーディングの融合。判断軸を持って開発するための実践的な技術。",
   },
   {
     source: "Qiita",
     title: "人事がClaude Codeで介護記録SaaSを作ってみた",
     href: "https://qiita.com/takepon7/items/aab9486f8e3d2b807e4e",
-    image: "/images/blog/qiita-kaigo-dx.jpg",
     lead: "AIコーディングツールが気になって、音声から介護記録を自動生成するWebアプリを作ってみました。うまくいったことも、いかなかったことも正直に書いています。",
-    description: "Claude Codeを使った非エンジニアの開発体験記。Next.js / Supabase / Stripe / Claude APIを使ったフルスタックSaaSの構築記録。",
   },
   {
     source: "Essay",
     title: "MVC（Minimum Viable Culture）——組織というプロダクトの「初期実装」",
     href: "/heart/minimum-viable-culture",
-    image: "/images/blog/mvc-culture.jpg",
     lead: "プロダクト開発の「MVP」という概念を組織に。オーバーエンジニアリングを防ぎ、事業成長に合わせて文化を「実装」する人事の視点。",
-    description: "人事もまた、アジャイルな開発者である。文化を小さく試し、育てる。Build & Culture の視点でまとめています。",
   },
   {
     source: "Essay",
     title: "「事業成長の方程式」への挑戦：人事の私が、あえてコードを書く理由",
     href: "/heart/business-growth-equation",
-    image: "/images/blog/growth-equation.jpg",
     lead: "完璧な戦略やシステムがあるのに、なぜかうまくいかない。そんな時は、「熱量」という変数が少し不足しているのかもしれません。",
-    description: "人と組織が加速する仕組みの作り方。論理を組織に適用した知見を、記事でやわらかく紐解いています。",
   },
   {
     source: "Essay",
     title: "組織における「技術的負債」の正体：見えない借金をどう返すか",
     href: "/heart/organizational-debt",
-    image: "/images/blog/organizational-debt.jpg",
     lead: "急成長の中で「とりあえず」と判断したこと。それは「技術的負債」のように、組織の成長痛として蓄積されていることがあります。",
-    description: "エンジニアリングの概念を借りると、今の苦しさが説明できるかもしれません。見えない借金を、どう返すかのヒントを記事で提案しています。",
   },
 ];
 
@@ -254,7 +251,9 @@ export default function Home() {
             個人開発者 ・ 本業は人事
           </p>
           <h1 className="hero-fade-up d1 mb-7 max-w-4xl text-[2rem] font-bold leading-[1.22] tracking-[0.01em] text-white sm:text-[2.8rem] md:text-[3.3rem]">
-            Claude Codeで、アプリやサービスを
+            {/* inline-block で分節単位の改行にし、「を」だけの孤立行を防ぐ */}
+            <span className="inline-block">Claude Codeで、</span>
+            <span className="inline-block">アプリやサービスを</span>
             <br />
             ひとりで作っています。
           </h1>
@@ -266,16 +265,16 @@ export default function Home() {
 
           <div className="hero-fade-up d3 flex flex-col gap-3 sm:flex-row sm:gap-4">
             <Link
-              href="#work"
+              href="#services"
               className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-3.5 text-[0.92rem] font-medium tracking-[0.04em] text-white shadow-lg transition-opacity hover:opacity-90"
             >
-              作ったものを見る
+              お手伝いできることを見る
             </Link>
             <Link
-              href="#contact"
+              href="#work"
               className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-8 py-3.5 text-[0.92rem] font-medium tracking-[0.04em] text-white backdrop-blur-sm transition-colors hover:bg-white/20"
             >
-              相談する
+              作ったものを見る
             </Link>
           </div>
 
@@ -366,6 +365,9 @@ export default function Home() {
                         </a>
                       )}
                     </div>
+                    <p className="mt-4 text-[0.78rem] leading-relaxed text-ink/50">
+                      オンライン30分・ヒアリング中心。フォームから候補日時を2〜3件お送りください。
+                    </p>
                   </div>
                 </div>
               </FadeInSection>
@@ -512,40 +514,37 @@ export default function Home() {
             </p>
           </FadeInSection>
 
-          <div className="grid gap-10 sm:gap-8 md:grid-cols-2 md:gap-10 lg:gap-12">
+          <div className="grid gap-6 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-7">
             {blogPosts.map((post, i) => {
               const isExternal = post.href.startsWith("http");
+              const style = SOURCE_STYLES[post.source] ?? SOURCE_STYLES.Essay;
               const cardClass =
-                "group block overflow-hidden rounded-2xl bg-surface transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-hover";
+                "group flex h-full flex-col rounded-2xl border border-ink/08 bg-surface p-7 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-accent/35 hover:bg-hover sm:p-8";
               const cardContent = (
                 <>
-                  <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl">
-                    <Image
-                      src={post.image}
-                      alt={post.title}
-                      fill
-                      className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                    <span className="absolute left-3 top-3 rounded bg-paper/90 px-2 py-0.5 font-mono text-[0.62rem] tracking-[0.08em] text-accent">
+                  <div className="mb-5 flex items-center justify-between">
+                    <span
+                      className={`rounded-full px-2.5 py-0.5 font-mono text-[0.64rem] tracking-[0.08em] ${style.chip}`}
+                    >
                       {post.source}
                     </span>
+                    <span className="font-mono text-[0.66rem] tracking-[0.1em] text-ink/30">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
                   </div>
-                  <div className="p-6 sm:p-8">
-                    <h3 className="mb-2 text-base font-medium leading-snug tracking-[0.01em] text-ink sm:text-lg">
-                      {post.title}
-                    </h3>
-                    <p className="mb-3 text-[0.9rem] leading-[2] text-ink/70">
-                      {post.lead}
-                    </p>
-                    <p className="text-[0.9rem] leading-[2] text-ink/80">
-                      {post.description}
-                    </p>
-                  </div>
+                  <h3 className="mb-3 text-[0.98rem] font-medium leading-[1.75] tracking-[0.01em] text-ink">
+                    {post.title}
+                  </h3>
+                  <p className="text-[0.86rem] leading-[2] text-ink/65">
+                    {post.lead}
+                  </p>
+                  <span className="mt-auto pt-6 font-mono text-[0.7rem] tracking-[0.04em] text-ink/45 transition-colors group-hover:text-accent">
+                    {style.readLabel}
+                  </span>
                 </>
               );
               return (
-                <FadeInSection key={post.href} delay={60 + i * 60}>
+                <FadeInSection key={post.href} delay={60 + i * 60} className="h-full">
                   {isExternal ? (
                     <a href={post.href} target="_blank" rel="noopener noreferrer" className={cardClass}>
                       {cardContent}

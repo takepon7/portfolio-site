@@ -61,11 +61,16 @@ export function ContactSection({ formspreeEndpoint = null }: ContactSectionProps
       borderTop={true}
     >
       <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
-        <p className="mb-10 text-sm tracking-[0.22em] leading-[1.6] text-ink/60 sm:mb-12 md:mb-16">
-          CONTACT
-        </p>
-        <p className="mb-10 max-w-lg text-[0.95rem] tracking-[0.02em] leading-[2.1] text-ink/85 sm:mb-12 sm:text-[1rem] sm:leading-[2.15] md:mb-14">
-          お仕事の相談や感想など、お気軽にご連絡ください。
+        <div className="mb-4 flex items-baseline gap-4">
+          <span className="font-mono text-[0.72rem] tracking-[0.14em] text-ink/55">
+            05 — Contact
+          </span>
+          <h2 className="text-[1.4rem] font-bold tracking-[0.01em] text-ink sm:text-[1.7rem] md:text-[2rem]">
+            まずは30分、話しませんか
+          </h2>
+        </div>
+        <p className="mb-10 max-w-xl text-[0.95rem] tracking-[0.02em] leading-[2.1] text-ink/75 sm:mb-12 sm:text-[1rem] sm:leading-[2.15] md:mb-14">
+          お仕事のご相談・30分オンライン相談の予約・記事の感想など、お気軽にどうぞ。候補日時をいただければ、こちらから調整のご連絡をします。
         </p>
 
         {!formAction ? (
@@ -142,9 +147,9 @@ export function ContactSection({ formspreeEndpoint = null }: ContactSectionProps
                 <button
                   type="submit"
                   disabled={status === "submitting"}
-                  className="rounded-lg border border-ink/15 bg-surface px-6 py-3 text-[0.9375rem] tracking-[0.02em] text-ink transition-all duration-200 active:opacity-90 hover:border-accent hover:text-accent disabled:opacity-60"
+                  className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-3 text-[0.9rem] font-medium tracking-[0.04em] text-white shadow-sm transition-opacity active:opacity-80 hover:opacity-90 disabled:opacity-60"
                 >
-                  {status === "submitting" ? "送信中…" : "送信"}
+                  {status === "submitting" ? "送信中…" : "送信する"}
                 </button>
               </form>
             )}
