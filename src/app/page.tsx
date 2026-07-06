@@ -561,6 +561,12 @@ export default function Home() {
 
           <FadeInSection delay={80}>
             <div className="mt-10 flex flex-wrap gap-3">
+              <Link
+                href="/blog"
+                className="inline-flex items-center rounded-full border border-accent/40 bg-accent/06 px-5 py-2 font-mono text-[0.78rem] tracking-[0.03em] text-accent transition-all hover:-translate-y-0.5 hover:border-accent"
+              >
+                Blog — 要員計画・人事DXの記事一覧 →
+              </Link>
               {EXTERNAL_LINKS.map((link) => (
                 <a
                   key={link.href}

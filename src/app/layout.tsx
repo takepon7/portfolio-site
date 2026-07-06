@@ -34,7 +34,10 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   authors: [{ name: "Ryosuke Takeda", url: SITE_URL }],
   creator: "Ryosuke Takeda",
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    types: { "application/rss+xml": "/feed.xml" },
+  },
   robots: { index: true, follow: true },
   keywords: [
     "個人開発者",
