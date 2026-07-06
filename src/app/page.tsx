@@ -56,7 +56,7 @@ const WORKS: WorkItem[] = [
     name: "sakigake / 魁",
     status: "prep",
     domain: "SaaS基盤 / DevTool",
-    desc: "Claude Code・AIエージェントネイティブな日本語ファーストSaaSボイラープレート。厳格なDDD構成（318 tests / 130 modules / DDD違反0 / ADR×5）で開発中。",
+    desc: "Claude Code・AIエージェントネイティブな日本語ファーストSaaSボイラープレート。厳格なDDD構成（321 tests / 151 modules / DDD違反0 / ADR 7本）で開発中。",
     stack: ["Next.js", "DDD", "Claude Code"],
     url: "https://sakigake.dev",
     links: [
@@ -82,25 +82,72 @@ const WORKS: WorkItem[] = [
   },
 ];
 
+// ── SERVICES（提供メニュー。このLPの主役）──────────────────────────
+// カード1（人事コンサル）は骨組みのみ実装し、今週は非表示。
+// インタビューで「単発で相談したい」が出たら true にして公開する。
+const SHOW_CONSULTING_CARD = false;
+
+// PLACEHOLDER: 提案資料（Google Slides 共有リンク）。確定後に差し替える。
+const SERVICE_DECK_URL = "#"; // ← PLACEHOLDER
+
+type ServiceCard = {
+  eyebrow: string;
+  title: string;
+  limited?: string;
+  body: string;
+  price: string; // PLACEHOLDER 値を含む（下記コメント参照）
+  priceNote?: string;
+  primary?: { label: string; href: string };
+  secondary?: { label: string; href: string };
+};
+
+// カード1: 人事・組織のスポット相談 / 顧問（今週は SHOW_CONSULTING_CARD=false で非表示）
+const SERVICE_CONSULTING: ServiceCard = {
+  eyebrow: "人事・組織",
+  title: "人事・組織のスポット相談 / 顧問",
+  body: "採用体制、制度設計、HRテック選定（Workday / ServiceNow 導入PM経験）、要員計画の運用設計。「導入する側」を16年やった人間として、ベンダーの言葉を現場の言葉に翻訳します。",
+  // PLACEHOLDER: 価格は仮置き。確定後に差し替える。
+  price: "スポット90分 ¥30,000 / 月次顧問 ¥100,000〜",
+  priceNote: "（稼働に応じて）",
+  primary: { label: "30分無料相談を予約", href: "#contact" },
+};
+
+// カード2: Sakigake Workforce デザインパートナー（限定2社）— 今週の主役
+const SERVICE_WORKFORCE: ServiceCard = {
+  eyebrow: "Sakigake Workforce",
+  title: "Sakigake Workforce デザインパートナー",
+  limited: "限定2社",
+  body: "Capability 起点の要員計画・実行管理 SaaS を、貴社の課題で共同検証。週1セッション込みで、現場に効く形を一緒に設計します。",
+  // PLACEHOLDER: 価格は仮置き。確定後に差し替える。
+  price: "¥150,000 / 3ヶ月",
+  priceNote: "（週1セッション込み）",
+  primary: { label: "30分オンラインを予約", href: "#contact" },
+  secondary: { label: "提案資料を見る ↗", href: SERVICE_DECK_URL }, // PLACEHOLDER リンク
+};
+
+const SERVICE_CARDS: ServiceCard[] = SHOW_CONSULTING_CARD
+  ? [SERVICE_CONSULTING, SERVICE_WORKFORCE]
+  : [SERVICE_WORKFORCE];
+
 const ABOUT_PILLARS = [
   {
     title: "ドメイン知識",
-    body: "人事 / People Ops（VP）として、採用・評価・労務・組織設計の業務フローを内側から理解。現場の本当の痛みを知っているから、何を作って何を作らないかの判断がぶれない。",
+    body: "いまも人事 / People Ops（VP）として、採用・評価・労務・組織設計を内側から見ています。現場の困りごとがわかるぶん、何を作って何を作らないかで迷いにくい。",
   },
   {
     title: "フルスタック開発",
-    body: "Next.js / Flutter / Supabase / Stripe を用いた商用プロダクトを単独で設計・実装・販売。要件定義・DB設計・認証・決済・AI連携まで一気通貫で出荷する。",
+    body: "Next.js / Flutter / Supabase / Stripe で、ひとりでプロダクトを設計・実装。要件定義・DB設計・認証・決済・AI連携まで、ひと通り自分で作っています。",
   },
   {
     title: "AI実装",
-    body: "Claude API・Whisper・Gemini をプロダクトに組み込む実装力。LLMを「使う」だけでなく、業務の痛みを解く機能として届けることに軸を置く。",
+    body: "Claude API・Whisper・Gemini をプロダクトに組み込んでいます。LLMを「使う」だけでなく、現場の困りごとを解く機能として届けることを大事にしています。",
   },
 ];
 
 const CREDENTIALS = [
   {
     k: "BACKGROUND",
-    v: "人事 / People Ops（VP）・10年以上",
+    v: "人事 / People Ops（VP）・16年目",
     sub: "採用・評価・労務・組織設計",
   },
   {
@@ -204,17 +251,17 @@ export default function Home() {
 
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6 py-28 sm:px-8 md:px-12 md:py-32">
           <p className="hero-fade-up mb-6 font-mono text-[0.7rem] tracking-[0.3em] text-[#D8C7B0]">
-            個人開発者 / 個人事業主 ・ 元 People Ops（VP）
+            個人開発者 ・ 本業は人事
           </p>
           <h1 className="hero-fade-up d1 mb-7 max-w-4xl text-[2rem] font-bold leading-[1.22] tracking-[0.01em] text-white sm:text-[2.8rem] md:text-[3.3rem]">
-            AIプロダクトを、
+            Claude Codeで、アプリやサービスを
             <br />
-            個人で開発・運営しています。
+            ひとりで作っています。
           </h1>
           <p className="hero-fade-up d2 mb-9 max-w-xl text-[0.98rem] leading-[1.95] text-white/85 md:text-[1.1rem]">
-            People Opsの現場を10年以上見てきた個人開発者。業務の
-            <strong className="font-semibold text-white">本当の痛み</strong>
-            を知る人間が、自分で実装して世に出しています。
+            本業は人事16年目。複業で、自分や身近な人の
+            <strong className="font-semibold text-white">「これ欲しい」</strong>
+            を、ひとつずつ形にしています。
           </p>
 
           <div className="hero-fade-up d3 flex flex-col gap-3 sm:flex-row sm:gap-4">
@@ -222,7 +269,7 @@ export default function Home() {
               href="#work"
               className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-3.5 text-[0.92rem] font-medium tracking-[0.04em] text-white shadow-lg transition-opacity hover:opacity-90"
             >
-              プロダクトを見る
+              作ったものを見る
             </Link>
             <Link
               href="#contact"
@@ -244,6 +291,89 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Services：提供メニュー（このLPの主役） */}
+      <ScrollRevealSection
+        id="services"
+        className="bg-surface-2 py-16 sm:py-24 md:py-28 lg:py-32"
+        borderTop={true}
+      >
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
+          <FadeInSection>
+            <div className="mb-4 flex items-baseline gap-4">
+              <span className="font-mono text-[0.72rem] tracking-[0.14em] text-ink/55">
+                01 — Services
+              </span>
+              <h2 className="text-[1.4rem] font-bold tracking-[0.01em] text-ink sm:text-[1.7rem] md:text-[2rem]">
+                お手伝いできること
+              </h2>
+            </div>
+            <p className="mb-10 max-w-2xl text-[0.95rem] leading-[2.05] text-ink/70 sm:mb-12 md:mb-14">
+              人事16年 × 自分で実装する。現場とシステムの間を、言葉と手で埋めます。
+            </p>
+          </FadeInSection>
+
+          <div
+            className={
+              SERVICE_CARDS.length === 1
+                ? "mx-auto max-w-2xl"
+                : "grid gap-6 sm:gap-8 md:grid-cols-2 md:gap-8"
+            }
+          >
+            {SERVICE_CARDS.map((card, i) => (
+              <FadeInSection key={card.title} delay={80 + i * 80}>
+                <div className="flex h-full flex-col rounded-2xl border border-ink/08 bg-surface p-7 sm:p-8">
+                  <div className="mb-4 flex items-center gap-3">
+                    <span className="font-mono text-[0.7rem] tracking-[0.12em] text-accent-gold">
+                      {card.eyebrow}
+                    </span>
+                    {card.limited && (
+                      <span className="rounded-full bg-st-sell/10 px-2.5 py-0.5 font-mono text-[0.62rem] tracking-[0.08em] text-st-sell">
+                        {card.limited}
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="mb-3 text-[1.05rem] font-bold leading-snug tracking-[0.01em] text-ink sm:text-[1.15rem]">
+                    {card.title}
+                  </h3>
+                  <p className="mb-6 text-[0.9rem] leading-[2.05] text-ink/80">
+                    {card.body}
+                  </p>
+                  <div className="mt-auto">
+                    <p className="mb-5 font-mono text-[0.82rem] tracking-[0.02em] text-ink/90">
+                      {card.price}
+                      {card.priceNote && (
+                        <span className="text-ink/50">{card.priceNote}</span>
+                      )}
+                    </p>
+                    <div className="flex flex-col gap-3 sm:flex-row">
+                      {card.primary && (
+                        <Link
+                          href={card.primary.href}
+                          className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-[0.86rem] font-medium tracking-[0.03em] text-white shadow-sm transition-opacity hover:opacity-90"
+                        >
+                          {card.primary.label}
+                        </Link>
+                      )}
+                      {card.secondary && (
+                        <a
+                          href={card.secondary.href}
+                          {...(card.secondary.href.startsWith("http")
+                            ? { target: "_blank", rel: "noopener noreferrer" }
+                            : {})}
+                          className="inline-flex items-center justify-center rounded-full border border-ink/15 px-6 py-3 text-[0.86rem] font-medium tracking-[0.03em] text-ink/75 transition-colors hover:border-accent hover:text-accent"
+                        >
+                          {card.secondary.label}
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </FadeInSection>
+            ))}
+          </div>
+        </div>
+      </ScrollRevealSection>
+
       {/* Work：ステータス・レジストリ */}
       <ScrollRevealSection
         id="work"
@@ -254,7 +384,7 @@ export default function Home() {
           <FadeInSection>
             <div className="mb-10 flex items-baseline gap-4 sm:mb-12 md:mb-14">
               <span className="font-mono text-[0.72rem] tracking-[0.14em] text-ink/55">
-                01 — Work
+                02 — Work
               </span>
               <h2 className="text-[1.4rem] font-bold tracking-[0.01em] text-ink sm:text-[1.7rem] md:text-[2rem]">
                 つくっているプロダクト
@@ -277,7 +407,7 @@ export default function Home() {
           <FadeInSection>
             <div className="mb-10 flex items-baseline gap-4 sm:mb-12 md:mb-14">
               <span className="font-mono text-[0.72rem] tracking-[0.14em] text-ink/55">
-                02 — About
+                03 — About
               </span>
               <h2 className="text-[1.4rem] font-bold tracking-[0.01em] text-ink sm:text-[1.7rem] md:text-[2rem]">
                 現場とシステムの、あいだに立つ
@@ -311,13 +441,13 @@ export default function Home() {
               <FadeInSection>
               <div className="space-y-5">
                 <p className="text-[0.98rem] leading-[2.05] text-ink/90">
-                  10年以上、人事／People Opsの現場にいました。採用・評価・労務・組織設計の業務フローを内側から理解し、Workday HCM/LMS や ServiceNow の全社導入を、現場と開発の間に立って動かしてきました。
+                  いまも会社で人事／People Opsをしています。今年で16年目、採用・評価・労務・組織設計を内側から見てきて、Workday HCM/LMS や ServiceNow の全社導入も、現場と開発の間に立って動かしてきました。
                 </p>
                 <p className="text-[0.98rem] leading-[2.05] text-ink/90">
-                  いまはその現場感を持ったまま、自分でコードを書き、AIプロダクトとして実装・販売しています。Cursor / Gemini を経て Claude Code を主戦場に、独学で開発へ移行しました。
+                  その傍らで、自分でコードを書いて、アプリやサービスを作っています。Cursor / Gemini を経て、いまは Claude Code を主に使っていて、開発はぜんぶ独学で覚えました。
                 </p>
                 <p className="text-[0.98rem] leading-[2.05] text-ink/65">
-                  業務の本当の痛みを知っている人間が設計すると、判断がぶれない。設計の理由を言葉で説明できるエンジニアでありたい、と思っています。
+                  現場の困りごとを知っていると、何を作って何を作らないかで迷いにくい。作ったものは、なぜそう作ったかを自分の言葉で説明できるようにしておきたいと思っています。
                 </p>
               </div>
             </FadeInSection>
@@ -371,7 +501,7 @@ export default function Home() {
           <FadeInSection>
             <div className="mb-3 flex items-baseline gap-4">
               <span className="font-mono text-[0.72rem] tracking-[0.14em] text-ink/55">
-                03 — Writing
+                04 — Writing
               </span>
               <h2 className="text-[1.4rem] font-bold tracking-[0.01em] text-ink sm:text-[1.7rem] md:text-[2rem]">
                 現場のDX実装と、組織の話

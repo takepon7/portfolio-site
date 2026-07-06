@@ -24,10 +24,11 @@ function openExternal(url: string) {
 }
 
 const COMMANDS: Command[] = [
-  { group: "移動", label: "Work — つくっているプロダクト", hint: "01", run: () => go("#work") },
-  { group: "移動", label: "About — 現場とシステムのあいだ", hint: "02", run: () => go("#about") },
-  { group: "移動", label: "Writing — 開発記事とエッセイ", hint: "03", run: () => go("#writing") },
-  { group: "移動", label: "Contact — 相談する", hint: "04", run: () => go("#contact") },
+  { group: "移動", label: "Services — お手伝いできること", hint: "01", run: () => go("#services") },
+  { group: "移動", label: "Work — つくっているプロダクト", hint: "02", run: () => go("#work") },
+  { group: "移動", label: "About — 現場とシステムのあいだ", hint: "03", run: () => go("#about") },
+  { group: "移動", label: "Writing — 開発記事とエッセイ", hint: "04", run: () => go("#writing") },
+  { group: "移動", label: "Contact — 相談する", hint: "05", run: () => go("#contact") },
   { group: "プロダクト", label: "biz-english-master", run: () => openExternal("https://biz-english-master.com") },
   { group: "プロダクト", label: "kaigo-dx", run: () => openExternal("https://kaigo-dx.vercel.app") },
   { group: "プロダクト", label: "papatto-hp", run: () => openExternal("https://papatto-hp.com") },
