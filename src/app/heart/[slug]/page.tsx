@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
@@ -7,11 +8,31 @@ import rehypeKatex from "rehype-katex";
 import { getArticle, getSlugs } from "@/lib/heart";
 import "katex/dist/katex.min.css";
 
-const NOTE_URL = "https://note.com/";
-
 export async function generateStaticParams() {
   const slugs = getSlugs();
   return slugs.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const article = getArticle(slug);
+  if (!article) return {};
+  return {
+    title: article.title,
+    description: article.description,
+    alternates: { canonical: `/heart/${slug}` },
+    openGraph: {
+      title: article.title,
+      description: article.description,
+      type: "article",
+      publishedTime: article.date,
+      locale: "ja_JP",
+    },
+  };
 }
 
 export default async function HeartArticlePage({
@@ -28,10 +49,10 @@ export default async function HeartArticlePage({
       <header className="border-b border-ink/10 bg-paper/95 backdrop-blur-sm">
         <nav className="mx-auto flex max-w-3xl items-center justify-between px-6 py-5 sm:px-8">
           <Link
-            href="/#blog"
+            href="/#writing"
             className="text-sm tracking-[0.2em] text-ink/80 transition-colors hover:text-accent-gold"
           >
-            ← Blog
+            ← Writing
           </Link>
           <Link
             href="/"
@@ -70,16 +91,14 @@ export default async function HeartArticlePage({
 
         <div className="mt-12 rounded-2xl border border-ink/08 bg-paper px-6 py-5 sm:px-7 sm:py-6 md:rounded-2xl">
           <p className="text-[0.9rem] leading-[2.05] tracking-[0.02em] text-ink/75">
-            AIコーディングの試行錯誤や、より具体的な人事の実務知見は
+            要員計画・人事DX・AI実装の実務寄りの記事は
             <Link
-              href={NOTE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/blog"
               className="font-medium text-accent-gold transition-colors hover:text-ink/80"
             >
-              note
+              Blog
             </Link>
-            でゆるやかに発信しています。
+            に書いています。
           </p>
         </div>
       </article>

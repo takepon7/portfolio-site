@@ -64,6 +64,12 @@ export function SiteHeader() {
                 {label}
               </Link>
             ))}
+            <Link
+              href="/blog"
+              className="font-mono text-[0.7rem] tracking-[0.04em] text-ink/70 transition-colors hover:text-accent sm:text-[0.78rem]"
+            >
+              Blog
+            </Link>
           </div>
 
           {/* ⌘K（デスクトップ） */}
