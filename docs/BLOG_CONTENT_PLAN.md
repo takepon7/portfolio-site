@@ -37,11 +37,11 @@
 | # | 仮タイトル | クラスタ | ファネル |
 |---|---|---|---|
 | 1 | ✅ 要員計画がExcelで破綻する5つの瞬間 | A | MOFU |
-| 2 | 要員計画とは何か——人員計画・採用計画・配置計画の違いを16年目が整理する | A | TOFU |
+| 2 | ✅ 要員計画とは何か——人員計画・採用計画・配置計画との違い（workforce-planning-basics） | A | TOFU |
 | 3 | 要員計画テンプレートを配る前に決めるべき3つのこと | A | MOFU |
 | 4 | 「ポジションベース」の組織図が要員計画を殺す | B | MOFU |
 | 5 | スキルマップが3ヶ月で放置される理由と、続く設計 | B | MOFU |
-| 6 | Workday導入PMをやって学んだ「HRテック選定で最初に聞くべき質問」 | C | MOFU |
+| 6 | ✅ Workday・ServiceNow導入PM経験から、HRテック選定で最初に確認すべき5つ（hr-tech-selection-questions） | C | MOFU |
 | 7 | 要員計画ツールを入れる前にExcelでやるべき3ステップ | A | BOFU |
 | 8 | 経営が欲しい要員計画・現場が欲しい要員計画・人事が作れる要員計画 | A | TOFU |
 | 9 | ベンダーの言葉を現場の言葉に翻訳する——導入する側の16年 | C | TOFU |
@@ -68,5 +68,17 @@
 
 - 目安: 週1本（DM期間中はクラスタA優先）
 - 公開後: X で1ポスト（記事の要点1つ＋リンク）。売り込み文言なし
-- 効果測定: Vercel Analytics でページ別流入 / Search Console 登録推奨（未登録なら `SITE_URL` の所有権確認から）
+- 効果測定: Vercel Analytics でページ別流入 / Search Console（下記手順）
+
+## Search Console 登録手順（所有権確認のみユーザー作業）
+
+コード側は対応済み（`layout.tsx` の `verification.google`、env `GOOGLE_SITE_VERIFICATION` で有効化）。
+
+1. https://search.google.com/search-console → プロパティを追加 → **URLプレフィックス** → `https://portfolio-site-xi-lime.vercel.app`
+2. 確認方法で **HTMLタグ** を選び、`content="..."` のトークン部分をコピー
+3. トークンを Claude Code に渡す → `vercel env add GOOGLE_SITE_VERIFICATION` → 再デプロイ（ここは自動化可能）
+4. Search Console に戻って「確認」→ 完了後、サイトマップに `sitemap.xml` を送信
+
+※ 所有権確認（Googleアカウントでの1〜2, 4）だけは本人しかできない。トークン設定・デプロイ・sitemap生成は自動化済み。
+※ 独自ドメインを取得したら `NEXT_PUBLIC_SITE_URL` を設定し、プロパティを取り直す。
 - 既存記事の更新時は frontmatter `updated` を入れる（sitemap の lastModified に反映される）
