@@ -3,8 +3,32 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeSlug from "rehype-slug";
+import GithubSlugger from "github-slugger";
 import { getBlogPost, getBlogSlugs, getRelatedPosts } from "@/lib/blog";
+import { ShareButtons } from "@/components/ShareButtons";
 import { SITE_URL } from "@/lib/site";
+
+/** 本文のh2見出しから目次を組み立てる（rehype-slug と同じ github-slugger でIDを一致させる） */
+function extractToc(body: string): { text: string; id: string }[] {
+  const slugger = new GithubSlugger();
+  const toc: { text: string; id: string }[] = [];
+  let inCodeBlock = false;
+  for (const line of body.split("\n")) {
+    if (/^```/.test(line)) {
+      inCodeBlock = !inCodeBlock;
+      continue;
+    }
+    if (inCodeBlock || !/^## /.test(line)) continue;
+    const text = line
+      .replace(/^## /, "")
+      .replace(/\*\*(.+?)\*\*/g, "$1")
+      .replace(/`(.+?)`/g, "$1")
+      .trim();
+    toc.push({ text, id: slugger.slug(text) });
+  }
+  return toc;
+}
 
 export async function generateStaticParams() {
   return getBlogSlugs().map((slug) => ({ slug }));
@@ -49,6 +73,8 @@ export default async function BlogArticlePage({
   if (!post || post.draft) notFound();
 
   const relatedPosts = getRelatedPosts(slug);
+  const toc = extractToc(post.body);
+  const articleUrl = `${SITE_URL}/blog/${post.slug}`;
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -136,8 +162,42 @@ export default async function BlogArticlePage({
           {post.title}
         </h1>
 
-        <div className="prose prose-lg max-w-none prose-headings:mt-10 prose-headings:mb-4 prose-headings:font-medium prose-headings:tracking-wide prose-headings:text-ink prose-h2:text-[1.15rem] sm:prose-h2:text-[1.25rem] prose-h3:text-[1.02rem] sm:prose-h3:text-[1.08rem] prose-p:text-[0.9875rem] sm:prose-p:text-[1rem] prose-p:leading-[2.2] prose-p:tracking-[0.02em] prose-p:text-ink/90 prose-li:leading-[2.15] prose-li:tracking-[0.01em] prose-li:text-ink/90 prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-strong:text-ink prose-strong:font-semibold prose-code:text-ink/80 prose-code:before:content-none prose-code:after:content-none">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.body}</ReactMarkdown>
+        {/* 目次（h2が3つ以上ある記事のみ） */}
+        {toc.length >= 3 && (
+          <nav
+            aria-label="目次"
+            className="mb-12 rounded-2xl border border-ink/08 bg-surface p-6 sm:p-7"
+          >
+            <p className="mb-3 font-mono text-[0.68rem] tracking-[0.14em] text-ink/45">
+              INDEX
+            </p>
+            <ol className="space-y-2">
+              {toc.map((heading, i) => (
+                <li key={heading.id} className="flex gap-3">
+                  <span className="font-mono text-[0.7rem] leading-[1.9] text-ink/35 tabular-nums">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <a
+                    href={`#${heading.id}`}
+                    className="text-[0.9rem] leading-[1.9] tracking-[0.01em] text-ink/75 transition-colors hover:text-accent"
+                  >
+                    {heading.text}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )}
+
+        <div className="prose prose-lg max-w-none prose-headings:scroll-mt-24 prose-headings:mt-10 prose-headings:mb-4 prose-headings:font-medium prose-headings:tracking-wide prose-headings:text-ink prose-h2:text-[1.15rem] sm:prose-h2:text-[1.25rem] prose-h3:text-[1.02rem] sm:prose-h3:text-[1.08rem] prose-p:text-[0.9875rem] sm:prose-p:text-[1rem] prose-p:leading-[2.2] prose-p:tracking-[0.02em] prose-p:text-ink/90 prose-li:leading-[2.15] prose-li:tracking-[0.01em] prose-li:text-ink/90 prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-strong:text-ink prose-strong:font-semibold prose-code:text-ink/80 prose-code:before:content-none prose-code:after:content-none">
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]}>
+            {post.body}
+          </ReactMarkdown>
+        </div>
+
+        {/* シェア導線 */}
+        <div className="mt-12">
+          <ShareButtons url={articleUrl} title={post.title} />
         </div>
 
         {/* 著者 */}
