@@ -51,3 +51,21 @@ export function listBlogPosts(): BlogPost[] {
 export function getBlogSlugs(): string[] {
   return listBlogPosts().map((p) => p.slug);
 }
+
+/** タグの重複数で関連度を計り、同点は日付降順。タグ一致ゼロでも最新記事で埋めて常に limit 件返す。 */
+export function getRelatedPosts(slug: string, limit = 3): BlogPost[] {
+  const current = getBlogPost(slug);
+  if (!current) return [];
+  const currentTags = new Set(current.tags);
+  return listBlogPosts()
+    .filter((p) => p.slug !== slug)
+    .map((post) => ({
+      post,
+      score: post.tags.filter((t) => currentTags.has(t)).length,
+    }))
+    .sort(
+      (a, b) => b.score - a.score || (a.post.date < b.post.date ? 1 : -1),
+    )
+    .slice(0, limit)
+    .map((e) => e.post);
+}
