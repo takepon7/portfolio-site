@@ -2,11 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { listBlogPosts } from "@/lib/blog";
 
+const BLOG_TITLE = "Blog — 要員計画・人事DX・AI実装の記録";
+const BLOG_DESCRIPTION =
+  "要員計画・人事DX・AIプロダクト開発について、人事16年目の実務視点で書いています。Sakigake Workforce の開発記録も。";
+
 export const metadata: Metadata = {
-  title: "Blog — 要員計画・人事DX・AI実装の記録",
-  description:
-    "要員計画・人事DX・AIプロダクト開発について、人事16年目の実務視点で書いています。Sakigake Workforce の開発記録も。",
+  title: BLOG_TITLE,
+  description: BLOG_DESCRIPTION,
   alternates: { canonical: "/blog" },
+  openGraph: {
+    title: BLOG_TITLE,
+    description: BLOG_DESCRIPTION,
+    type: "website",
+    locale: "ja_JP",
+  },
 };
 
 export default function BlogIndexPage() {

@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { getBlogPost, getBlogSlugs } from "@/lib/blog";
+import { getBlogPost, getBlogSlugs, getRelatedPosts } from "@/lib/blog";
 import { SITE_URL } from "@/lib/site";
 
 export async function generateStaticParams() {
@@ -48,6 +48,23 @@ export default async function BlogArticlePage({
   const post = getBlogPost(slug);
   if (!post || post.draft) notFound();
 
+  const relatedPosts = getRelatedPosts(slug);
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog` },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: `${SITE_URL}/blog/${post.slug}`,
+      },
+    ],
+  };
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -71,6 +88,10 @@ export default async function BlogArticlePage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <header className="border-b border-ink/10 bg-paper/95 backdrop-blur-sm">
         <nav className="mx-auto flex max-w-3xl items-center justify-between px-6 py-5 sm:px-8">
@@ -152,6 +173,45 @@ export default async function BlogArticlePage({
             </Link>
           </div>
         </div>
+
+        {/* 関連記事（タグベースの内部リンク） */}
+        {relatedPosts.length > 0 && (
+          <nav aria-label="関連記事" className="mt-14">
+            <p className="mb-5 font-mono text-[0.68rem] tracking-[0.14em] text-ink/45">
+              RELATED
+            </p>
+            <ul className="space-y-4">
+              {relatedPosts.map((related) => (
+                <li key={related.slug}>
+                  <Link
+                    href={`/blog/${related.slug}`}
+                    className="group block rounded-2xl border border-ink/08 bg-surface p-6 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-accent/35 hover:bg-hover"
+                  >
+                    <div className="mb-2 flex flex-wrap items-center gap-3">
+                      <time
+                        dateTime={related.date}
+                        className="font-mono text-[0.68rem] tracking-[0.08em] text-ink/45"
+                      >
+                        {related.date}
+                      </time>
+                      {related.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full bg-ink/06 px-2.5 py-0.5 font-mono text-[0.62rem] tracking-[0.06em] text-ink/55"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <p className="text-[0.95rem] font-medium leading-[1.85] tracking-[0.01em] text-ink transition-colors group-hover:text-accent">
+                      {related.title}
+                    </p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
       </article>
     </div>
   );
