@@ -38,6 +38,11 @@ export const metadata: Metadata = {
     canonical: "/",
     types: { "application/rss+xml": "/feed.xml" },
   },
+  // Google Search Console の所有権確認（HTMLタグ方式）。
+  // トークン取得後 `vercel env add GOOGLE_SITE_VERIFICATION` で設定 → 再デプロイで有効化。
+  verification: process.env.GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+    : undefined,
   robots: { index: true, follow: true },
   keywords: [
     "個人開発者",
