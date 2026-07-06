@@ -38,24 +38,26 @@
 |---|---|---|---|
 | 1 | ✅ 要員計画がExcelで破綻する5つの瞬間 | A | MOFU |
 | 2 | ✅ 要員計画とは何か——人員計画・採用計画・配置計画との違い（workforce-planning-basics） | A | TOFU |
-| 3 | 要員計画テンプレートを配る前に決めるべき3つのこと | A | MOFU |
-| 4 | 「ポジションベース」の組織図が要員計画を殺す | B | MOFU |
-| 5 | スキルマップが3ヶ月で放置される理由と、続く設計 | B | MOFU |
+| 3 | ✅ 要員計画テンプレートを配る前に決めるべき3つのこと（workforce-planning-template-prep） | A | MOFU |
+| 4 | ✅ 「ポジションベース」の組織図が要員計画を縛る（position-based-org-chart-limits） | B | MOFU |
+| 5 | ✅ スキルマップが3ヶ月で放置される理由と、続く設計（skill-map-abandonment） | B | MOFU |
 | 6 | ✅ Workday・ServiceNow導入PM経験から、HRテック選定で最初に確認すべき5つ（hr-tech-selection-questions） | C | MOFU |
-| 7 | 要員計画ツールを入れる前にExcelでやるべき3ステップ | A | BOFU |
-| 8 | 経営が欲しい要員計画・現場が欲しい要員計画・人事が作れる要員計画 | A | TOFU |
-| 9 | ベンダーの言葉を現場の言葉に翻訳する——導入する側の16年 | C | TOFU |
-| 10 | 要員計画の「実行管理」とは何か——計画が使われない会社の共通点 | A | MOFU |
-| 11 | Capability起点の要員計画——定義と最小の始め方 | B | BOFU |
-| 12 | 人事16年目がAIプロダクトを複業で作る理由 | D | TOFU |
-| 13 | 採用計画と要員計画がずれる構造的な理由 | A | MOFU |
-| 14 | 「来期何人必要？」に即答できない人事は悪くない | A | TOFU |
-| 15 | ServiceNow全社導入で学んだ、現場が使うシステムの条件 | C | MOFU |
-| 16 | 要員計画の承認フローをExcelの外に出す | A | BOFU |
-| 17 | ジョブ型雇用と要員計画——箱から能力へ | B | TOFU |
-| 18 | 人事データの棚卸し——要員計画の前提整備 | C | MOFU |
-| 19 | AIで要員計画はどこまで自動化できるか（できないか） | D | TOFU |
-| 20 | 要員計画SaaSを自分で作りながら考えた「最小限の機能」 | B/D | BOFU |
+| 7 | ✅ 要員計画ツールを入れる前にExcelでやるべき3ステップ（excel-3-steps-before-tools） | A | BOFU |
+| 8 | ✅ 経営が欲しい要員計画・現場が欲しい要員計画・人事が作れる要員計画（three-views-of-workforce-planning） | A | TOFU |
+| 9 | ✅ ベンダーの言葉を現場の言葉に翻訳する（translating-vendor-language） | C | TOFU |
+| 10 | ✅ 要員計画の「実行管理」とは何か（workforce-plan-execution） | A | MOFU |
+| 11 | ✅ Capability起点の要員計画——定義と最小の始め方（capability-based-workforce-planning・ハブ記事） | B | BOFU |
+| 12 | ✅ 人事16年目が、複業でAIプロダクトを作る理由（why-hr-builds-ai-products） | D | TOFU |
+| 13 | ✅ 採用計画と要員計画がずれる構造的な理由（hiring-plan-vs-workforce-plan） | A | MOFU |
+| 14 | ✅ 「来期、何人必要？」に即答できない人事は悪くない（headcount-question） | A | TOFU |
+| 15 | ✅ ServiceNow全社導入で学んだ、現場が使うシステムの条件（servicenow-lessons-usable-systems） | C | MOFU |
+| 16 | ✅ 要員計画の承認フローをExcelの外に出す（approval-flow-beyond-excel） | A | BOFU |
+| 17 | ✅ ジョブ型雇用と要員計画——箱から能力へ（job-based-employment-capability） | B | TOFU |
+| 18 | ✅ 人事データの棚卸し（hr-data-inventory) | C | MOFU |
+| 19 | ✅ AIで要員計画はどこまで自動化できるか（ai-workforce-planning-limits） | D | TOFU |
+| 20 | ✅ 要員計画SaaSを自分で作りながら考えた「最小限の機能」（minimum-features-workforce-saas） | B/D | BOFU |
+
+**→ ネタ表20本すべて公開済み（2026-07-06）。以降は既存記事の加筆更新（frontmatter `updated`）と、Search Console の検索クエリを見て新クラスタを追加する運用へ。**
 
 ## 内部リンク設計
 
