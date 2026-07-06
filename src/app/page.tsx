@@ -87,8 +87,9 @@ const WORKS: WorkItem[] = [
 // インタビューで「単発で相談したい」が出たら true にして公開する。
 const SHOW_CONSULTING_CARD = false;
 
-// PLACEHOLDER: 提案資料（Google Slides 共有リンク）。URLを入れると「提案資料を見る」CTAが表示される。
-const SERVICE_DECK_URL = ""; // ← 空の間はCTA非表示（"#" のデッドリンクを本番に出さない）
+// 提案資料（Google Slides）。/preview 形式でエディタUIを出さずに閲覧させる。空にするとCTA非表示。
+const SERVICE_DECK_URL =
+  "https://docs.google.com/presentation/d/1-a_2YIxK3didz1wTTn2bgWEvyT_Vakx8AI5taLHBZzE/preview";
 
 type ServiceCard = {
   eyebrow: string;
