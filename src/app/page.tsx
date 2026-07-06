@@ -87,8 +87,8 @@ const WORKS: WorkItem[] = [
 // インタビューで「単発で相談したい」が出たら true にして公開する。
 const SHOW_CONSULTING_CARD = false;
 
-// PLACEHOLDER: 提案資料（Google Slides 共有リンク）。確定後に差し替える。
-const SERVICE_DECK_URL = "#"; // ← PLACEHOLDER
+// PLACEHOLDER: 提案資料（Google Slides 共有リンク）。URLを入れると「提案資料を見る」CTAが表示される。
+const SERVICE_DECK_URL = ""; // ← 空の間はCTA非表示（"#" のデッドリンクを本番に出さない）
 
 type ServiceCard = {
   eyebrow: string;
@@ -122,7 +122,9 @@ const SERVICE_WORKFORCE: ServiceCard = {
   price: "¥150,000 / 3ヶ月",
   priceNote: "（週1セッション込み）",
   primary: { label: "30分オンラインを予約", href: "#contact" },
-  secondary: { label: "提案資料を見る ↗", href: SERVICE_DECK_URL }, // PLACEHOLDER リンク
+  secondary: SERVICE_DECK_URL
+    ? { label: "提案資料を見る ↗", href: SERVICE_DECK_URL }
+    : undefined,
 };
 
 const SERVICE_CARDS: ServiceCard[] = SHOW_CONSULTING_CARD
