@@ -76,6 +76,14 @@ export function SiteHeader() {
             <span aria-hidden>⌘</span>K
           </button>
 
+          {/* 常設CTA：どこまで読んでいても予約へ1クリック */}
+          <Link
+            href="#contact"
+            className="inline-flex items-center rounded-full bg-accent px-3.5 py-1.5 text-[0.72rem] font-medium tracking-[0.04em] text-white transition-opacity hover:opacity-90 sm:px-4 sm:text-[0.74rem]"
+          >
+            30分相談
+          </Link>
+
           {/* 検索アイコン（モバイル） */}
           <button
             type="button"
