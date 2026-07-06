@@ -21,9 +21,9 @@ const jetBrainsMono = JetBrains_Mono({
   display: "optional",
 });
 
-const SITE_TITLE = "Ryosuke Takeda — AIプロダクトを個人で開発・運営";
+const SITE_TITLE = "Ryosuke Takeda — Claude Codeで個人開発";
 const SITE_DESCRIPTION =
-  "人事／People Opsの現場を10年以上見てきた個人開発者。介護・中小企業・HR・英語学習の現場の痛みを、AIプロダクトとして実装・販売しています。";
+  "Claude Codeで、アプリやサービスをひとりで作っています。本業は人事。睡眠・キャリア・介護・英語学習など、自分や身近な人の課題を形にしています。";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

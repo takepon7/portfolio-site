@@ -122,6 +122,20 @@ export function ContactSection({ formspreeEndpoint = null }: ContactSectionProps
                     disabled={status === "submitting"}
                   />
                 </div>
+                <div>
+                  <textarea
+                    id="contact-preferred-dates"
+                    name="preferred_dates"
+                    rows={2}
+                    placeholder="オンライン相談をご希望の場合、候補日時を2〜3件（例：7/10 14:00〜 / 7/11 終日）"
+                    aria-label="希望日時（任意・2〜3件）"
+                    className={`${inputBase} resize-y`}
+                    disabled={status === "submitting"}
+                  />
+                  <p className="mt-2 text-[0.8rem] leading-relaxed text-ink/50">
+                    ※ 30分オンライン相談をご希望の方は、候補日時を書いていただくと折り返しがスムーズです（任意）。
+                  </p>
+                </div>
                 {status === "error" && errorMessage && (
                   <p className="text-[0.875rem] text-ink/70">{errorMessage}</p>
                 )}
