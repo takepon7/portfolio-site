@@ -8,6 +8,7 @@ import { StatusRegistry, type WorkItem } from "@/components/StatusRegistry";
 const WORKS: WorkItem[] = [
   {
     name: "Sakigake Workforce",
+    category: "saas",
     status: "selling",
     domain: "要員計画SWP / B2B",
     desc: "事業計画から必要capabilityを逆算し、採用・育成・配置・代謝の施策ポートフォリオに落として実行追跡するSWPワークベンチ。45秒のデモ動画（無音・架空データ）。",
@@ -17,6 +18,7 @@ const WORKS: WorkItem[] = [
   },
   {
     name: "biz-english-master",
+    category: "saas",
     status: "live",
     domain: "英語学習 / B2C",
     desc: "外資系で働く日本人向けのAI英会話練習サービス。月額¥2,980・7日間無料。Stripe本番審査を申請から24時間で通過。",
@@ -29,6 +31,7 @@ const WORKS: WorkItem[] = [
   },
   {
     name: "kaigo-dx",
+    category: "saas",
     status: "selling",
     domain: "介護DX / B2B",
     desc: "音声で話すだけで介護記録が完成するB2B SaaS。音声→文字起こし→AIが記録を構造化。β運用・ユーザー獲得中。",
@@ -42,6 +45,7 @@ const WORKS: WorkItem[] = [
   },
   {
     name: "papatto-hp",
+    category: "saas",
     status: "selling",
     domain: "中小企業DX",
     desc: "中小企業（工務店・士業）のホームページを、AIで最短24時間・定額で制作するサービス。",
@@ -51,6 +55,7 @@ const WORKS: WorkItem[] = [
   },
   {
     name: "そいね / Soine",
+    category: "saas",
     status: "store",
     domain: "入眠 / ヘルスケア",
     desc: "眠りにつくための“語り”のアプリ。日本語の物語とAI音声で入眠を誘うモバイルプロダクト。App Storeで配信中。",
@@ -63,6 +68,7 @@ const WORKS: WorkItem[] = [
   },
   {
     name: "sakigake / 魁",
+    category: "devtool",
     status: "prep",
     domain: "SaaS基盤 / DevTool",
     desc: "Claude Code・AIエージェントネイティブな日本語ファーストSaaSボイラープレート。厳格なDDD構成（321 tests / 151 modules / DDD違反0 / ADR 7本）で開発中。",
@@ -74,7 +80,35 @@ const WORKS: WorkItem[] = [
     ],
   },
   {
+    name: "appstore-shots",
+    category: "devtool",
+    status: "oss",
+    domain: "DevTool / OSS",
+    desc: "App Store Connect の正確なピクセルサイズで、ストア用スクリーンショットを一括生成するOSSです。",
+    stack: ["TypeScript"],
+    url: "https://github.com/takepon7/appstore-shots",
+  },
+  {
+    name: "ptcg-ai-battle",
+    category: "experiment",
+    status: "oss",
+    domain: "対戦AI / 技術検証",
+    desc: "探索ベースのPTCG対戦AI。26本のADRで全設計判断を記録し、Docker検証ハーネスで再現できるようにしています。",
+    stack: ["Python", "Docker"],
+    url: "https://github.com/takepon7/ptcg-ai-battle",
+  },
+  {
+    name: "gitai",
+    category: "experiment",
+    status: "oss",
+    domain: "ゲームAI / 技術検証",
+    desc: "擬態お絵かきゲーム。SigLIP / CLIP による決定論スコアリングと、LLMによる演出層を分離して設計しています。",
+    stack: ["Python", "TypeScript", "SigLIP / CLIP"],
+    url: "https://github.com/takepon7/gitai",
+  },
+  {
     name: "pelago",
+    category: "saas",
     status: "prep",
     domain: "グローバル / コミュニティ",
     desc: "世界の誰かと文通できるWebアプリ。AI翻訳で言語の壁を越えて手紙を交わす。コミュニティ醸成中。",
@@ -83,6 +117,7 @@ const WORKS: WorkItem[] = [
   },
   {
     name: "個人開発者向けGTM支援ツール",
+    category: "saas",
     status: "prep",
     domain: "GTM / 個人開発者支援",
     desc: "個人開発者の「作れるけど売れない」を解決するGTM支援ツール。Coming Soon。",
