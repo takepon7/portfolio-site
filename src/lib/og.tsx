@@ -9,8 +9,9 @@ const FOOTER_TAGLINE = "要員計画・人事DX・AI実装";
 /**
  * Google Fonts から使用文字だけをサブセット取得する（ビルド時のみ実行）。
  * 取得失敗時は null を返し、フォント指定なしで描画を続行する（ビルドは落とさない）。
+ * OG画像のほか favicon（icon.tsx / apple-icon.tsx）でも使う。
  */
-async function loadShipporiMincho(text: string): Promise<ArrayBuffer | null> {
+export async function loadShipporiMincho(text: string): Promise<ArrayBuffer | null> {
   try {
     const url = `https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@700&text=${encodeURIComponent(text)}`;
     const cssRes = await fetch(url);
