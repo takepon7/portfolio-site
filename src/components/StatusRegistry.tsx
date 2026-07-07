@@ -17,6 +17,10 @@ export interface WorkItem {
   url?: string;
   /** スクリーンショット画像パス（無ければプレースホルダ） */
   image?: string;
+  /** デモ動画パス（指定時は image より優先して <video> を表示） */
+  video?: string;
+  /** 動画のポスター画像パス */
+  poster?: string;
   /** 関連リンク（事例紹介・記事など）。カード下部にチップ表示 */
   links?: { label: string; href: string }[];
 }
@@ -39,7 +43,19 @@ function ProductCard({ item }: { item: WorkItem }) {
     <>
       {/* プロダクト画像（大きく・はっきり） */}
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-3">
-        {item.image ? (
+        {item.video ? (
+          <video
+            src={item.video}
+            poster={item.poster}
+            controls
+            muted
+            playsInline
+            preload="metadata"
+            className="absolute inset-0 h-full w-full object-cover"
+          >
+            お使いのブラウザは動画再生に対応していません。
+          </video>
+        ) : item.image ? (
           <Image
             src={item.image}
             alt={`${item.name} の画面`}

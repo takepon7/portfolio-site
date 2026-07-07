@@ -7,6 +7,15 @@ import { StatusRegistry, type WorkItem } from "@/components/StatusRegistry";
 
 const WORKS: WorkItem[] = [
   {
+    name: "Sakigake Workforce",
+    status: "selling",
+    domain: "要員計画SWP / B2B",
+    desc: "事業計画から必要capabilityを逆算し、採用・育成・配置・代謝の施策ポートフォリオに落として実行追跡するSWPワークベンチ。45秒のデモ動画（無音・架空データ）。",
+    stack: ["Next.js", "TypeScript", "DDD"],
+    video: "/videos/sakigake-workforce-demo.mp4",
+    poster: "/images/sakigake-workforce/sakigake-workforce-poster.png",
+  },
+  {
     name: "biz-english-master",
     status: "live",
     domain: "英語学習 / B2C",
