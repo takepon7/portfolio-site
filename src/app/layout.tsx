@@ -82,6 +82,17 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Formspree の送信先URL。環境変数はキー単体（例: mgordbkp）と
+ * 完全URL（https://formspree.io/f/mgordbkp）のどちらでも受け付ける。
+ * （本番でURL形式が設定されており、テンプレート合成で二重URLになる事故があったため）
+ */
+function resolveFormspreeEndpoint(): string | null {
+  const raw = process.env.NEXT_PUBLIC_FORMSPREE_KEY?.trim();
+  if (!raw) return null;
+  return raw.startsWith("http") ? raw : `https://formspree.io/f/${raw}`;
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -123,13 +134,7 @@ export default function RootLayout({
         <CommandPalette />
         <div className="flex-1">
           {children}
-          <ContactSection
-            formspreeEndpoint={
-              process.env.NEXT_PUBLIC_FORMSPREE_KEY
-                ? `https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_KEY}`
-                : null
-            }
-          />
+          <ContactSection formspreeEndpoint={resolveFormspreeEndpoint()} />
         </div>
         <footer className="mt-auto border-t border-ink/10 px-6 pt-16 pb-12 sm:px-8 sm:pt-20 md:px-12">
           <div className="mx-auto max-w-6xl">

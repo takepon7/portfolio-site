@@ -83,9 +83,8 @@ const WORKS: WorkItem[] = [
 ];
 
 // ── SERVICES（提供メニュー。このLPの主役）──────────────────────────
-// カード1（人事コンサル）は骨組みのみ実装し、今週は非表示。
-// インタビューで「単発で相談したい」が出たら true にして公開する。
-const SHOW_CONSULTING_CARD = false;
+// カード1（人事コンサル）は仮置き価格のまま公開中（2026-07-07 ユーザー判断）。
+const SHOW_CONSULTING_CARD = true;
 
 // 提案資料（Google Slides）。/preview 形式でエディタUIを出さずに閲覧させる。空にするとCTA非表示。
 const SERVICE_DECK_URL =
@@ -113,10 +112,10 @@ const SERVICE_CONSULTING: ServiceCard = {
   primary: { label: "30分無料相談を予約", href: "#contact" },
 };
 
-// カード2: Sakigake Workforce デザインパートナー（限定2社）— 今週の主役
+// カード2: Sakigake Workforce 共同検証パートナー（限定2社）— このLPの主役
 const SERVICE_WORKFORCE: ServiceCard = {
   eyebrow: "Sakigake Workforce",
-  title: "Sakigake Workforce デザインパートナー",
+  title: "要員計画SaaSの共同検証パートナー",
   limited: "限定2社",
   body: "Capability 起点の要員計画・実行管理 SaaS を、貴社の課題で共同検証。週1セッション込みで、現場に効く形を一緒に設計します。",
   // PLACEHOLDER: 価格は仮置き。確定後に差し替える。
