@@ -1,10 +1,14 @@
 import Image from "next/image";
 
-export type WorkStatus = "live" | "store" | "selling" | "prep";
+export type WorkStatus = "live" | "store" | "selling" | "prep" | "oss";
+
+export type WorkCategory = "saas" | "devtool" | "experiment";
 
 export interface WorkItem {
   /** プロダクト名（表示・key兼用） */
   name: string;
+  /** 区分（saas: 事業/サービス, devtool: 開発基盤/OSS, experiment: 技術検証） */
+  category: WorkCategory;
   /** 機能的ステータス（色と稼働ドットに対応） */
   status: WorkStatus;
   /** ドメイン / 区分（例: 英語学習 / B2C） */
@@ -34,6 +38,15 @@ const STATUS_META: Record<
   store: { label: "配信中", tone: "text-st-store", dot: "bg-st-store", pulse: true },
   selling: { label: "営業中", tone: "text-st-sell", dot: "bg-st-sell", pulse: false },
   prep: { label: "準備中", tone: "text-st-prep", dot: "bg-st-prep", pulse: false },
+  oss: { label: "OSS公開", tone: "text-st-live", dot: "bg-st-live", pulse: false },
+};
+
+/** カテゴリの表示順とラベル。存在するカテゴリだけ描画する。 */
+const CATEGORY_ORDER: WorkCategory[] = ["saas", "devtool", "experiment"];
+const CATEGORY_META: Record<WorkCategory, { label: string; sub: string }> = {
+  saas: { label: "SaaS / サービス", sub: "事業として運営しているプロダクト" },
+  devtool: { label: "DevTool / 基盤", sub: "開発を支える基盤とOSS" },
+  experiment: { label: "Experiment / 技術検証", sub: "設計判断を記録しながら検証したプロジェクト" },
 };
 
 function ProductCard({ item }: { item: WorkItem }) {
@@ -142,10 +155,27 @@ function ProductCard({ item }: { item: WorkItem }) {
 
 export function StatusRegistry({ items }: { items: WorkItem[] }) {
   return (
-    <div className="grid gap-6 sm:gap-7 md:grid-cols-2 md:gap-8">
-      {items.map((item) => (
-        <ProductCard key={item.name} item={item} />
-      ))}
+    <div className="space-y-14">
+      {CATEGORY_ORDER.map((category) => {
+        const group = items.filter((item) => item.category === category);
+        if (group.length === 0) return null;
+        const meta = CATEGORY_META[category];
+        return (
+          <section key={category} aria-label={meta.label}>
+            <div className="mb-6 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+              <h3 className="font-mono text-[0.78rem] tracking-[0.12em] text-ink/70">
+                {meta.label}
+              </h3>
+              <p className="text-[0.8rem] tracking-[0.02em] text-ink/45">{meta.sub}</p>
+            </div>
+            <div className="grid gap-6 sm:gap-7 md:grid-cols-2 md:gap-8">
+              {group.map((item) => (
+                <ProductCard key={item.name} item={item} />
+              ))}
+            </div>
+          </section>
+        );
+      })}
     </div>
   );
 }

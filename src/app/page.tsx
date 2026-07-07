@@ -8,6 +8,7 @@ import { StatusRegistry, type WorkItem } from "@/components/StatusRegistry";
 const WORKS: WorkItem[] = [
   {
     name: "Sakigake Workforce",
+    category: "saas",
     status: "selling",
     domain: "要員計画SWP / B2B",
     desc: "事業計画から必要capabilityを逆算し、採用・育成・配置・代謝の施策ポートフォリオに落として実行追跡するSWPワークベンチ。45秒のデモ動画（無音・架空データ）。",
@@ -17,6 +18,7 @@ const WORKS: WorkItem[] = [
   },
   {
     name: "biz-english-master",
+    category: "saas",
     status: "live",
     domain: "英語学習 / B2C",
     desc: "外資系で働く日本人向けのAI英会話練習サービス。月額¥2,980・7日間無料。Stripe本番審査を申請から24時間で通過。",
@@ -29,6 +31,7 @@ const WORKS: WorkItem[] = [
   },
   {
     name: "kaigo-dx",
+    category: "saas",
     status: "selling",
     domain: "介護DX / B2B",
     desc: "音声で話すだけで介護記録が完成するB2B SaaS。音声→文字起こし→AIが記録を構造化。β運用・ユーザー獲得中。",
@@ -42,6 +45,7 @@ const WORKS: WorkItem[] = [
   },
   {
     name: "papatto-hp",
+    category: "saas",
     status: "selling",
     domain: "中小企業DX",
     desc: "中小企業（工務店・士業）のホームページを、AIで最短24時間・定額で制作するサービス。",
@@ -51,6 +55,7 @@ const WORKS: WorkItem[] = [
   },
   {
     name: "そいね / Soine",
+    category: "saas",
     status: "store",
     domain: "入眠 / ヘルスケア",
     desc: "眠りにつくための“語り”のアプリ。日本語の物語とAI音声で入眠を誘うモバイルプロダクト。App Storeで配信中。",
@@ -63,6 +68,7 @@ const WORKS: WorkItem[] = [
   },
   {
     name: "sakigake / 魁",
+    category: "devtool",
     status: "prep",
     domain: "SaaS基盤 / DevTool",
     desc: "Claude Code・AIエージェントネイティブな日本語ファーストSaaSボイラープレート。厳格なDDD構成（321 tests / 151 modules / DDD違反0 / ADR 7本）で開発中。",
@@ -74,20 +80,31 @@ const WORKS: WorkItem[] = [
     ],
   },
   {
-    name: "pelago",
-    status: "prep",
-    domain: "グローバル / コミュニティ",
-    desc: "世界の誰かと文通できるWebアプリ。AI翻訳で言語の壁を越えて手紙を交わす。コミュニティ醸成中。",
-    stack: ["Web", "AI翻訳・モデレーション"],
-    // 準備中：公開URL・スクショなし（プレースホルダ表示）
+    name: "appstore-shots",
+    category: "devtool",
+    status: "oss",
+    domain: "DevTool / OSS",
+    desc: "App Store Connect の正確なピクセルサイズで、ストア用スクリーンショットを一括生成するOSSです。",
+    stack: ["TypeScript"],
+    url: "https://github.com/takepon7/appstore-shots",
   },
   {
-    name: "個人開発者向けGTM支援ツール",
-    status: "prep",
-    domain: "GTM / 個人開発者支援",
-    desc: "個人開発者の「作れるけど売れない」を解決するGTM支援ツール。Coming Soon。",
-    stack: ["Web", "生成AI"],
-    // 準備中：名称・公開URL未定（Coming Soon プレースホルダ表示）
+    name: "ptcg-ai-battle",
+    category: "experiment",
+    status: "oss",
+    domain: "対戦AI / 技術検証",
+    desc: "探索ベースのPTCG対戦AI。26本のADRで全設計判断を記録し、Docker検証ハーネスで再現できるようにしています。",
+    stack: ["Python", "Docker"],
+    url: "https://github.com/takepon7/ptcg-ai-battle",
+  },
+  {
+    name: "gitai",
+    category: "experiment",
+    status: "oss",
+    domain: "ゲームAI / 技術検証",
+    desc: "擬態お絵かきゲーム。SigLIP / CLIP による決定論スコアリングと、LLMによる演出層を分離して設計しています。",
+    stack: ["Python", "TypeScript", "SigLIP / CLIP"],
+    url: "https://github.com/takepon7/gitai",
   },
 ];
 
@@ -182,6 +199,7 @@ const CREDENTIALS = [
 // ストックフォトが混在して世界観が崩れるため、サイトのトークンだけで組む）。
 // ソース色は Work のステータス色システムを再利用して呼応させる。
 const SOURCE_STYLES: Record<string, { chip: string; readLabel: string }> = {
+  Book: { chip: "bg-accent-gold/10 text-accent-gold", readLabel: "Zenn Books で読む（¥1,500）↗" },
   Qiita: { chip: "bg-accent/10 text-accent", readLabel: "Qiita で読む ↗" },
   Zenn: { chip: "bg-st-store/10 text-st-store", readLabel: "Zenn で読む ↗" },
   Essay: { chip: "bg-st-sell/10 text-st-sell", readLabel: "エッセイを読む →" },
@@ -189,10 +207,22 @@ const SOURCE_STYLES: Record<string, { chip: string; readLabel: string }> = {
 
 const blogPosts = [
   {
+    source: "Book",
+    title: "判断を委譲しない設計 ― AIにコードを書かせる時代のDDD実践",
+    href: "https://zenn.dev/takepon7/books/delegate-code-not-judgment",
+    lead: "AIがコードを書く時代に、なぜ厳格なDDDの境界がエージェントのガードレールになるのか。Sakigake の実ADR・dependency-cruiser 設定とともにまとめた一冊です。",
+  },
+  {
     source: "Qiita",
     title: "連休4日で個人開発SaaSのStripe本番審査を通した話 - 申請から24時間で通過するための判断ログ",
     href: "https://qiita.com/takepon7/items/55628b2091c43af5c5d4",
     lead: "コードを書く時間と同じくらい「審査・法令・本番運用準備」に時間が消えていく。連休4日間で個人開発のB2C SaaSを実際に決済できる状態まで持っていった判断ログ。",
+  },
+  {
+    source: "Zenn",
+    title: "OpenTelemetryをボイラープレートに仕込んだら、番人ルールが眠っていたのに気づいた話",
+    href: "https://zenn.dev/takepon7/articles/otel-ddd-boilerplate-dependency-cruiser",
+    lead: "SaaSボイラープレートに OpenTelemetry を組み込む過程で、dependency-cruiser の番人ルールが機能していなかったことに気づく。観測を足したことで設計の守りが直った記録。",
   },
   {
     source: "Zenn",
