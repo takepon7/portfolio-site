@@ -1,66 +1,46 @@
 import { ImageResponse } from "next/og";
+import { loadShipporiMincho } from "@/lib/og";
 
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
-const Bg = "#FAF9F7";
-const OakBrown = "#8B4513";
-const ForestGreen = "#2D5A27";
-
-export default function AppleIcon() {
+/**
+ * ホーム画面用アイコン。iOS側が角丸マスクを適用するため、
+ * こちらは角丸なしの全面塗りにする（透過角があると黒く見える）。
+ */
+export default async function AppleIcon() {
+  const font = await loadShipporiMincho("R");
   return new ImageResponse(
     (
       <div
         style={{
           width: "100%",
           height: "100%",
-          background: Bg,
+          background: "#156b5a",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          borderRadius: 36,
+          fontFamily: '"Shippori Mincho", serif',
         }}
       >
-        {/* Build: 四角（角丸） */}
         <div
           style={{
-            width: 100,
-            height: 100,
-            background: OakBrown,
-            borderRadius: 16,
-            position: "absolute",
-            left: 40,
-            top: 55,
+            display: "flex",
+            fontSize: 116,
+            fontWeight: 700,
+            color: "#f9f8f6",
+            marginTop: -8,
           }}
-        />
-        {/* Culture: 双葉（左） */}
-        <div
-          style={{
-            width: 34,
-            height: 44,
-            background: ForestGreen,
-            borderRadius: "50% 50% 0 50%",
-            position: "absolute",
-            left: 73,
-            top: 32,
-            transform: "rotate(-25deg)",
-          }}
-        />
-        {/* Culture: 双葉（右） */}
-        <div
-          style={{
-            width: 34,
-            height: 44,
-            background: ForestGreen,
-            borderRadius: "50% 50% 50% 0",
-            position: "absolute",
-            left: 95,
-            top: 32,
-            transform: "rotate(25deg)",
-          }}
-        />
+        >
+          R
+        </div>
       </div>
     ),
-    { ...size }
+    {
+      ...size,
+      fonts: font
+        ? [{ name: "Shippori Mincho", data: font, weight: 700, style: "normal" }]
+        : undefined,
+    },
   );
 }
