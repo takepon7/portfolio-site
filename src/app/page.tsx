@@ -182,12 +182,19 @@ const CREDENTIALS = [
 // ストックフォトが混在して世界観が崩れるため、サイトのトークンだけで組む）。
 // ソース色は Work のステータス色システムを再利用して呼応させる。
 const SOURCE_STYLES: Record<string, { chip: string; readLabel: string }> = {
+  Book: { chip: "bg-accent-gold/10 text-accent-gold", readLabel: "Zenn Books で読む（¥1,500）↗" },
   Qiita: { chip: "bg-accent/10 text-accent", readLabel: "Qiita で読む ↗" },
   Zenn: { chip: "bg-st-store/10 text-st-store", readLabel: "Zenn で読む ↗" },
   Essay: { chip: "bg-st-sell/10 text-st-sell", readLabel: "エッセイを読む →" },
 };
 
 const blogPosts = [
+  {
+    source: "Book",
+    title: "判断を委譲しない設計 ― AIにコードを書かせる時代のDDD実践",
+    href: "https://zenn.dev/takepon7/books/delegate-code-not-judgment",
+    lead: "AIがコードを書く時代に、なぜ厳格なDDDの境界がエージェントのガードレールになるのか。Sakigake の実ADR・dependency-cruiser 設定とともにまとめた一冊です。",
+  },
   {
     source: "Qiita",
     title: "連休4日で個人開発SaaSのStripe本番審査を通した話 - 申請から24時間で通過するための判断ログ",
