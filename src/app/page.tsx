@@ -220,6 +220,12 @@ const blogPosts = [
   },
   {
     source: "Zenn",
+    title: "OpenTelemetryをボイラープレートに仕込んだら、番人ルールが眠っていたのに気づいた話",
+    href: "https://zenn.dev/takepon7/articles/otel-ddd-boilerplate-dependency-cruiser",
+    lead: "SaaSボイラープレートに OpenTelemetry を組み込む過程で、dependency-cruiser の番人ルールが機能していなかったことに気づく。観測を足したことで設計の守りが直った記録。",
+  },
+  {
+    source: "Zenn",
     title: "Claude Codeが出した提案を却下する技術 - 個人開発SaaSをDDDで作りながら学んだこと",
     href: "https://zenn.dev/takepon7/articles/3dd56bd4c46304",
     lead: "AIに丸投げするのではなく、AIと判断する。Claude Codeの提案を1つずつ吟味し、却下・採用・後回しを判断ログとして残す開発の進め方。",
