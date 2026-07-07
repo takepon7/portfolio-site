@@ -105,7 +105,7 @@ type ServiceCard = {
 const SERVICE_CONSULTING: ServiceCard = {
   eyebrow: "人事・組織",
   title: "人事・組織のスポット相談 / 顧問",
-  body: "採用体制、制度設計、HRテック選定（Workday / ServiceNow 導入PM経験）、要員計画の運用設計。「導入する側」を16年やった人間として、ベンダーの言葉を現場の言葉に翻訳します。",
+  body: "採用体制、制度設計、HRテック選定（Workday / ServiceNow 導入PM経験）、要員計画の運用設計。「導入する側」を16年経験した立場から、ベンダーの言葉を現場の言葉に翻訳します。",
   // PLACEHOLDER: 価格は仮置き。確定後に差し替える。
   price: "スポット90分 ¥30,000 / 月次顧問 ¥100,000〜",
   priceNote: "（稼働に応じて）",
@@ -448,7 +448,7 @@ export default function Home() {
                   いまも会社で人事／People Opsをしています。今年で16年目、採用・評価・労務・組織設計を内側から見てきて、Workday HCM/LMS や ServiceNow の全社導入も、現場と開発の間に立って動かしてきました。
                 </p>
                 <p className="text-[0.98rem] leading-[2.05] text-ink/90">
-                  その傍らで、自分でコードを書いて、アプリやサービスを作っています。Cursor / Gemini を経て、いまは Claude Code を主に使っていて、開発はぜんぶ独学で覚えました。
+                  その傍らで、自分でコードを書いて、アプリやサービスを作っています。Cursor / Gemini を経て、いまは Claude Code を主に使っていて、開発はすべて独学で身につけました。
                 </p>
                 <p className="text-[0.98rem] leading-[2.05] text-ink/65">
                   現場の困りごとを知っていると、何を作って何を作らないかで迷いにくい。作ったものは、なぜそう作ったかを自分の言葉で説明できるようにしておきたいと思っています。
