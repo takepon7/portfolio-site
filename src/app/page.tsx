@@ -106,24 +106,6 @@ const WORKS: WorkItem[] = [
     stack: ["Python", "TypeScript", "SigLIP / CLIP"],
     url: "https://github.com/takepon7/gitai",
   },
-  {
-    name: "pelago",
-    category: "saas",
-    status: "prep",
-    domain: "グローバル / コミュニティ",
-    desc: "世界の誰かと文通できるWebアプリ。AI翻訳で言語の壁を越えて手紙を交わす。コミュニティ醸成中。",
-    stack: ["Web", "AI翻訳・モデレーション"],
-    // 準備中：公開URL・スクショなし（プレースホルダ表示）
-  },
-  {
-    name: "個人開発者向けGTM支援ツール",
-    category: "saas",
-    status: "prep",
-    domain: "GTM / 個人開発者支援",
-    desc: "個人開発者の「作れるけど売れない」を解決するGTM支援ツール。Coming Soon。",
-    stack: ["Web", "生成AI"],
-    // 準備中：名称・公開URL未定（Coming Soon プレースホルダ表示）
-  },
 ];
 
 // ── SERVICES（提供メニュー。このLPの主役）──────────────────────────
